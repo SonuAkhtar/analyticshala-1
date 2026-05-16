@@ -1,0 +1,59 @@
+.imageCards_main {
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.1rem;
+}
+
+.imageCards_main .image_wrapper {
+  position: relative;
+  height: 60vh;
+  width: 120px;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  box-shadow: 0 0 10px #555;
+  filter: grayscale(1);
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+}
+
+.imageCards_main .image_wrapper.active {
+  height: 70vh;
+  width: 500px;
+  border-radius: 1rem;
+  filter: grayscale(0);
+}
+
+.imageCards_main .image_wrapper img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.imageCards_main .image_wrapper .title {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid black;
+  font-size: 2rem;
+}
+
+.imageCards_main .image_wrapper .image_number {
+  position: absolute;
+  bottom: 0rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 5vh;
+  line-height: 5vh;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 0 10px #555;
+  transition: all 0.5s ease-in-out;
+}
+
+.imageCards_main .image_wrapper.active .image_number {
+  font-size: 10vh;
+  line-height: 10vh;
+}

@@ -1,0 +1,7 @@
+.text_wrapper p {
+  font-size: 5rem;
+  text-align: center;
+  margin: 0;
+  font-weight: 600;
+  line-height: 0;
+}

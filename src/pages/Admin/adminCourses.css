@@ -1,0 +1,140 @@
+.adm-courses {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.adm-courses__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0;
+}
+
+.adm-courses__title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.adm-courses__title-row h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--adm-text);
+  margin: 0;
+}
+
+.adm-courses__actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.adm-courses__search {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--adm-card);
+  border: 1.5px solid var(--adm-border);
+  border-radius: var(--adm-radius-sm);
+  padding: 0 0.85rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.adm-courses__search:focus-within {
+  border-color: var(--adm-acc);
+  box-shadow: 0 0 0 3px var(--adm-acc-soft);
+}
+
+.adm-courses__search i {
+  color: var(--adm-text-m);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.adm-courses__search input {
+  flex: 1;
+  padding: 0.6rem 0;
+  border: none;
+  outline: none;
+  font-size: 0.875rem;
+  font-family: var(--font-body);
+  color: var(--adm-text);
+  background: transparent;
+}
+
+.adm-courses__search input::placeholder {
+  color: var(--adm-text-m);
+}
+
+.adm-courses__table-wrap {
+  background: var(--adm-card);
+  border: 1px solid var(--adm-border);
+  border-radius: var(--adm-radius);
+  overflow: hidden;
+  box-shadow: var(--adm-shadow);
+}
+
+.adm-courses__course-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.adm-courses__course-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--adm-acc-soft);
+  color: var(--adm-acc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.adm-courses__course-name {
+  font-weight: 600;
+  color: var(--adm-text);
+  font-size: 0.875rem;
+  line-height: 1.3;
+}
+
+.adm-courses__course-sub {
+  font-size: 0.75rem;
+  color: var(--adm-text-m);
+  margin-top: 0.1rem;
+}
+
+.adm-drawer-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--adm-border);
+  margin-bottom: 0;
+  flex-shrink: 0;
+  background: var(--adm-card);
+}
+
+.adm-drawer-tab {
+  padding: 0.65rem 1.1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--adm-text-m);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  transition: color 0.2s, border-bottom-color 0.2s;
+  font-family: var(--font-heading);
+  white-space: nowrap;
+}
+
+.adm-drawer-tab:hover {
+  color: var(--adm-text-2);
+}
+
+.adm-drawer-tab--active {
+  color: var(--adm-acc);
+  border-bottom-color: var(--adm-acc);
+}

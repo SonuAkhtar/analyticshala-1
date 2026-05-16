@@ -1,0 +1,146 @@
+.sp {
+  padding: 3rem 1.5rem;
+  background: var(--bg-secondary);
+}
+
+.sp__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.sp__card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--sb, rgba(178, 56, 80, 0.18));
+  border-top: 3px solid var(--sc, var(--brand-red));
+  border-radius: 12px;
+  padding: 1.1rem 1rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.sp__card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+}
+
+.sp__num {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 800;
+  color: var(--sc, var(--brand-red));
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.sp__num i {
+  font-size: 0.75em;
+}
+
+.sp__flicker {
+  display: inline-flex;
+  align-items: flex-start;
+  line-height: 1;
+}
+
+.sp__reel-wrap {
+  display: inline-block;
+  overflow: hidden;
+  height: 1em;
+  vertical-align: top;
+  line-height: 1;
+}
+
+.sp__reel-inner {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.sp__reel-inner span {
+  display: block;
+  height: 1em;
+}
+
+.sp__reel-dot,
+.sp__reel-suffix {
+  display: inline-block;
+  vertical-align: top;
+  line-height: 1;
+}
+
+.sp__label {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary, #111);
+  margin-top: 0.1rem;
+}
+
+.sp__sub {
+  font-size: 0.72rem;
+  color: var(--text-muted, #888);
+  line-height: 1.4;
+  flex: 1;
+}
+
+.sp__bar {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--sc, var(--brand-red));
+  margin-top: 0.875rem;
+  opacity: 0.55;
+}
+
+[data-theme="dark"] .sp__card {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: color-mix(
+    in srgb,
+    var(--sc, var(--brand-red)) 25%,
+    transparent
+  );
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .sp__label {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+[data-theme="dark"] .sp__sub {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+@media (max-width: 900px) {
+  .sp__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .sp {
+    padding: 2.5rem 1rem;
+  }
+
+  .sp__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .sp__card {
+    padding: 0.9rem 0.75rem 0.75rem;
+  }
+
+  .sp__num {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,129 @@
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: rgba(40, 42, 51, 1);
+  overflow: hidden;
+  will-change: transform, opacity;
+}
+
+/* Subtle noise-like dot grid */
+.page-loader__grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+.page-loader__brand {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  font-weight: 700;
+  color: rgba(232, 230, 220, 0.55);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  margin: 0;
+  user-select: none;
+}
+
+.page-loader__exit-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.page-loader__exit-a {
+  display: block;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 3.75rem;
+  font-weight: 700;
+  color: rgba(232, 230, 220, 0.9);
+  line-height: 1;
+  user-select: none;
+}
+
+.page-loader__counter {
+  position: absolute;
+  bottom: 3.5rem;
+  left: 3.5rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.06em;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(5rem, 18vw, 14rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+/* The roll container — no overflow clip so digits are never cut */
+.page-loader__roll {
+  display: flex;
+  align-items: flex-end;
+}
+
+.page-loader__num {
+  display: block;
+  color: rgba(232, 230, 220, 0.92);
+  font-variant-numeric: tabular-nums;
+  animation: numRollIn 0.11s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes numRollIn {
+  from {
+    transform: translateY(35%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.page-loader__pct {
+  font-size: 0.28em;
+  font-weight: 700;
+  color: rgba(232, 230, 220, 0.38);
+  margin-bottom: 0.22em;
+  letter-spacing: 0;
+}
+
+.page-loader__bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.page-loader__bar-fill {
+  height: 100%;
+  background: rgba(232, 230, 220, 0.3);
+}
+
+@media (max-width: 600px) {
+  .page-loader__brand {
+    top: 1.75rem;
+    left: 2rem;
+  }
+
+  .page-loader__counter {
+    bottom: 2.5rem;
+    left: 2rem;
+  }
+}

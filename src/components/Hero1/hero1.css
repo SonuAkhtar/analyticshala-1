@@ -1,0 +1,34 @@
+.hero1 {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.hero1_main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 2rem;
+}
+
+.hero1_main h1 {
+  font-size: 12vh;
+  font-weight: 400;
+  line-height: 12vh;
+}
+
+.hero1_main .hero1_top,
+.hero1_main .hero1_bottom {
+  text-align: center;
+}
+
+.hero1_main .hero1_center {
+  padding-left: 10%;
+}
+
+.hero1_main span {
+  color: orange;
+}

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /payment
+Disallow: /payment-success
+Disallow: /course-form
+Disallow: /workshop-form
+
+Sitemap: https://analyticshala.in/sitemap.xml

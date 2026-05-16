@@ -1,0 +1,348 @@
+/* Fallback fonts only — Sharp Grotesk is self-hosted and loads separately */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Oswald:wght@700&family=Space+Grotesk:wght@700&family=DM+Mono:wght@500&display=swap");
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+:root {
+  --font-sharp: "Sharp Grotesk";
+  --font-sharp-fallback: "Plus Jakarta Sans", system-ui;
+  --font-heading: var(--font-sharp), var(--font-sharp-fallback), sans-serif;
+  --font-body: var(--font-sharp), var(--font-sharp-fallback), sans-serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+
+  /* SocialProof display-number fonts — one per card */
+  --font-num-1: "Oswald", var(--font-sharp-fallback), sans-serif;
+  --font-num-2: "Space Grotesk", var(--font-sharp-fallback), sans-serif;
+  --font-num-3: var(--font-heading);
+  --font-num-4: var(--font-mono);
+
+  --brand-red: #b23850; /* primary CTA, icons, links  */
+  --brand-red-dark: #8c2038; /* pressed / darker shade     */
+  --brand-red-deeper: #6b1830; /* darkest – deep bg gradient */
+  --brand-red-light: #d4556c; /* hover / lighter variant    */
+  --brand-red-pale: #f78888; /* soft coral highlight       */
+  --brand-red-blush: #fdf0f3; /* near-white rose surface    */
+  --brand-red-tint: #f3eff0; /* very pale rose tint        */
+  --brand-red-border: #e8c4cc; /* rose-tinted border         */
+  --input-border: #e4ddd0; /* warm linen input border    */
+  --input-placeholder: #a8a29e; /* warm gray placeholder text */
+
+  --accent-blue: #3b8beb; /* primary blue               */
+  --accent-blue-dark: #2d6ac0; /* darker blue                */
+  --accent-blue-light: #5ba3f0; /* lighter blue               */
+  --accent-sky: #90ccf4; /* lightest / sky tone        */
+  --accent-indigo: #3b8beb; /* alias → accent-blue        */
+  --accent-cyan: #90ccf4; /* alias → accent-sky         */
+
+  --accent-teal: #0d9488;
+  --accent-green: #10b981;
+  --accent-gold: #f4d250; /* stars, warnings            */
+  --accent-coral: #f78888; /* alias → brand-red-pale     */
+  --accent-purple: #7c3aed; /* kept for badge variety     */
+  --accent-red: #b23850; /* alias → brand-red          */
+  --accent-orange: #f4d250; /* alias → accent-gold        */
+
+  --dark-navy: #1a1c2e; /* footer, mobile nav, hero   */
+  --dark-navy-deep: #0f1020; /* darkest navy               */
+  --dark-navy-mid: #252640; /* mid navy                   */
+  --dark-navy-blue: #2d3060; /* navy → blue transition     */
+
+  --bg-primary: #e7e3d4; /* warm linen                 */
+  --bg-secondary: #ddd9c8; /* slightly deeper linen      */
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8f7f2;
+
+  --text-primary: #1e1f2e;
+  --text-secondary: #3d3f56;
+  --text-muted: #8590aa;
+
+  --border: #ececec;
+  --border-light: #c4dbf6; /* alice blue                 */
+
+  --color-star: #f4d250; /* alias → accent-gold        */
+  --color-whatsapp: #25d366;
+  --dark-1: #1e1f2e; /* alias → text-primary       */
+  --dark-2: #111827;
+  --off-white: #f8f7f2; /* alias → bg-card-hover      */
+  --off-dark: #2d2e3f;
+  --page-accent: #b23850; /* alias → brand-red          */
+  --brand-red-rose: #ffd6da; /* lightest rose — text on dark hero bg */
+
+  --status-success-bg: #dcfce7;
+  --status-success-text: #15803d;
+  --status-success-border: #bbf7d0;
+  --status-success-icon: #4ade80;
+  --status-warning-bg: #fef9c3;
+  --status-warning-text: #a16207;
+  --status-warning-border: #fef08a;
+  --status-warning-icon: #fbbf24;
+  --status-danger-bg: #fee2e2;
+  --status-danger-text: #b91c1c;
+  --status-danger-border: #fecaca;
+  --status-danger-icon: #f87171;
+  --status-error: #ef4444;
+
+  --rgb-brand: 178, 56, 80; /* brand-red                  */
+  --rgb-blue: 59, 139, 235; /* accent-blue                */
+  --rgb-dark: 30, 31, 46; /* text-primary               */
+  --rgb-alice: 196, 219, 246; /* border-light               */
+  --rgb-gold: 244, 210, 80; /* accent-gold                */
+  --rgb-navy: 26, 28, 46; /* dark-navy                  */
+
+  --gradient-brand: linear-gradient(
+    135deg,
+    var(--brand-red),
+    var(--brand-red-pale)
+  );
+  --gradient-cta: linear-gradient(
+    135deg,
+    var(--brand-red),
+    var(--brand-red-dark)
+  );
+  --gradient-blue: linear-gradient(
+    135deg,
+    var(--accent-blue),
+    var(--accent-sky)
+  );
+  --gradient-bg: linear-gradient(
+    160deg,
+    var(--bg-primary) 0%,
+    #edeadb 50%,
+    #e3dfce 100%
+  );
+
+  --card-shadow: 0 4px 20px rgba(var(--rgb-dark), 0.07);
+  --card-shadow-hover: 0 12px 40px rgba(var(--rgb-dark), 0.16);
+
+  --rgb-linen: 231, 227, 212;
+  --header-bg: rgba(var(--rgb-linen), 0.88);
+  --header-bg-scrolled: rgba(var(--rgb-linen), 0.97);
+  --header-border: rgba(var(--rgb-brand), 0.12);
+  --header-shadow-scrolled: 0 4px 24px rgba(var(--rgb-dark), 0.1);
+  /* Floating pill */
+  --header-pill-bg: rgba(255, 255, 255, 0.97);
+  --header-pill-border: rgba(0, 0, 0, 0.08);
+  --header-pill-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.1), 0 1px 6px rgba(0, 0, 0, 0.06);
+  --header-pill-shadow-scrolled:
+    0 8px 40px rgba(0, 0, 0, 0.15), 0 2px 10px rgba(0, 0, 0, 0.08);
+
+  --orb-opacity: 0.14;
+
+  --dark-section-bg: linear-gradient(
+    135deg,
+    var(--dark-navy) 0%,
+    var(--dark-navy-deep) 50%,
+    var(--dark-navy) 100%
+  );
+  --dark-section-orb-1: rgba(var(--rgb-blue), 0.28);
+  --dark-section-orb-2: rgba(144, 204, 244, 0.18);
+
+  --footer-bg: var(--dark-navy);
+  --footer-border: rgba(var(--rgb-alice), 0.1);
+  --footer-text: rgba(var(--rgb-alice), 0.75);
+  --footer-link: rgba(var(--rgb-alice), 0.62);
+  --footer-heading: var(--border-light);
+  --footer-social-bg: rgba(255, 255, 255, 0.07);
+  --footer-social-clr: var(--border-light);
+  --footer-muted: rgba(var(--rgb-alice), 0.38);
+
+  --hero-orb-1: var(--brand-red);
+  --hero-orb-2: var(--brand-red-light);
+  --hero-orb-3: var(--brand-red-pale);
+  --hero-dot-color: rgba(var(--rgb-brand), 0.05);
+  --hero-dot-size: 28px;
+
+  --hero-dashboard-glow:
+    0 0 0 1px rgba(var(--rgb-brand), 0.1), 0 0 40px rgba(var(--rgb-dark), 0.06);
+  --hero-dashboard-glow-hover:
+    0 0 0 1px rgba(var(--rgb-brand), 0.22), 0 0 60px rgba(var(--rgb-dark), 0.12);
+
+  --skill-color-1: var(--brand-red);
+  --skill-color-2: var(--accent-blue);
+  --skill-color-3: var(--accent-teal);
+  --skill-color-4: var(--accent-gold);
+
+  --urgency-color: var(--brand-red);
+  --urgency-bg: rgba(var(--rgb-brand), 0.07);
+  --urgency-border: rgba(var(--rgb-brand), 0.2);
+
+  --learning-path-connector: linear-gradient(
+    90deg,
+    var(--brand-red) 0%,
+    var(--brand-red-pale) 40%,
+    var(--border-light) 70%,
+    #ffffff 100%
+  );
+
+  --sp-eyebrow-color: var(--page-accent);
+  --sp-title-color: var(--text-primary);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #12131e;
+  --bg-secondary: #1a1b2e;
+  --bg-card: #1e2035;
+  --bg-card-hover: #252640;
+
+  --text-primary: #f0f0f5;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+
+  --border: #2d2f4a;
+  --border-light: #3d3f5e;
+
+  --card-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+  --card-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.6);
+
+  --header-bg: rgba(18, 19, 30, 0.65);
+  --header-bg-scrolled: rgba(18, 19, 30, 0.96);
+  --header-border: rgba(var(--rgb-blue), 0.18);
+  --header-shadow-scrolled: 0 4px 30px rgba(0, 0, 0, 0.45);
+  /* Floating pill */
+  --header-pill-bg: rgba(18, 19, 30, 0.96);
+  --header-pill-border: rgba(255, 255, 255, 0.08);
+  --header-pill-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.45), 0 1px 6px rgba(0, 0, 0, 0.3);
+  --header-pill-shadow-scrolled:
+    0 8px 40px rgba(0, 0, 0, 0.6), 0 2px 10px rgba(0, 0, 0, 0.35);
+
+  --orb-opacity: 0.2;
+
+  --dark-section-bg: linear-gradient(
+    135deg,
+    #12131e 0%,
+    #0a0b14 50%,
+    #12131e 100%
+  );
+
+  --footer-bg: #0a0b14;
+  --footer-border: rgba(var(--rgb-alice), 0.08);
+  --footer-text: rgba(var(--rgb-alice), 0.55);
+  --footer-link: rgba(var(--rgb-alice), 0.48);
+  --footer-heading: rgba(var(--rgb-alice), 0.9);
+  --footer-social-bg: rgba(255, 255, 255, 0.05);
+  --footer-social-clr: rgba(var(--rgb-alice), 0.6);
+  --footer-muted: rgba(var(--rgb-alice), 0.28);
+
+  --page-accent: #d4556c;
+  --accent-indigo: #5ba3f0;
+  --accent-blue: #5ba3f0;
+  --brand-red: #d4556c;
+
+  --hero-dot-color: rgba(178, 56, 80, 0.04);
+
+  --hero-dashboard-glow:
+    0 0 0 1px rgba(212, 85, 108, 0.16), 0 0 50px rgba(178, 56, 80, 0.1);
+  --hero-dashboard-glow-hover:
+    0 0 0 1px rgba(212, 85, 108, 0.32), 0 0 70px rgba(178, 56, 80, 0.18);
+
+  --sp-title-color: var(--off-white);
+  --gradient-bg: linear-gradient(160deg, #12131e 0%, #181928 50%, #12131e 100%);
+  --off-white: #f0f0f5;
+}
+
+html {
+  scroll-behavior: smooth;
+  transition: background-color 0.45s ease;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--gradient-bg);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition:
+    background-color 0.45s ease,
+    color 0.3s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+h1 {
+  font-size: clamp(2.2rem, 6vw, 4.8rem);
+}
+h2 {
+  font-size: clamp(1.6rem, 4vw, 3rem);
+}
+h3 {
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+}
+
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 100%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.55s ease;
+  pointer-events: none;
+}
+.btn-shimmer:hover::after {
+  transform: translateX(100%);
+}
+
+.gradient-text {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+section {
+  position: relative;
+  padding: 6rem 1.5rem;
+  background: transparent;
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+@media screen and (max-width: 768px) {
+  section {
+    padding: 4rem 1rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  section {
+    padding: 3rem 0.875rem;
+  }
+}

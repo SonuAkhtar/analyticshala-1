@@ -1,0 +1,29 @@
+section.info {
+  position: relative;
+  background-color: lightyellow;
+  height: 80vh;
+  width: 100%;
+}
+
+.info_main {
+  background-color: yellow;
+  height: 100%;
+}
+
+.text_area {
+  position: absolute;
+  font-weight: 600;
+  font-size: 5vw;
+  opacity: 0.2;
+  text-wrap: wrap;
+}
+
+.text_area_hover {
+  position: absolute;
+  font-weight: 600;
+  font-size: 5vw;
+  opacity: 1;
+  width: 0%;
+  overflow: hidden;
+  text-wrap: wrap;
+}

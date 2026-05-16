@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://analyticshala.in/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://analyticshala.in/courses</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://analyticshala.in/courses/artificial-intelligence</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://analyticshala.in/courses/agentic-ai</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://analyticshala.in/courses/rag-systems</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://analyticshala.in/courses/data-analytics</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://analyticshala.in/courses/data-science</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://analyticshala.in/courses/sql-for-data-analysis</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://analyticshala.in/workshops</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://analyticshala.in/workshops/excel-for-data-analysis</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://analyticshala.in/workshops/sql-masterclass</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://analyticshala.in/workshops/power-bi-dashboard-bootcamp</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://analyticshala.in/workshops/python-for-data-science</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://analyticshala.in/workshops/ml-fundamentals</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://analyticshala.in/workshops/genai-for-business</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://analyticshala.in/testimony</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://analyticshala.in/aboutUs</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://analyticshala.in/privacy-policy</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://analyticshala.in/terms-of-use</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://analyticshala.in/refund-policy</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+</urlset>
