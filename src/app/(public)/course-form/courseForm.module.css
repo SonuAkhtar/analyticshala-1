@@ -1,0 +1,301 @@
+/* ============================================================
+   Course Form — CSS Module
+   ============================================================ */
+
+.page {
+  --cf-accent: var(--accent-blue);
+  --cf-accent-dark: var(--accent-blue-dark);
+  --cf-glow: rgba(59, 139, 235, 0.1);
+  --cf-border: rgba(59, 139, 235, 0.2);
+
+  background: var(--bg-primary);
+  min-height: 100vh;
+  padding: 7rem 1.5rem 4rem;
+  font-family: var(--font-body);
+}
+
+.body {
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.card {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 2rem 2rem 2.25rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+}
+
+/* Course strip */
+
+.courseStrip {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.courseIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--cf-glow);
+  border: 1px solid var(--cf-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--cf-accent);
+  flex-shrink: 0;
+}
+
+.courseInfo { flex: 1; min-width: 0; }
+
+.courseLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.2rem;
+}
+
+.courseTitle {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem;
+  line-height: 1.3;
+}
+
+.courseMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.coursePrice {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--cf-accent-dark);
+}
+
+.coursePrice em {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.modeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.6rem;
+  background: var(--cf-glow);
+  border: 1px solid var(--cf-border);
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--cf-accent-dark);
+}
+
+/* Form typography */
+
+.formHeading {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.subtitle {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+}
+
+/* Input grid */
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.inputWrap { display: flex; flex-direction: column; gap: 0.35rem; }
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-secondary);
+  padding: 0 0.9rem;
+  transition: border-color 0.2s;
+}
+
+.inputGroup:focus-within { border-color: var(--cf-accent); }
+
+.inputGroupError { border-color: var(--status-error, #ef4444); }
+
+.inputGroup i { color: var(--text-muted); font-size: 0.82rem; flex-shrink: 0; }
+
+.inputGroup input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  padding: 0.75rem 0;
+}
+
+.inputGroup input::placeholder { color: var(--text-muted); }
+
+.errorText {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  color: var(--status-error, #ef4444);
+}
+
+/* Choice cards */
+
+.fieldGroup { margin-bottom: 1.1rem; }
+
+.sectionLabel {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 0.55rem;
+}
+
+.choiceRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.6rem;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-secondary);
+}
+
+.choiceRowError { border-color: var(--status-error, #ef4444); }
+
+.choiceCard {
+  padding: 0.48rem 1rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--bg-card);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.18s;
+  user-select: none;
+}
+
+.choiceCard:hover {
+  border-color: var(--cf-accent);
+  color: var(--cf-accent);
+}
+
+.choiceCardActive {
+  background: var(--cf-accent);
+  border-color: var(--cf-accent);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(59, 139, 235, 0.3);
+}
+
+/* Submit error */
+
+.submitError {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--status-error, #ef4444);
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.18);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  margin-bottom: 1rem;
+}
+
+/* Submit button */
+
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.85rem 1.5rem;
+  background: var(--cf-accent);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(59, 139, 235, 0.38);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: var(--cf-accent-dark);
+  transform: translateY(-1px);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Trust + WA */
+
+.trustNote {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.trustNote i { color: var(--accent-green); }
+
+.waHelp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-whatsapp, #25d366);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.waHelp:hover { opacity: 0.8; }
+
+@media (max-width: 480px) {
+  .page { padding: 6rem 1rem 3rem; }
+  .card { padding: 1.5rem 1.1rem 1.75rem; }
+  .courseStrip { flex-direction: column; }
+}

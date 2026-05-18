@@ -1,0 +1,79 @@
+.breadcrumb {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  padding: 0 1.5rem;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.home {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+
+.home:hover {
+  color: var(--page-accent, var(--brand-red));
+  background: var(--bg-card);
+}
+
+.segment {
+  display: inline-flex;
+  align-items: center;
+}
+
+.chevron {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  opacity: 0.5;
+  margin: 0 0.45rem;
+  line-height: 1;
+}
+
+.link {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--page-accent, var(--brand-red));
+}
+
+.current {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--page-accent, var(--brand-red));
+  max-width: 260px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 600px) {
+  .breadcrumb {
+    padding: 0 1rem;
+  }
+
+  .current {
+    max-width: 140px;
+  }
+}

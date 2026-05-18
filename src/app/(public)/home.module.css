@@ -1,0 +1,42 @@
+.hpWave {
+  position: relative;
+  z-index: 10;
+  line-height: 0;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.hpWave svg {
+  display: block;
+  width: 100%;
+  height: 80px;
+}
+
+.hpWaveHeroExit {
+  margin-top: -79px;
+}
+
+.hpWaveToBlue {
+  background: linear-gradient(160deg, var(--dark-navy) 0%, var(--dark-navy-deep) 50%, var(--dark-navy) 100%);
+}
+
+.hpWaveToCream {
+  background: linear-gradient(160deg, var(--dark-navy) 0%, var(--dark-navy-deep) 50%, var(--dark-navy) 100%);
+}
+
+.homeTestimony {
+  background: linear-gradient(160deg, var(--dark-navy) 0%, var(--dark-navy-deep) 50%, var(--dark-navy) 100%);
+  position: relative;
+}
+
+/* Testimony inside dark section: transparent bg */
+.homeTestimony :global(.testimony) {
+  background: transparent;
+}
+
+/* SectionHeader inside dark testimony */
+.homeTestimony :global(.section-header__eyebrow) {
+  color: var(--brand-red-pale);
+}

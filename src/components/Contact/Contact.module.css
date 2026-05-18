@@ -1,0 +1,667 @@
+.contact {
+  background: var(--bg-primary);
+  border-top: none;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Orbs ── */
+
+.orb1 {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  background: rgba(178, 56, 80, 0.06);
+  top: -200px;
+  left: -160px;
+  border-radius: 50%;
+  filter: blur(110px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.orb2 {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  background: rgba(178, 56, 80, 0.04);
+  bottom: -130px;
+  right: -90px;
+  border-radius: 50%;
+  filter: blur(110px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+/* ── Grid ── */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Form Wrap ── */
+
+.formWrap {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: var(--card-shadow);
+}
+
+/* ── Form ── */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+/* ── Floating Label Group ── */
+
+.floatGroup {
+  position: relative;
+}
+
+.floatGroup input,
+.floatGroup textarea {
+  width: 100%;
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem 1rem 0.45rem;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+  resize: vertical;
+  box-sizing: border-box;
+}
+
+.floatGroup input::placeholder,
+.floatGroup textarea::placeholder {
+  color: transparent;
+}
+
+.floatGroup label {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  pointer-events: none;
+  transition:
+    top 0.22s ease,
+    font-size 0.22s ease,
+    color 0.22s ease,
+    transform 0.22s ease;
+}
+
+/* Textarea: label starts at top */
+.floatGroup textarea ~ label {
+  top: 1.1rem;
+  transform: none;
+}
+
+/* Float up when filled or focused */
+.floatGroup input:not(:placeholder-shown) ~ label,
+.floatGroup textarea:not(:placeholder-shown) ~ label,
+.floatGroup input:focus ~ label,
+.floatGroup textarea:focus ~ label {
+  top: 0.42rem;
+  transform: none;
+  font-size: 0.68rem;
+  color: var(--page-accent);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.floatGroup input:focus,
+.floatGroup textarea:focus {
+  border-color: var(--page-accent);
+  background: color-mix(in srgb, var(--page-accent) 4%, var(--bg-secondary));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--page-accent) 12%, transparent);
+}
+
+/* ── Submit Button ── */
+
+.submitBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.95rem 2rem;
+  background: var(--gradient-cta);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    opacity 0.3s ease;
+  box-shadow: 0 4px 20px rgba(249, 115, 22, 0.4);
+  margin-top: 0.25rem;
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(249, 115, 22, 0.55);
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.formError {
+  font-size: 0.82rem;
+  color: var(--accent-red);
+  text-align: center;
+  margin-top: -0.25rem;
+}
+
+/* ── Success State ── */
+
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.1rem;
+  padding: 3.5rem 1rem;
+}
+
+.successIcon {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--page-accent) 12%, transparent);
+  border: 2px solid color-mix(in srgb, var(--page-accent) 35%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  color: var(--page-accent);
+  animation: successPop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes successPop {
+  0%   { transform: scale(0.4); opacity: 0; }
+  60%  { transform: scale(1.12); }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+.success h3 {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.success p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 340px;
+}
+
+.success button {
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--border-light);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.success button:hover {
+  border-color: var(--page-accent);
+  color: var(--page-accent);
+}
+
+/* ── Info Wrap ── */
+
+.infoWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* ── Chips ── */
+
+.chips {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.chip:hover {
+  background: color-mix(in srgb, var(--page-accent) 5%, var(--bg-card));
+  border-color: color-mix(in srgb, var(--page-accent) 30%, transparent);
+  transform: translateX(4px);
+}
+
+.chipIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: 8px;
+}
+
+.chipIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.85;
+}
+
+.chipText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.chipLabel {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 0.15rem;
+}
+
+.chipValue {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  display: block;
+  text-decoration: none;
+}
+
+a.chipValue:hover {
+  color: var(--page-accent);
+}
+
+/* ── QR Divider ── */
+
+.qrDivider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.qrDividerLine {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.qrDividerText {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.qrDividerText i {
+  font-size: 0.78rem;
+  color: var(--page-accent);
+}
+
+/* ── QR Grid ── */
+
+.qrGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.qrCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  box-shadow: var(--card-shadow);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.qrCard:hover {
+  border-color: color-mix(in srgb, var(--qr-accent) 55%, transparent);
+  box-shadow:
+    var(--card-shadow-hover),
+    0 0 0 1px color-mix(in srgb, var(--qr-accent) 40%, transparent);
+}
+
+/* ── QR Frame ── */
+
+.qrFrame {
+  position: relative;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--border);
+}
+
+.qrCard:hover .qrFrame {
+  border-color: color-mix(in srgb, var(--qr-accent) 45%, transparent);
+}
+
+.qrImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 4px;
+}
+
+.qrScanline {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--qr-accent), transparent);
+  border-radius: 2px;
+  animation: qrScan 2.8s ease-in-out infinite;
+  opacity: 0;
+}
+
+@keyframes qrScan {
+  0%   { top: 10%; opacity: 0; }
+  8%   { opacity: 0.8; }
+  88%  { opacity: 0.8; }
+  100% { top: 90%; opacity: 0; }
+}
+
+/* QR Corner markers */
+
+.qrCorner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: var(--qr-accent);
+  border-style: solid;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.qrCard:hover .qrCorner {
+  opacity: 1;
+}
+
+.qrCornerTl { top: 4px;    left: 4px;  border-width: 2px 0 0 2px; border-radius: 2px 0 0 0; }
+.qrCornerTr { top: 4px;    right: 4px; border-width: 2px 2px 0 0; border-radius: 0 2px 0 0; }
+.qrCornerBl { bottom: 4px; left: 4px;  border-width: 0 0 2px 2px; border-radius: 0 0 0 2px; }
+.qrCornerBr { bottom: 4px; right: 4px; border-width: 0 2px 2px 0; border-radius: 0 0 2px 0; }
+
+/* ── QR Hint ── */
+
+.qrHint {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin: -0.25rem 0;
+}
+
+.qrHint i {
+  font-size: 0.72rem;
+  color: var(--page-accent);
+}
+
+/* ── QR Platform ── */
+
+.qrPlatform {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.qrPlatformIcon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+}
+
+.qrPlatformText strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.qrPlatformText span {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* ── Dark mode ── */
+
+:global([data-theme="dark"]) .contact {
+  background: var(--dark-section-bg);
+}
+
+:global([data-theme="dark"]) .orb1 {
+  opacity: 1;
+  background: rgba(178, 56, 80, 0.14);
+}
+
+:global([data-theme="dark"]) .orb2 {
+  opacity: 1;
+  background: rgba(178, 56, 80, 0.08);
+}
+
+:global([data-theme="dark"]) .formWrap {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
+}
+
+:global([data-theme="dark"]) .floatGroup input,
+:global([data-theme="dark"]) .floatGroup textarea {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--off-white);
+}
+
+:global([data-theme="dark"]) .floatGroup label {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+:global([data-theme="dark"]) .floatGroup input:focus,
+:global([data-theme="dark"]) .floatGroup textarea:focus {
+  background: rgba(178, 56, 80, 0.06);
+  box-shadow: 0 0 0 3px rgba(178, 56, 80, 0.14);
+}
+
+:global([data-theme="dark"]) .success h3 {
+  color: var(--off-white);
+}
+
+:global([data-theme="dark"]) .success p {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+:global([data-theme="dark"]) .success button {
+  border-color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+:global([data-theme="dark"]) .chip {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+:global([data-theme="dark"]) .chip:hover {
+  background: rgba(178, 56, 80, 0.08);
+  border-color: rgba(178, 56, 80, 0.35);
+}
+
+:global([data-theme="dark"]) .chipIcon {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+:global([data-theme="dark"]) .chipIcon img {
+  filter: brightness(0) invert(1);
+}
+
+:global([data-theme="dark"]) .chipLabel {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+:global([data-theme="dark"]) .chipValue {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+:global([data-theme="dark"]) .qrDividerLine {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+:global([data-theme="dark"]) .qrDividerText {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+:global([data-theme="dark"]) .qrCard {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+  backdrop-filter: blur(8px);
+}
+
+:global([data-theme="dark"]) .qrCard:hover {
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.35),
+    0 0 0 1px color-mix(in srgb, var(--qr-accent) 45%, transparent),
+    0 0 24px color-mix(in srgb, var(--qr-accent) 15%, transparent);
+}
+
+:global([data-theme="dark"]) .qrFrame {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+:global([data-theme="dark"]) .qrHint {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+:global([data-theme="dark"]) .qrPlatform {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+:global([data-theme="dark"]) .qrPlatformText strong {
+  color: var(--off-white);
+}
+
+:global([data-theme="dark"]) .qrPlatformText span {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+
+  .qrGrid {
+    grid-template-columns: 1fr 1fr;
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 640px) {
+  .formWrap {
+    padding: 1.75rem 1.5rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .formWrap {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .qrGrid {
+    max-width: 100%;
+  }
+}
