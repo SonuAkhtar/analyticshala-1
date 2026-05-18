@@ -1,14 +1,8 @@
 "use client";
 
 import { useState, useRef } from "react";
-import emailjs from "@emailjs/browser";
 import { contactData } from "@/data/appData";
-import {
-  GOOGLESHEET_WEB_APP_URL,
-  EMAILJS_SERVICE_ID,
-  EMAILJS_TEMPLATE_ID,
-  EMAILJS_PUBLIC_KEY,
-} from "@/config";
+import { GOOGLESHEET_WEB_APP_URL } from "@/config";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import styles from "./Contact.module.css";
@@ -65,20 +59,16 @@ const Contact = () => {
         });
       }
 
-      if (EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY) {
-        await emailjs.send(
-          EMAILJS_SERVICE_ID,
-          EMAILJS_TEMPLATE_ID,
-          {
-            from_name: formData.name,
-            from_email: formData.email,
-            phone: formData.phone || "Not provided",
-            message: formData.message || "Free counselling request",
-            reply_to: formData.email,
-          },
-          EMAILJS_PUBLIC_KEY
-        );
-      }
+      await fetch("/api/send-inquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+        }),
+      });
 
       setStatus("success");
       setFormData({ name: "", email: "", phone: "", message: "" });

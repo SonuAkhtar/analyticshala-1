@@ -2,13 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import emailjs from "@emailjs/browser";
-import {
-  RAZORPAY_KEY_ID,
-  EMAILJS_SERVICE_ID,
-  EMAILJS_REG_TEMPLATE_ID,
-  EMAILJS_PUBLIC_KEY,
-} from "@/config";
+import { RAZORPAY_KEY_ID } from "@/config";
 import { supabase } from "@/lib/supabase";
 import styles from "./payment.module.css";
 
@@ -142,27 +136,24 @@ export default function PaymentPage() {
           }
         }
 
-        // Send EmailJS confirmation
-        if (EMAILJS_SERVICE_ID && EMAILJS_REG_TEMPLATE_ID && EMAILJS_PUBLIC_KEY) {
-          try {
-            await emailjs.send(
-              EMAILJS_SERVICE_ID,
-              EMAILJS_REG_TEMPLATE_ID,
-              {
-                to_name: paymentData.user.name,
-                to_email: paymentData.user.email,
-                program: itemTitle,
-                type: paymentData.user.courseId ? "Course" : "Workshop",
-                amount: amountINR,
-                payment_id: response.razorpay_payment_id,
-                phone: paymentData.user.phone,
-                date: waDate,
-              },
-              EMAILJS_PUBLIC_KEY,
-            );
-          } catch (err) {
-            console.error("[EmailJS] send failed:", err);
-          }
+        // Send confirmation email via Resend
+        try {
+          await fetch("/api/send-confirmation", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: paymentData.user.name,
+              email: paymentData.user.email,
+              program: itemTitle,
+              type: paymentData.user.courseId ? "Course" : "Workshop",
+              amount: amountINR,
+              paymentId: response.razorpay_payment_id,
+              phone: paymentData.user.phone,
+              date: waDate,
+            }),
+          });
+        } catch (err) {
+          console.error("[Resend] confirmation email failed:", err);
         }
 
         // Store success data in sessionStorage
