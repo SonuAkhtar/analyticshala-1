@@ -287,7 +287,11 @@ const MacCarousel = () => {
 
 /* ── Hero ── */
 
-const Hero = () => (
+const Hero = () => {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+
+  return (
   <section className={styles.hero} id="hero">
     <div className={`${styles.orb} ${styles.orb1}`} />
     <div className={`${styles.orb} ${styles.orb2}`} />
@@ -318,7 +322,7 @@ const Hero = () => (
             <span className={styles.headlineBottom}>Your Dream Career.</span>
           </motion.h1>
 
-          <motion.p
+          <motion.div
             className={styles.typewriter}
             variants={fadeUp}
             initial="hidden"
@@ -327,24 +331,26 @@ const Hero = () => (
           >
             Master&nbsp;
             <span className={styles.typewriterHighlight}>
-              <Typewriter
-                options={{
-                  strings: [
-                    "Data Analytics",
-                    "Python & SQL",
-                    "Machine Learning",
-                    "Power BI & Tableau",
-                    "AI Engineering",
-                  ],
-                  autoStart: true,
-                  loop: true,
-                  delay: 60,
-                  deleteSpeed: 35,
-                }}
-              />
+              {mounted && (
+                <Typewriter
+                  options={{
+                    strings: [
+                      "Data Analytics",
+                      "Python & SQL",
+                      "Machine Learning",
+                      "Power BI & Tableau",
+                      "AI Engineering",
+                    ],
+                    autoStart: true,
+                    loop: true,
+                    delay: 60,
+                    deleteSpeed: 35,
+                  }}
+                />
+              )}
             </span>
             &nbsp;&amp; land your first data role in 90 days.
-          </motion.p>
+          </motion.div>
         </div>
 
         <motion.div
@@ -428,6 +434,7 @@ const Hero = () => (
       <Marq data={heroMarqData} />
     </div>
   </section>
-);
+  );
+};
 
 export default Hero;

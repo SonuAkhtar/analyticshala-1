@@ -1,6 +1,2 @@
 export const RAZORPAY_KEY_ID = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? "";
 export const GOOGLESHEET_WEB_APP_URL = process.env.NEXT_PUBLIC_GOOGLESHEET_WEB_APP_URL ?? "";
-export const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ?? "";
-export const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? "";
-export const EMAILJS_REG_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_REG_TEMPLATE_ID ?? "";
-export const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ?? "";
