@@ -48,23 +48,27 @@ const AnnouncementBar = () => {
     <div className={styles.annBar} role="banner" ref={barRef}>
       <div className={styles.annBarInner}>
         <span className={styles.annBarBadge}>
-          <i className="fas fa-bolt" /> New
+          <span className={styles.annBarLiveDot} aria-hidden="true" />
+          Live
         </span>
+
+        <span className={styles.annBarDivider} aria-hidden="true" />
+
         <p className={styles.annBarText}>
           <span className={styles.annBarTextDesktop}>
-            <strong>Agentic AI course is live</strong> — Next batch: June 20, 2026. Seats filling fast.{" "}
-            <Link href="/courses/agentic-ai" className={styles.annBarLink}>
-              View Course →
-            </Link>
+            <strong>Agentic AI course is live</strong> - Next batch: June 20,
+            2026.
           </span>
           <span className={styles.annBarTextMobile}>
-            Agentic AI course live —{" "}
-            <Link href="/courses/agentic-ai" className={styles.annBarLink}>
-              View Course →
-            </Link>
+            <strong>Agentic AI</strong> course is live
           </span>
         </p>
+
+        <Link href="/courses/agentic-ai" className={styles.annBarCta}>
+          View Course <i className="fas fa-arrow-right" />
+        </Link>
       </div>
+
       <button
         className={styles.annBarClose}
         onClick={dismiss}

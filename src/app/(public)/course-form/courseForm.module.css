@@ -1,5 +1,5 @@
 /* ============================================================
-   Course Form — CSS Module
+   Course Form - CSS Module
    ============================================================ */
 
 .page {
@@ -57,7 +57,10 @@
   flex-shrink: 0;
 }
 
-.courseInfo { flex: 1; min-width: 0; }
+.courseInfo {
+  flex: 1;
+  min-width: 0;
+}
 
 .courseLabel {
   font-size: 0.7rem;
@@ -136,7 +139,11 @@
   margin-bottom: 1.5rem;
 }
 
-.inputWrap { display: flex; flex-direction: column; gap: 0.35rem; }
+.inputWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
 
 .inputGroup {
   display: flex;
@@ -149,11 +156,19 @@
   transition: border-color 0.2s;
 }
 
-.inputGroup:focus-within { border-color: var(--cf-accent); }
+.inputGroup:focus-within {
+  border-color: var(--cf-accent);
+}
 
-.inputGroupError { border-color: var(--status-error, #ef4444); }
+.inputGroupError {
+  border-color: var(--status-error, #ef4444);
+}
 
-.inputGroup i { color: var(--text-muted); font-size: 0.82rem; flex-shrink: 0; }
+.inputGroup i {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  flex-shrink: 0;
+}
 
 .inputGroup input {
   flex: 1;
@@ -166,7 +181,9 @@
   padding: 0.75rem 0;
 }
 
-.inputGroup input::placeholder { color: var(--text-muted); }
+.inputGroup input::placeholder {
+  color: var(--text-muted);
+}
 
 .errorText {
   display: flex;
@@ -178,7 +195,9 @@
 
 /* Choice cards */
 
-.fieldGroup { margin-bottom: 1.1rem; }
+.fieldGroup {
+  margin-bottom: 1.1rem;
+}
 
 .sectionLabel {
   display: block;
@@ -198,7 +217,9 @@
   background: var(--bg-secondary);
 }
 
-.choiceRowError { border-color: var(--status-error, #ef4444); }
+.choiceRowError {
+  border-color: var(--status-error, #ef4444);
+}
 
 .choiceCard {
   padding: 0.48rem 1rem;
@@ -258,7 +279,9 @@
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 4px 16px rgba(59, 139, 235, 0.38);
-  transition: background 0.2s, transform 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.2s;
 }
 
 .submitBtn:hover:not(:disabled) {
@@ -279,7 +302,9 @@
   text-align: center;
 }
 
-.trustNote i { color: var(--accent-green); }
+.trustNote i {
+  color: var(--accent-green);
+}
 
 .waHelp {
   display: inline-flex;
@@ -292,10 +317,18 @@
   transition: opacity 0.2s;
 }
 
-.waHelp:hover { opacity: 0.8; }
+.waHelp:hover {
+  opacity: 0.8;
+}
 
 @media (max-width: 480px) {
-  .page { padding: 6rem 1rem 3rem; }
-  .card { padding: 1.5rem 1.1rem 1.75rem; }
-  .courseStrip { flex-direction: column; }
+  .page {
+    padding: 6rem 1rem 3rem;
+  }
+  .card {
+    padding: 1.5rem 1.1rem 1.75rem;
+  }
+  .courseStrip {
+    flex-direction: column;
+  }
 }

@@ -707,7 +707,7 @@ export const coursesData: Course[] = [
     regFee: "₹500",
     price: "₹5,999",
     originalPrice: "₹8,999",
-    nextBatch: "April 5, 2026",
+    nextBatch: "July 5, 2026",
     batchType: "Weekend Batch",
     instructor: "Faizan Ansari",
     includes: [
@@ -1011,7 +1011,7 @@ export const coursesData: Course[] = [
     regFee: "₹500",
     price: "₹9,999",
     originalPrice: "₹14,999",
-    nextBatch: "April 5, 2026",
+    nextBatch: "July 5, 2026",
     batchType: "Weekend Batch",
     instructor: "Faizan Ansari",
     includes: [
@@ -1137,7 +1137,7 @@ export const coursesData: Course[] = [
     regFee: "₹500",
     price: "₹11,999",
     originalPrice: "₹18,999",
-    nextBatch: "April 5, 2026",
+    nextBatch: "July 5, 2026",
     batchType: "Weekend Batch",
     instructor: "Faizan Ansari",
     includes: [
@@ -1289,7 +1289,7 @@ export const coursesData: Course[] = [
     regFee: "₹500",
     price: "₹7,999",
     originalPrice: "₹12,999",
-    nextBatch: "April 5, 2026",
+    nextBatch: "July 5, 2026",
     batchType: "Weekend Batch",
     instructor: "Faizan Ansari",
     includes: [
@@ -1388,7 +1388,7 @@ export const coursesData: Course[] = [
     regFee: "₹10",
     price: "₹10",
     originalPrice: "₹199",
-    nextBatch: "May 10, 2026",
+    nextBatch: "August 8, 2026",
     batchType: "Weekend Batch",
     instructor: "Riyaz Akhtar",
     includes: [
@@ -1564,7 +1564,7 @@ export const workshopData = {
       title: "Excel for Data Analysis",
       desc: "Master formulas, pivot tables, charts, and dashboards. The fastest path from spreadsheet user to data analyst.",
       tags: ["Excel", "Pivot Tables", "Dashboards", "Data Cleaning"],
-      date: "March 29, Saturday",
+      date: "June 6, Saturday",
       time: "10:00 AM – 1:00 PM",
       duration: "3 Hours",
       eventMode: ["Online", "Offline"],
@@ -1621,9 +1621,9 @@ export const workshopData = {
       categoryColor: "#16a34a",
       level: "Intermediate",
       title: "SQL Masterclass for Analysts",
-      desc: "From SELECT to advanced window functions — become the SQL analyst every data team wants to hire.",
+      desc: "From SELECT to advanced window functions - become the SQL analyst every data team wants to hire.",
       tags: ["SQL", "Window Functions", "Query Optimization", "PostgreSQL"],
-      date: "April 5, Saturday",
+      date: "June 27, Saturday",
       time: "11:00 AM – 2:00 PM",
       duration: "3 Hours",
       eventMode: ["Online"],
@@ -1682,7 +1682,7 @@ export const workshopData = {
       title: "Intro to Web Development",
       desc: "Build your first webpage from scratch. Learn HTML, CSS, and JavaScript fundamentals in one hands-on session.",
       tags: ["HTML", "CSS", "JavaScript", "Web Dev"],
-      date: "May 10, Saturday",
+      date: "July 18, Saturday",
       time: "10:00 AM – 1:00 PM",
       duration: "3 Hours",
       eventMode: ["Online", "Offline"],
@@ -1701,17 +1701,17 @@ export const workshopData = {
       curriculum: [
         {
           time: "10:00 – 10:45",
-          title: "HTML — Structure of the Web",
+          title: "HTML - Structure of the Web",
           desc: "Tags, elements, semantic HTML5, forms",
         },
         {
           time: "10:45 – 11:30",
-          title: "CSS — Styling & Layouts",
+          title: "CSS - Styling & Layouts",
           desc: "Selectors, box model, flexbox, responsive design",
         },
         {
           time: "11:30 – 12:15",
-          title: "JavaScript — Adding Interactivity",
+          title: "JavaScript - Adding Interactivity",
           desc: "Variables, functions, DOM selection, event listeners",
         },
         {
@@ -1833,7 +1833,7 @@ export const teamData: TeamMember[] = [
     name: "Tanfiz Hussain",
     position: "Business Development Manager",
     image: "/assets/hobbies/dev_3.jpg",
-    bio: "Helps learners navigate the AnalyticShala ecosystem — from program selection to placement support.",
+    bio: "Helps learners navigate the AnalyticShala ecosystem - from program selection to placement support.",
     social: [],
   },
   {
@@ -1962,7 +1962,7 @@ export const scrollCardsData: ScrollCard[] = [
   {
     id: 1,
     title: "Live Weekend Batches",
-    info: "Join live classes every weekend led by working data professionals — not just teachers. Get real-time feedback, doubt resolution, and a structured learning environment.",
+    info: "Join live classes every weekend led by working data professionals - not just teachers. Get real-time feedback, doubt resolution, and a structured learning environment.",
   },
   {
     id: 2,
@@ -1972,7 +1972,7 @@ export const scrollCardsData: ScrollCard[] = [
   {
     id: 3,
     title: "Interview Prep & Mock Tests",
-    info: "We simulate real data analyst and data science interviews — from SQL rounds and case studies to Python coding challenges.",
+    info: "We simulate real data analyst and data science interviews - from SQL rounds and case studies to Python coding challenges.",
   },
   {
     id: 4,
@@ -1982,7 +1982,7 @@ export const scrollCardsData: ScrollCard[] = [
   {
     id: 5,
     title: "Career Support & Alumni Network",
-    info: "From resume reviews to LinkedIn profile audits and introductions to hiring partners — our career team stays with you until you land the role.",
+    info: "From resume reviews to LinkedIn profile audits and introductions to hiring partners - our career team stays with you until you land the role.",
   },
 ];
 

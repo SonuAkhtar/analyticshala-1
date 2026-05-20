@@ -12,7 +12,11 @@ const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 28 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
+  transition: {
+    duration: 0.55,
+    delay,
+    ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+  },
 });
 
 const staggerGrid = {
@@ -24,7 +28,10 @@ const staggerItem = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
   },
 };
 
@@ -55,7 +62,7 @@ const focusAreas = [
     gradientFrom: "#a855f7",
     gradientTo: "#ec4899",
     title: "Data Science & AI",
-    desc: "Build predictive models, ML pipelines, and explore GenAI — with Python at the core.",
+    desc: "Build predictive models, ML pipelines, and explore GenAI - with Python at the core.",
     cta: "Get Started",
   },
   {
@@ -73,13 +80,13 @@ const values = [
     icon: "fas fa-graduation-cap",
     color: "#6366f1",
     title: "Student-First Always",
-    desc: "Every course, resource, and support system is built around one goal — your success. Not just completion, but real transformation.",
+    desc: "Every course, resource, and support system is built around one goal - your success. Not just completion, but real transformation.",
   },
   {
     icon: "fas fa-industry",
     color: "#f97316",
     title: "Industry-Led Curriculum",
-    desc: "Our trainers are active professionals. The curriculum is validated by hiring managers — not academics locked in classrooms.",
+    desc: "Our trainers are active professionals. The curriculum is validated by hiring managers - not academics locked in classrooms.",
   },
   {
     icon: "fas fa-flask",
@@ -91,7 +98,7 @@ const values = [
     icon: "fas fa-rocket",
     color: "#10b981",
     title: "Career-Focused Outcomes",
-    desc: "Our job isn't done when the course ends. Resume reviews, interview simulations, and alumni network access — for life.",
+    desc: "Our job isn't done when the course ends. Resume reviews, interview simulations, and alumni network access - for life.",
   },
 ];
 
@@ -181,7 +188,7 @@ export default function AboutUsClient() {
 
             <motion.p className={styles.heroSub} {...fadeUp(0.17)}>
               A Gurgaon-based data education company on a mission to bridge the
-              gap between ambition and opportunity — one career at a time.
+              gap between ambition and opportunity - one career at a time.
             </motion.p>
 
             <motion.div className={styles.heroActions} {...fadeUp(0.23)}>
@@ -196,7 +203,9 @@ export default function AboutUsClient() {
             <motion.div className={styles.heroProof} {...fadeUp(0.29)}>
               <div className={styles.heroAvatars}>
                 {["SA", "RK", "NP", "AJ"].map((init, i) => (
-                  <span key={i} className={styles.heroAvatar}>{init}</span>
+                  <span key={i} className={styles.heroAvatar}>
+                    {init}
+                  </span>
                 ))}
               </div>
               <div className={styles.heroProofText}>
@@ -212,13 +221,17 @@ export default function AboutUsClient() {
             </motion.div>
           </div>
 
-          {/* Right — abstract visual */}
+          {/* Right - abstract visual */}
           <motion.div
             className={styles.heroRight}
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            transition={{
+              duration: 0.7,
+              delay: 0.15,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
             <div className={styles.heroVisual}>
               <div className={styles.heroSphere} />
@@ -267,7 +280,7 @@ export default function AboutUsClient() {
         </div>
       </section>
 
-      {/* ── DARK SECTION — Focus Areas ── */}
+      {/* ── DARK SECTION - Focus Areas ── */}
       <section className={styles.dark}>
         <div className="container">
           <div className={styles.darkHeader}>
@@ -301,7 +314,12 @@ export default function AboutUsClient() {
               <motion.div
                 key={i}
                 className={styles.darkCard}
-                style={{ "--dc-from": area.gradientFrom, "--dc-to": area.gradientTo } as React.CSSProperties}
+                style={
+                  {
+                    "--dc-from": area.gradientFrom,
+                    "--dc-to": area.gradientTo,
+                  } as React.CSSProperties
+                }
                 variants={staggerItem}
               >
                 <div className={styles.darkCardVisual}>
@@ -351,7 +369,7 @@ export default function AboutUsClient() {
             </motion.h2>
             <motion.p className={styles.impactBody} {...fadeUp(0.13)}>
               <strong>Your Growth, Our Business.</strong> We partner with every
-              student through a proven learning journey — from fundamentals to
+              student through a proven learning journey - from fundamentals to
               full career support. Our curriculum is built on industry reality,
               not textbook theory.
             </motion.p>
@@ -365,12 +383,16 @@ export default function AboutUsClient() {
             </motion.div>
             <motion.div className={styles.impactNums} {...fadeUp(0.23)}>
               <div className={styles.impactNum}>
-                <strong>500<span>+</span></strong>
+                <strong>
+                  500<span>+</span>
+                </strong>
                 <span>Happy alumni</span>
               </div>
               <div className={styles.impactDivider} />
               <div className={styles.impactNum}>
-                <strong>94.9<span>%</span></strong>
+                <strong>
+                  94.9<span>%</span>
+                </strong>
                 <span>Proven placement</span>
               </div>
             </motion.div>
@@ -464,7 +486,7 @@ export default function AboutUsClient() {
             What We Stand For
           </motion.h2>
           <motion.p className={styles.sectionSub} {...fadeUp(0.12)}>
-            Scroll through our mission — watch it come to life.
+            Scroll through our mission - watch it come to life.
           </motion.p>
           <motion.div
             className={styles.revealWrap}

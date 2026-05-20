@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, Suspense } from "react";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { courseListData, courseRegData } from "@/data/appData";
 import styles from "./courseForm.module.css";
@@ -34,19 +35,52 @@ const INITIAL_FORM: FormValues = {
   goal: "",
 };
 
+function CourseNotFound({ requestedId }: { requestedId: string | null }) {
+  return (
+    <div className={styles.page}>
+      <div className={styles.body}>
+        <div className={styles.card} style={{ textAlign: "center", padding: "48px 32px" }}>
+          <div style={{ fontSize: 48, color: "#bb1b21", marginBottom: 16 }}>
+            <i className="fas fa-exclamation-circle" />
+          </div>
+          <h1 className={styles.formHeading} style={{ marginBottom: 8 }}>
+            Course not found
+          </h1>
+          <p className={styles.subtitle} style={{ marginBottom: 24 }}>
+            {requestedId
+              ? `We couldn't find a course matching "${requestedId}".`
+              : "No course was selected."}{" "}
+            Please pick a course from our catalog.
+          </p>
+          <Link
+            href="/courses"
+            className={styles.submitBtn}
+            style={{ display: "inline-flex", textDecoration: "none" }}
+          >
+            Browse Courses <i className="fas fa-arrow-right" style={{ marginLeft: 8 }} />
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function CourseFormInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const courseId = searchParams.get("id") || "data-analytics-python";
+  const courseId = searchParams.get("id");
 
-  const course =
-    courseListData.find((c) => c.id === courseId) || courseListData[0];
-  const reg = courseRegData[course.id] || courseRegData[courseListData[0].id];
+  const course = courseId ? courseListData.find((c) => c.id === courseId) : null;
+  const reg = course ? courseRegData[course.id] : null;
 
   const [formValue, setFormValue] = useState<FormValues>(INITIAL_FORM);
   const [errors, setErrors] = useState<Partial<Record<keyof FormValues, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+
+  if (!course || !reg) {
+    return <CourseNotFound requestedId={courseId} />;
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -97,9 +131,12 @@ function CourseFormInner() {
         body: JSON.stringify({ amount: priceNum * 100, itemId: courseId }),
       });
 
-      const result = await res.json();
-      if (!result.success)
-        throw new Error(result.message || "Order creation failed");
+      const result = await res.json().catch(() => null);
+      if (!res.ok || !result?.success) {
+        throw new Error(
+          result?.message || `Order creation failed (status ${res.status})`,
+        );
+      }
 
       const paymentData = {
         orderId: result.orderId,
@@ -107,13 +144,17 @@ function CourseFormInner() {
         coursePrice: reg.price,
         user: { ...formValue, courseId, courseTitle: course.title },
       };
-      sessionStorage.setItem("pendingPayment", JSON.stringify(paymentData));
+      sessionStorage.setItem("paymentData", JSON.stringify(paymentData));
       router.push("/payment");
     } catch (err) {
       console.error(err);
-      setSubmitError(
-        "Unable to connect. Please try again or contact support.",
-      );
+      const msg =
+        err instanceof TypeError
+          ? "Can't reach our servers. Check your internet and try again."
+          : err instanceof Error && err.message
+            ? err.message
+            : "Something went wrong. Please try again or contact support.";
+      setSubmitError(msg);
     } finally {
       setIsSubmitting(false);
     }

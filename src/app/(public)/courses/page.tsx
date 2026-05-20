@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Explore Data Courses | AnalyticShala",
     description:
-      "From beginner to advanced — find the right data & AI course for your career goals. 300+ learners trained. 4.9★ rated.",
+      "From beginner to advanced - find the right data & AI course for your career goals. 300+ learners trained. 4.9★ rated.",
     type: "website",
     url: "https://analyticshala.in/courses",
   },

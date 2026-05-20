@@ -74,12 +74,12 @@ const trustPoints = [
   {
     icon: "fas fa-laptop",
     title: "Online & Offline",
-    desc: "Flexible modes — attend live or watch recordings anytime.",
+    desc: "Flexible modes - attend live or watch recordings anytime.",
   },
   {
     icon: "fas fa-headset",
     title: "Post-Workshop Support",
-    desc: "Direct mentor access after class — no ghosting, ever.",
+    desc: "Direct mentor access after class - no ghosting, ever.",
   },
 ];
 
@@ -216,7 +216,9 @@ const TicketCard = ({
               <div className={styles.ticketPrice}>
                 <span className={styles.priceNow}>{workshop.price}</span>
                 {workshop.originalPrice && (
-                  <span className={styles.priceWas}>{workshop.originalPrice}</span>
+                  <span className={styles.priceWas}>
+                    {workshop.originalPrice}
+                  </span>
                 )}
               </div>
               {workshop.seatsLeft === 0 ? (
@@ -248,28 +250,23 @@ const PastCard = ({ workshop }: { workshop: Workshop }) => (
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={workshop.image} alt={workshop.title} loading="lazy" />
       <div className={styles.pastOverlay} />
-      <span
-        className={`${styles.status} ${styles.statusPast} ${styles.statusAbs}`}
-      >
-        PAST
+      <span className={styles.pastCompletedBadge}>
+        <i className="fas fa-check-circle" /> Completed
       </span>
-      {(workshop.attendees || workshop.rating) && (
-        <div className={styles.pastImgStats}>
-          {workshop.attendees && (
-            <span className={styles.pastImgStat}>
-              <i className="fas fa-users" /> {workshop.attendees} attended
-            </span>
-          )}
-          {workshop.rating && (
-            <span className={`${styles.pastImgStat} ${styles.pastImgStatGold}`}>
-              <i className="fas fa-star" /> {workshop.rating}
-            </span>
-          )}
-        </div>
-      )}
     </div>
     <div className={styles.pastBody}>
-      <span className={styles.pastCat}>{workshop.category}</span>
+      <span
+        className={styles.pastCat}
+        style={
+          workshop.categoryColor
+            ? ({
+                "--past-cat-color": workshop.categoryColor,
+              } as React.CSSProperties)
+            : undefined
+        }
+      >
+        {workshop.category}
+      </span>
       <h4 className={styles.pastTitle}>{workshop.title}</h4>
       <div className={styles.pastMeta}>
         <span>
@@ -281,6 +278,34 @@ const PastCard = ({ workshop }: { workshop: Workshop }) => (
           </span>
         )}
       </div>
+      {(workshop.rating || workshop.attendees) && (
+        <div className={styles.pastStats}>
+          {workshop.rating && (
+            <div className={styles.pastStat}>
+              <div className={styles.pastStatIcon}>
+                <i className="fas fa-star" />
+              </div>
+              <div className={styles.pastStatBody}>
+                <strong>{workshop.rating}</strong>
+                <span>out of 5</span>
+              </div>
+            </div>
+          )}
+          {workshop.attendees && (
+            <div className={styles.pastStat}>
+              <div
+                className={`${styles.pastStatIcon} ${styles.pastStatIconUsers}`}
+              >
+                <i className="fas fa-users" />
+              </div>
+              <div className={styles.pastStatBody}>
+                <strong>{workshop.attendees}</strong>
+                <span>attended</span>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   </div>
 );
@@ -403,7 +428,7 @@ export default function WorkshopsClient() {
               </span>
             </h1>
             <p className={styles.heroSub}>
-              Hands-on workshops led by industry professionals — Data Analytics,
+              Hands-on workshops led by industry professionals - Data Analytics,
               Python, SQL, Power BI &amp; AI. Small batches. Real projects.
               Job-ready results.
             </p>
@@ -475,7 +500,7 @@ export default function WorkshopsClient() {
           </span>
           <h2 className={styles.sectionTitle}>Enroll Before Seats Fill Up</h2>
           <p className={styles.sectionSub}>
-            All workshops run in small batches — ensuring personalised attention
+            All workshops run in small batches - ensuring personalised attention
             and a high-quality experience for every participant.
           </p>
 
@@ -576,7 +601,7 @@ export default function WorkshopsClient() {
           </h2>
           <p className={styles.ctaSub}>
             Our mentors will assess your goals and recommend the perfect
-            starting point — completely free, no pressure.
+            starting point - completely free, no pressure.
           </p>
           <div className={styles.ctaActions}>
             <a

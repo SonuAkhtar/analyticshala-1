@@ -32,7 +32,7 @@ const roadmapSteps = [
     colorNext: "#7c3aed",
     weeks: "Weeks 2–10",
     title: "Learn By Doing",
-    desc: "Weekend live classes with industry experts, real-world datasets, and graded assignments — you practise with the same tools professionals actually use on the job.",
+    desc: "Weekend live classes with industry experts, real-world datasets, and graded assignments - you practise with the same tools professionals actually use on the job.",
     highlights: [
       "Live weekend batches",
       "Real industry datasets",
@@ -47,7 +47,7 @@ const roadmapSteps = [
     colorNext: "#10b981",
     weeks: "Weeks 11–12",
     title: "Build Your Portfolio",
-    desc: "Solve a real business problem through a capstone project. This becomes the centrepiece of your portfolio — the piece that makes recruiters take notice.",
+    desc: "Solve a real business problem through a capstone project. This becomes the centrepiece of your portfolio - the piece that makes recruiters take notice.",
     highlights: [
       "End-to-end capstone project",
       "GitHub portfolio setup",
@@ -85,19 +85,20 @@ const LearningPath = () => {
       const buildTimeline = (
         nodes: (HTMLDivElement | null)[],
         connectors: (HTMLDivElement | null)[],
-        cards: (HTMLDivElement | null)[]
+        cards: (HTMLDivElement | null)[],
       ) => {
         // Initial states: first node fully visible, rest dimmed
         nodes
           .slice(1)
           .forEach((n) => n && gsap.set(n, { opacity: 0.25, scale: 0.75 }));
         connectors.forEach(
-          (c) => c && gsap.set(c, { scaleY: 0, transformOrigin: "top center" })
+          (c) => c && gsap.set(c, { scaleY: 0, transformOrigin: "top center" }),
         );
         // First card visible and in place, rest hidden below
         cards.forEach(
           (c, i) =>
-            c && gsap.set(c, { autoAlpha: i === 0 ? 1 : 0, y: i === 0 ? 0 : 80 })
+            c &&
+            gsap.set(c, { autoAlpha: i === 0 ? 1 : 0, y: i === 0 ? 0 : 80 }),
         );
 
         const tl = gsap.timeline({
@@ -119,32 +120,40 @@ const LearningPath = () => {
           tl.to(
             nodes[i + 1],
             { opacity: 1, scale: 1, duration: 0.18, ease: "back.out(1.5)" },
-            b + 0.38
+            b + 0.38,
           );
           // Slide current card out upward
           tl.to(
             cards[i],
             { autoAlpha: 0, y: -22, duration: 0.2, ease: "power2.in" },
-            b + 0.5
+            b + 0.5,
           );
           // Slide next card in from below
           tl.to(
             cards[i + 1],
             { autoAlpha: 1, y: 0, duration: 0.35, ease: "power3.out" },
-            b + 0.68
+            b + 0.68,
           );
         }
       };
 
       mm.add("(min-width: 1025px)", () => {
-        buildTimeline(nodeRefs.current, connectorRefs.current, cardRefs.current);
+        buildTimeline(
+          nodeRefs.current,
+          connectorRefs.current,
+          cardRefs.current,
+        );
       });
 
       mm.add("(max-width: 767px)", () => {
-        buildTimeline(nodeRefs.current, connectorRefs.current, cardRefs.current);
+        buildTimeline(
+          nodeRefs.current,
+          connectorRefs.current,
+          cardRefs.current,
+        );
       });
     },
-    { scope: sectionRef }
+    { scope: sectionRef },
   );
 
   return (
@@ -153,11 +162,11 @@ const LearningPath = () => {
         <div className={styles.top}>
           <span className={styles.eyebrow}>YOUR ROADMAP</span>
           <h2 className={styles.heading}>
-            Go from Zero to{" "}
-            <span className={styles.headingEm}>Job-Ready</span> in 90 Days
+            Go from Zero to <span className={styles.headingEm}>Job-Ready</span>{" "}
+            in 90 Days
           </h2>
           <p className={styles.subhead}>
-            A structured, mentor-guided journey — step by step, skill by skill,
+            A structured, mentor-guided journey - step by step, skill by skill,
             from your first lesson to your first offer.
           </p>
         </div>

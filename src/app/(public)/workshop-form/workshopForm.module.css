@@ -1,5 +1,5 @@
 /* ============================================================
-   Workshop Form — CSS Module
+   Workshop Form - CSS Module
    ============================================================ */
 
 .page {
@@ -40,7 +40,10 @@
   flex-wrap: wrap;
 }
 
-.workshopStripLeft { flex: 1; min-width: 0; }
+.workshopStripLeft {
+  flex: 1;
+  min-width: 0;
+}
 
 .workshopStripEyebrow {
   display: inline-flex;
@@ -71,7 +74,10 @@
   color: var(--text-muted);
 }
 
-.workshopStripMeta i { color: var(--wf-accent); font-size: 0.72rem; }
+.workshopStripMeta i {
+  color: var(--wf-accent);
+  font-size: 0.72rem;
+}
 
 .workshopStripPrice {
   display: flex;
@@ -120,7 +126,11 @@
   margin-bottom: 1.25rem;
 }
 
-.inputWrap { display: flex; flex-direction: column; gap: 0.3rem; }
+.inputWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
 
 .inputWrap input {
   padding: 0.72rem 0.95rem;
@@ -135,11 +145,17 @@
   width: 100%;
 }
 
-.inputWrap input::placeholder { color: var(--text-muted); }
+.inputWrap input::placeholder {
+  color: var(--text-muted);
+}
 
-.inputWrap input:focus { border-color: var(--wf-accent); }
+.inputWrap input:focus {
+  border-color: var(--wf-accent);
+}
 
-.inputError { border-color: var(--status-error, #ef4444) !important; }
+.inputError {
+  border-color: var(--status-error, #ef4444) !important;
+}
 
 .errorText {
   font-size: 0.7rem;
@@ -148,7 +164,9 @@
 
 /* Choice fields */
 
-.fieldGroup { margin-bottom: 1rem; }
+.fieldGroup {
+  margin-bottom: 1rem;
+}
 
 .sectionLabel {
   display: block;
@@ -168,7 +186,9 @@
   background: var(--bg-secondary);
 }
 
-.choiceRowError { border-color: var(--status-error, #ef4444); }
+.choiceRowError {
+  border-color: var(--status-error, #ef4444);
+}
 
 .choiceCard {
   padding: 0.44rem 0.9rem;
@@ -227,7 +247,9 @@
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 4px 16px rgba(59, 139, 235, 0.38);
-  transition: background 0.2s, transform 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.2s;
   margin-bottom: 1.1rem;
 }
 
@@ -250,7 +272,9 @@
   margin-bottom: 0.75rem;
 }
 
-.trustNote i { color: var(--accent-green); }
+.trustNote i {
+  color: var(--accent-green);
+}
 
 .waHelp {
   display: flex;
@@ -264,14 +288,27 @@
   transition: opacity 0.2s;
 }
 
-.waHelp:hover { opacity: 0.8; }
+.waHelp:hover {
+  opacity: 0.8;
+}
 
 /* Responsive */
 
 @media (max-width: 520px) {
-  .page { padding: 6rem 0.75rem 3rem; }
-  .card { padding: 1.5rem 1.1rem 1.75rem; border-radius: 16px; }
-  .grid { grid-template-columns: 1fr; }
-  .workshopStrip { flex-direction: column; }
-  .workshopStripPrice { align-items: flex-start; }
+  .page {
+    padding: 6rem 0.75rem 3rem;
+  }
+  .card {
+    padding: 1.5rem 1.1rem 1.75rem;
+    border-radius: 16px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .workshopStrip {
+    flex-direction: column;
+  }
+  .workshopStripPrice {
+    align-items: flex-start;
+  }
 }

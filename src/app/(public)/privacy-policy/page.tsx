@@ -34,8 +34,13 @@ export default function PrivacyPolicyPage() {
           </span>
           <h1>Privacy Policy</h1>
           <div className={styles.heroMeta}>
-            <span><i className="fas fa-calendar-alt" /> Last updated: March 2025</span>
-            <span><i className="fas fa-map-marker-alt" /> AnalyticShala, Gurgaon, India</span>
+            <span>
+              <i className="fas fa-calendar-alt" /> Last updated: March 2025
+            </span>
+            <span>
+              <i className="fas fa-map-marker-alt" /> AnalyticShala, Gurgaon,
+              India
+            </span>
           </div>
         </div>
       </div>
@@ -45,14 +50,16 @@ export default function PrivacyPolicyPage() {
           <h3>Contents</h3>
           <ul className={styles.tocList}>
             {toc.map((item) => (
-              <li key={item.id}><a href={`#${item.id}`}>{item.label}</a></li>
+              <li key={item.id}>
+                <a href={`#${item.id}`}>{item.label}</a>
+              </li>
             ))}
           </ul>
         </aside>
 
         <main className={styles.content}>
           <p className={styles.intro}>
-            At AnalyticShala, your privacy is a fundamental priority — not an
+            At AnalyticShala, your privacy is a fundamental priority - not an
             afterthought. This Privacy Policy explains what personal information
             we collect when you use our website, enroll in our courses or
             workshops, and interact with our services, and how we protect and
@@ -90,19 +97,52 @@ export default function PrivacyPolicyPage() {
               We collect information in two ways: directly from you when you
               interact with our Platform, and automatically as you browse.
             </p>
-            <p><strong>Information you provide directly:</strong></p>
+            <p>
+              <strong>Information you provide directly:</strong>
+            </p>
             <ul>
-              <li><strong>Contact details</strong> — name, email address, phone number (WhatsApp-enabled), and city/location when you register, fill a contact form, or enroll in a workshop.</li>
-              <li><strong>Payment information</strong> — billing name, email, and transaction IDs processed through our payment gateway (Razorpay). We do not store raw card numbers or CVV codes on our servers.</li>
-              <li><strong>Academic background</strong> — current profession, education level, and learning goals provided during enrollment to personalise your learning path.</li>
-              <li><strong>Communications</strong> — messages, queries, and feedback you send us via email, WhatsApp, or contact forms.</li>
+              <li>
+                <strong>Contact details</strong> - name, email address, phone
+                number (WhatsApp-enabled), and city/location when you register,
+                fill a contact form, or enroll in a workshop.
+              </li>
+              <li>
+                <strong>Payment information</strong> - billing name, email, and
+                transaction IDs processed through our payment gateway
+                (Razorpay). We do not store raw card numbers or CVV codes on our
+                servers.
+              </li>
+              <li>
+                <strong>Academic background</strong> - current profession,
+                education level, and learning goals provided during enrollment
+                to personalise your learning path.
+              </li>
+              <li>
+                <strong>Communications</strong> - messages, queries, and
+                feedback you send us via email, WhatsApp, or contact forms.
+              </li>
             </ul>
-            <p><strong>Information collected automatically:</strong></p>
+            <p>
+              <strong>Information collected automatically:</strong>
+            </p>
             <ul>
-              <li><strong>Usage data</strong> — pages visited, time spent, links clicked, course sections accessed, and navigation patterns.</li>
-              <li><strong>Device &amp; browser data</strong> — IP address, browser type and version, operating system, device type, and screen resolution.</li>
-              <li><strong>Referral source</strong> — the URL that directed you to our website.</li>
-              <li><strong>Cookies and similar technologies</strong> — see Section 5 for full details.</li>
+              <li>
+                <strong>Usage data</strong> - pages visited, time spent, links
+                clicked, course sections accessed, and navigation patterns.
+              </li>
+              <li>
+                <strong>Device &amp; browser data</strong> - IP address, browser
+                type and version, operating system, device type, and screen
+                resolution.
+              </li>
+              <li>
+                <strong>Referral source</strong> - the URL that directed you to
+                our website.
+              </li>
+              <li>
+                <strong>Cookies and similar technologies</strong> - see Section
+                5 for full details.
+              </li>
             </ul>
           </section>
 
@@ -112,19 +152,51 @@ export default function PrivacyPolicyPage() {
             </h2>
             <p>We use the information we collect to:</p>
             <ul>
-              <li>Process your workshop or course enrollment and send confirmation emails and onboarding materials.</li>
-              <li>Personalise your learning experience and recommend courses that match your goals and skill level.</li>
-              <li>Send programme updates, schedule reminders, assignment notifications, and session links via email or WhatsApp.</li>
-              <li>Respond to your inquiries, support requests, and feedback promptly.</li>
-              <li>Process payments securely and issue receipts or certificates of completion.</li>
-              <li>Improve our website, content quality, and instructional design based on aggregate usage analytics.</li>
-              <li>Send periodic marketing communications about new courses, workshops, offers, and educational content — only with your consent (you may opt out at any time).</li>
-              <li>Comply with applicable laws, resolve disputes, and enforce our agreements.</li>
+              <li>
+                Process your workshop or course enrollment and send confirmation
+                emails and onboarding materials.
+              </li>
+              <li>
+                Personalise your learning experience and recommend courses that
+                match your goals and skill level.
+              </li>
+              <li>
+                Send programme updates, schedule reminders, assignment
+                notifications, and session links via email or WhatsApp.
+              </li>
+              <li>
+                Respond to your inquiries, support requests, and feedback
+                promptly.
+              </li>
+              <li>
+                Process payments securely and issue receipts or certificates of
+                completion.
+              </li>
+              <li>
+                Improve our website, content quality, and instructional design
+                based on aggregate usage analytics.
+              </li>
+              <li>
+                Send periodic marketing communications about new courses,
+                workshops, offers, and educational content - only with your
+                consent (you may opt out at any time).
+              </li>
+              <li>
+                Comply with applicable laws, resolve disputes, and enforce our
+                agreements.
+              </li>
             </ul>
             <div className={styles.highlight}>
               <p>
-                <i className="fas fa-info-circle" style={{ color: "var(--accent-indigo)", marginRight: "0.4rem" }} />
-                We will never sell your personal data to third parties for their own marketing purposes.
+                <i
+                  className="fas fa-info-circle"
+                  style={{
+                    color: "var(--accent-indigo)",
+                    marginRight: "0.4rem",
+                  }}
+                />
+                We will never sell your personal data to third parties for their
+                own marketing purposes.
               </p>
             </div>
           </section>
@@ -133,7 +205,10 @@ export default function PrivacyPolicyPage() {
             <h2 className={styles.sectionTitle}>
               <i className="fas fa-share-alt" /> 4. Data Sharing
             </h2>
-            <p>We do not sell, rent, or trade your personal information. We may share your data only in these limited circumstances:</p>
+            <p>
+              We do not sell, rent, or trade your personal information. We may
+              share your data only in these limited circumstances:
+            </p>
             <div className={styles.tableWrap}>
               <table className={styles.table}>
                 <thead>
@@ -144,55 +219,146 @@ export default function PrivacyPolicyPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td><strong>Razorpay</strong></td><td>Payment processing</td><td>Name, email, transaction amount</td></tr>
-                  <tr><td><strong>Google Analytics</strong></td><td>Website analytics</td><td>Anonymised usage and device data</td></tr>
-                  <tr><td><strong>Google Workspace / Zoom</strong></td><td>Delivering live sessions and communications</td><td>Name, email, session attendance</td></tr>
-                  <tr><td><strong>WhatsApp Business (Meta)</strong></td><td>Session reminders and support</td><td>Phone number, name</td></tr>
-                  <tr><td><strong>Legal authorities</strong></td><td>Compliance with court orders or law</td><td>As required by applicable law</td></tr>
+                  <tr>
+                    <td>
+                      <strong>Razorpay</strong>
+                    </td>
+                    <td>Payment processing</td>
+                    <td>Name, email, transaction amount</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>Google Analytics</strong>
+                    </td>
+                    <td>Website analytics</td>
+                    <td>Anonymised usage and device data</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>Google Workspace / Zoom</strong>
+                    </td>
+                    <td>Delivering live sessions and communications</td>
+                    <td>Name, email, session attendance</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>WhatsApp Business (Meta)</strong>
+                    </td>
+                    <td>Session reminders and support</td>
+                    <td>Phone number, name</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>Legal authorities</strong>
+                    </td>
+                    <td>Compliance with court orders or law</td>
+                    <td>As required by applicable law</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
-            <p>All third-party service providers are contractually required to protect your data and use it only for the stated purpose.</p>
+            <p>
+              All third-party service providers are contractually required to
+              protect your data and use it only for the stated purpose.
+            </p>
           </section>
 
           <section className={styles.section} id="cookies">
             <h2 className={styles.sectionTitle}>
               <i className="fas fa-cookie-bite" /> 5. Cookies &amp; Tracking
             </h2>
-            <p>We use cookies — small text files stored on your device — to make our website function properly and to understand how visitors use it.</p>
+            <p>
+              We use cookies - small text files stored on your device - to make
+              our website function properly and to understand how visitors use
+              it.
+            </p>
             <ul>
-              <li><strong>Essential cookies</strong> — required for basic functionality such as session management and login state. Cannot be disabled.</li>
-              <li><strong>Analytics cookies</strong> — used via Google Analytics to understand page views, traffic sources, and user behaviour in aggregate anonymised form.</li>
-              <li><strong>Preference cookies</strong> — remember your settings such as light/dark mode preference across sessions.</li>
-              <li><strong>Marketing cookies</strong> — may be used to show relevant ads on third-party platforms. You can opt out via your browser settings or the Google Ads opt-out page.</li>
+              <li>
+                <strong>Essential cookies</strong> - required for basic
+                functionality such as session management and login state. Cannot
+                be disabled.
+              </li>
+              <li>
+                <strong>Analytics cookies</strong> - used via Google Analytics
+                to understand page views, traffic sources, and user behaviour in
+                aggregate anonymised form.
+              </li>
+              <li>
+                <strong>Preference cookies</strong> - remember your settings
+                such as light/dark mode preference across sessions.
+              </li>
+              <li>
+                <strong>Marketing cookies</strong> - may be used to show
+                relevant ads on third-party platforms. You can opt out via your
+                browser settings or the Google Ads opt-out page.
+              </li>
             </ul>
-            <p>You can control cookie settings through your browser preferences. Disabling non-essential cookies will not affect your ability to access our courses.</p>
+            <p>
+              You can control cookie settings through your browser preferences.
+              Disabling non-essential cookies will not affect your ability to
+              access our courses.
+            </p>
           </section>
 
           <section className={styles.section} id="data-security">
             <h2 className={styles.sectionTitle}>
               <i className="fas fa-lock" /> 6. Data Security
             </h2>
-            <p>We implement industry-standard technical and organisational measures to protect your personal data:</p>
+            <p>
+              We implement industry-standard technical and organisational
+              measures to protect your personal data:
+            </p>
             <ul>
-              <li>All data transmitted between your browser and our servers is encrypted using HTTPS/TLS.</li>
-              <li>Payment transactions are handled entirely by Razorpay, which is PCI-DSS compliant — we never handle raw card data.</li>
-              <li>Access to personal data within our team is restricted to authorised personnel on a need-to-know basis.</li>
-              <li>We conduct periodic security reviews and keep our systems up to date.</li>
+              <li>
+                All data transmitted between your browser and our servers is
+                encrypted using HTTPS/TLS.
+              </li>
+              <li>
+                Payment transactions are handled entirely by Razorpay, which is
+                PCI-DSS compliant - we never handle raw card data.
+              </li>
+              <li>
+                Access to personal data within our team is restricted to
+                authorised personnel on a need-to-know basis.
+              </li>
+              <li>
+                We conduct periodic security reviews and keep our systems up to
+                date.
+              </li>
             </ul>
-            <p>While we take every reasonable precaution, no system is completely immune to breaches. In the unlikely event of a data breach that affects your rights, we will notify you and the relevant authorities as required by law.</p>
+            <p>
+              While we take every reasonable precaution, no system is completely
+              immune to breaches. In the unlikely event of a data breach that
+              affects your rights, we will notify you and the relevant
+              authorities as required by law.
+            </p>
           </section>
 
           <section className={styles.section} id="retention">
             <h2 className={styles.sectionTitle}>
               <i className="fas fa-clock" /> 7. Data Retention
             </h2>
-            <p>We retain your personal data only for as long as necessary to fulfil the purposes outlined in this policy:</p>
+            <p>
+              We retain your personal data only for as long as necessary to
+              fulfil the purposes outlined in this policy:
+            </p>
             <ul>
-              <li><strong>Account and enrollment data</strong> — retained for 3 years after your last interaction with us.</li>
-              <li><strong>Payment records</strong> — retained for 7 years as required under Indian taxation and accounting laws.</li>
-              <li><strong>Marketing data</strong> — retained until you opt out or request deletion.</li>
-              <li><strong>Support communications</strong> — retained for 1 year after resolution.</li>
+              <li>
+                <strong>Account and enrollment data</strong> - retained for 3
+                years after your last interaction with us.
+              </li>
+              <li>
+                <strong>Payment records</strong> - retained for 7 years as
+                required under Indian taxation and accounting laws.
+              </li>
+              <li>
+                <strong>Marketing data</strong> - retained until you opt out or
+                request deletion.
+              </li>
+              <li>
+                <strong>Support communications</strong> - retained for 1 year
+                after resolution.
+              </li>
             </ul>
             <p>After these periods, data is securely deleted or anonymised.</p>
           </section>
@@ -201,21 +367,45 @@ export default function PrivacyPolicyPage() {
             <h2 className={styles.sectionTitle}>
               <i className="fas fa-user-shield" /> 8. Your Rights
             </h2>
-            <p>You have the following rights with respect to your personal data:</p>
+            <p>
+              You have the following rights with respect to your personal data:
+            </p>
             <ul>
-              <li><strong>Access</strong> — request a copy of the personal data we hold about you.</li>
-              <li><strong>Correction</strong> — ask us to correct inaccurate or incomplete information.</li>
-              <li><strong>Deletion</strong> — request deletion of your personal data, subject to legal retention obligations.</li>
-              <li><strong>Opt-out of marketing</strong> — unsubscribe from promotional emails at any time.</li>
-              <li><strong>Data portability</strong> — request your data in a machine-readable format where technically feasible.</li>
-              <li><strong>Withdraw consent</strong> — where processing is based on consent, you may withdraw it at any time.</li>
+              <li>
+                <strong>Access</strong> - request a copy of the personal data we
+                hold about you.
+              </li>
+              <li>
+                <strong>Correction</strong> - ask us to correct inaccurate or
+                incomplete information.
+              </li>
+              <li>
+                <strong>Deletion</strong> - request deletion of your personal
+                data, subject to legal retention obligations.
+              </li>
+              <li>
+                <strong>Opt-out of marketing</strong> - unsubscribe from
+                promotional emails at any time.
+              </li>
+              <li>
+                <strong>Data portability</strong> - request your data in a
+                machine-readable format where technically feasible.
+              </li>
+              <li>
+                <strong>Withdraw consent</strong> - where processing is based on
+                consent, you may withdraw it at any time.
+              </li>
             </ul>
             <p>
               To exercise any of these rights, email us at{" "}
-              <a href="mailto:team@analyticshala.in" style={{ color: "var(--accent-indigo)" }}>
+              <a
+                href="mailto:team@analyticshala.in"
+                style={{ color: "var(--accent-indigo)" }}
+              >
                 team@analyticshala.in
               </a>{" "}
-              with the subject line &quot;Privacy Request.&quot; We will respond within 30 days.
+              with the subject line &quot;Privacy Request.&quot; We will respond
+              within 30 days.
             </p>
           </section>
 
@@ -224,8 +414,15 @@ export default function PrivacyPolicyPage() {
               <i className="fas fa-child" /> 9. Children&apos;s Privacy
             </h2>
             <p>
-              Our Platform and services are intended for individuals aged 16 and above. We do not knowingly collect personal data from children under the age of 16. If you are a parent or guardian and believe your child has submitted personal information to us, please contact us immediately at{" "}
-              <a href="mailto:team@analyticshala.in" style={{ color: "var(--accent-indigo)" }}>
+              Our Platform and services are intended for individuals aged 16 and
+              above. We do not knowingly collect personal data from children
+              under the age of 16. If you are a parent or guardian and believe
+              your child has submitted personal information to us, please
+              contact us immediately at{" "}
+              <a
+                href="mailto:team@analyticshala.in"
+                style={{ color: "var(--accent-indigo)" }}
+              >
                 team@analyticshala.in
               </a>{" "}
               and we will delete it promptly.
@@ -237,10 +434,16 @@ export default function PrivacyPolicyPage() {
               <i className="fas fa-sync-alt" /> 10. Changes to This Policy
             </h2>
             <p>
-              We may update this Privacy Policy from time to time to reflect changes in our practices, services, or applicable laws. When we make material changes, we will update the &quot;Last updated&quot; date at the top of this page and — for significant changes — notify enrolled users by email.
+              We may update this Privacy Policy from time to time to reflect
+              changes in our practices, services, or applicable laws. When we
+              make material changes, we will update the &quot;Last updated&quot;
+              date at the top of this page and - for significant changes -
+              notify enrolled users by email.
             </p>
             <p>
-              We encourage you to review this policy periodically. Continued use of our Platform after changes are posted constitutes your acceptance of the updated policy.
+              We encourage you to review this policy periodically. Continued use
+              of our Platform after changes are posted constitutes your
+              acceptance of the updated policy.
             </p>
           </section>
 
@@ -250,13 +453,34 @@ export default function PrivacyPolicyPage() {
             <h2 className={styles.sectionTitle}>
               <i className="fas fa-envelope" /> 11. Contact Us
             </h2>
-            <p>If you have any questions, concerns, or requests related to this Privacy Policy, please reach out to us:</p>
+            <p>
+              If you have any questions, concerns, or requests related to this
+              Privacy Policy, please reach out to us:
+            </p>
             <div className={styles.contactBox}>
               <h4>AnalyticShala Privacy Team</h4>
-              <div className={styles.contactRow}><i className="fas fa-envelope" /><a href="mailto:team@analyticshala.in">team@analyticshala.in</a></div>
-              <div className={styles.contactRow}><i className="fas fa-phone" /><a href="tel:+918882641988">+91-88826 41988</a></div>
-              <div className={styles.contactRow}><i className="fab fa-whatsapp" /><a href="https://wa.me/918882641988" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a></div>
-              <div className={styles.contactRow}><i className="fas fa-map-marker-alt" /><span>Gurgaon, Haryana, India</span></div>
+              <div className={styles.contactRow}>
+                <i className="fas fa-envelope" />
+                <a href="mailto:team@analyticshala.in">team@analyticshala.in</a>
+              </div>
+              <div className={styles.contactRow}>
+                <i className="fas fa-phone" />
+                <a href="tel:+918882641988">+91-88826 41988</a>
+              </div>
+              <div className={styles.contactRow}>
+                <i className="fab fa-whatsapp" />
+                <a
+                  href="https://wa.me/918882641988"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Chat on WhatsApp
+                </a>
+              </div>
+              <div className={styles.contactRow}>
+                <i className="fas fa-map-marker-alt" />
+                <span>Gurgaon, Haryana, India</span>
+              </div>
             </div>
           </section>
         </main>

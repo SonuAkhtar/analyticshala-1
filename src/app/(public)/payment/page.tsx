@@ -32,12 +32,6 @@ interface PaymentData {
 
 const toINR = (paise: number) => (paise / 100).toLocaleString("en-IN");
 
-const TRUST_BADGES = [
-  { icon: "fas fa-lock", label: "256-bit SSL" },
-  { icon: "fas fa-shield-alt", label: "Secure Payment" },
-  { icon: "fas fa-undo", label: "24-hr Refund" },
-];
-
 const ENROLLED_COUNT: Record<string, number> = {
   "data-analytics-python": 190,
   sql: 240,
@@ -47,9 +41,25 @@ const ENROLLED_COUNT: Record<string, number> = {
   webdev: 142,
 };
 
+const COURSE_INCLUDES = [
+  { icon: "fas fa-video", label: "Live cohort" },
+  { icon: "fas fa-certificate", label: "Certificate" },
+  { icon: "fas fa-infinity", label: "Lifetime access" },
+];
+
+interface RazorpayInstance {
+  open: () => void;
+  on: (
+    event: "payment.failed",
+    handler: (response: {
+      error?: { description?: string; reason?: string; code?: string };
+    }) => void,
+  ) => void;
+}
+
 declare global {
   interface Window {
-    Razorpay: new (options: Record<string, unknown>) => { open: () => void };
+    Razorpay: new (options: Record<string, unknown>) => RazorpayInstance;
   }
 }
 
@@ -58,6 +68,7 @@ export default function PaymentPage() {
   const [paymentData, setPaymentData] = useState<PaymentData | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [paymentError, setPaymentError] = useState<string | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -82,10 +93,38 @@ export default function PaymentPage() {
   const amountINR = toINR(paymentData.amount);
   const courseId = paymentData.user?.courseId ?? "";
   const enrolledNum = ENROLLED_COUNT[courseId] || 142;
+  const isWorkshop = !paymentData.user?.courseId;
+  const wsDate = paymentData.user?.workshopDate ?? "";
+  const wsTime = paymentData.user?.workshopTime ?? "";
+  const wsMode = paymentData.user?.workshopMode ?? "";
+  const wsDateParts = (() => {
+    if (!wsDate) return { month: "", day: "", dayName: "" };
+    const [monthDay, dayName = ""] = wsDate.split(", ");
+    const [month = "", day = ""] = monthDay.split(" ");
+    return {
+      month: month.slice(0, 3).toUpperCase(),
+      day,
+      dayName: dayName.slice(0, 3).toUpperCase(),
+    };
+  })();
 
   const openRazorpay = () => {
+    setPaymentError(null);
+
     if (!RAZORPAY_KEY_ID) {
-      alert("Razorpay key missing. Please contact support.");
+      setPaymentError(
+        "Payments aren't configured yet. Please contact support on WhatsApp and we'll help you enroll.",
+      );
+      return;
+    }
+
+    if (
+      typeof window === "undefined" ||
+      typeof window.Razorpay === "undefined"
+    ) {
+      setPaymentError(
+        "Payment system is still loading. Please wait a moment and try again.",
+      );
       return;
     }
 
@@ -104,41 +143,87 @@ export default function PaymentPage() {
         contact: paymentData.user.phone,
       },
 
+      modal: {
+        ondismiss: () => {
+          setIsProcessing(false);
+          setPaymentError(
+            "Payment cancelled. No money was deducted - you can try again whenever you're ready.",
+          );
+        },
+      },
+
       handler: async function (response: { razorpay_payment_id: string }) {
         setIsProcessing(true);
+        setPaymentError(null);
         const waDate = new Date().toLocaleDateString("en-IN", {
           day: "numeric",
           month: "long",
           year: "numeric",
         });
 
-        // Save to Supabase
+        // Flag dev/test rows so production data stays clean
+        const host = window.location.hostname;
+        const isTest =
+          host === "localhost" ||
+          host === "127.0.0.1" ||
+          host.endsWith(".vercel.app"); // preview deploys count as test
+
+        // Save to Supabase - track success so the success page can warn the user if it failed
+        let saveOk = false;
         if (supabase) {
           try {
-            await supabase.from("registrations").insert({
-              type: paymentData.user.courseId ? "course" : "workshop",
-              item_id: paymentData.user.courseId || paymentData.user.workshopId || "",
-              item_title: itemTitle,
-              name: paymentData.user.name,
-              email: paymentData.user.email,
-              phone: paymentData.user.phone,
-              age: paymentData.user.age || null,
-              experience: paymentData.user.experience || null,
-              goal: paymentData.user.goal || null,
-              status: paymentData.user.status || null,
-              mode: paymentData.user.mode || null,
-              analyticshala_student: paymentData.user.analyticshalaStudent || null,
-              amount_paise: paymentData.amount,
-              payment_id: response.razorpay_payment_id,
-            });
+            const insertResult = paymentData.user.courseId
+              ? await supabase.from("course_registrations").insert({
+                  course_id: paymentData.user.courseId,
+                  course_title: itemTitle,
+                  name: paymentData.user.name,
+                  email: paymentData.user.email,
+                  phone: paymentData.user.phone,
+                  experience: paymentData.user.experience || null,
+                  goal: paymentData.user.goal || null,
+                  amount_inr: paymentData.amount / 100,
+                  payment_id: response.razorpay_payment_id,
+                  is_test: isTest,
+                })
+              : await supabase.from("workshop_registrations").insert({
+                  workshop_id: paymentData.user.workshopId || "",
+                  workshop_title: itemTitle,
+                  workshop_date: paymentData.user.workshopDate || null,
+                  workshop_time: paymentData.user.workshopTime || null,
+                  workshop_mode: paymentData.user.workshopMode || null,
+                  name: paymentData.user.name,
+                  email: paymentData.user.email,
+                  phone: paymentData.user.phone,
+                  age: paymentData.user.age
+                    ? Number(paymentData.user.age)
+                    : null,
+                  status: paymentData.user.status || null,
+                  mode: paymentData.user.mode || null,
+                  analyticshala_student:
+                    paymentData.user.analyticshalaStudent || null,
+                  amount_inr: paymentData.amount / 100,
+                  payment_id: response.razorpay_payment_id,
+                  is_test: isTest,
+                });
+
+            if (insertResult.error) {
+              console.error("Supabase save failed:", insertResult.error);
+            } else {
+              saveOk = true;
+            }
           } catch (err) {
-            console.error("Supabase save failed:", err);
+            console.error("Supabase save threw:", err);
           }
+        } else {
+          console.error(
+            "Supabase client not configured - registration not saved",
+          );
         }
 
         // Send confirmation email via Resend
+        let emailOk = false;
         try {
-          await fetch("/api/send-confirmation", {
+          const emailRes = await fetch("/api/send-confirmation", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -152,6 +237,13 @@ export default function PaymentPage() {
               date: waDate,
             }),
           });
+          emailOk = emailRes.ok;
+          if (!emailRes.ok) {
+            console.error(
+              "[Resend] confirmation email failed:",
+              emailRes.status,
+            );
+          }
         } catch (err) {
           console.error("[Resend] confirmation email failed:", err);
         }
@@ -168,6 +260,8 @@ export default function PaymentPage() {
           workshopDate: paymentData.user.workshopDate || "",
           workshopTime: paymentData.user.workshopTime || "",
           workshopMode: paymentData.user.workshopMode || "",
+          saveOk,
+          emailOk,
         };
         sessionStorage.setItem("paymentSuccess", JSON.stringify(successData));
         sessionStorage.removeItem("paymentData");
@@ -179,6 +273,16 @@ export default function PaymentPage() {
     };
 
     const rzp = new window.Razorpay(options);
+    rzp.on("payment.failed", (response) => {
+      setIsProcessing(false);
+      const reason =
+        response?.error?.description ||
+        response?.error?.reason ||
+        "Your bank declined the payment.";
+      setPaymentError(
+        `Payment failed: ${reason} No money was deducted. Please try again or use a different payment method.`,
+      );
+    });
     rzp.open();
   };
 
@@ -197,52 +301,118 @@ export default function PaymentPage() {
         </div>
       )}
 
-      <div className={styles.payment}>
+      <div
+        className={`${styles.payment}${isWorkshop ? " " + styles.paymentWorkshop : ""}`}
+      >
         <div className={styles.wrap}>
           {/* Order Summary */}
-          <div className={styles.summary}>
-            <div className={styles.summaryHeader}>
-              <i className="fas fa-receipt" />
-              <span>Order Summary</span>
-            </div>
-
-            <div className={styles.summaryItem}>
-              <div className={styles.summaryItemIcon}>
-                <i className="fas fa-graduation-cap" />
+          {isWorkshop ? (
+            <div className={`${styles.summary} ${styles.summaryWs}`}>
+              <div className={styles.summaryHeader}>
+                <i className="fas fa-bolt" />
+                <span>Your Workshop Ticket</span>
               </div>
-              <div className={styles.summaryItemInfo}>
-                <span className={styles.summaryItemLabel}>Program</span>
-                <strong className={styles.summaryItemName}>{itemTitle}</strong>
+
+              {(wsDateParts.day || wsDateParts.month) && (
+                <div className={styles.wsTicketDate}>
+                  <span className={styles.wsTicketMonth}>
+                    {wsDateParts.month}
+                  </span>
+                  <span className={styles.wsTicketDay}>{wsDateParts.day}</span>
+                  {wsDateParts.dayName && (
+                    <span className={styles.wsTicketDayName}>
+                      {wsDateParts.dayName}
+                    </span>
+                  )}
+                </div>
+              )}
+
+              <div className={styles.wsTicketTitleWrap}>
+                <span className={styles.summaryItemLabel}>Workshop</span>
+                <strong className={styles.wsTicketTitle}>{itemTitle}</strong>
+              </div>
+
+              <div className={styles.wsPerforation} />
+
+              <div className={styles.wsDetailRows}>
+                {wsDate && (
+                  <div className={styles.wsDetailRow}>
+                    <i className="fas fa-calendar-alt" />
+                    <span>{wsDate}</span>
+                  </div>
+                )}
+                {wsTime && (
+                  <div className={styles.wsDetailRow}>
+                    <i className="fas fa-clock" />
+                    <span>{wsTime}</span>
+                  </div>
+                )}
+                {wsMode && (
+                  <div className={styles.wsDetailRow}>
+                    <i className="fas fa-laptop-house" />
+                    <span>{wsMode}</span>
+                  </div>
+                )}
+              </div>
+
+              <div className={styles.wsPerforation} />
+
+              <div className={styles.summaryLines}>
+                <div className={styles.summaryLine}>
+                  <span>
+                    Workshop Fee <em>(one-time)</em>
+                  </span>
+                  <span className={styles.summaryLineAmount}>₹{amountINR}</span>
+                </div>
+              </div>
+
+              <div className={styles.summaryTotal}>
+                <span>Total Due</span>
+                <strong>₹{amountINR}</strong>
+              </div>
+
+              <div className={styles.summaryProof}>
+                <i className="fas fa-fire" />
+                <span>Limited seats — lock yours now</span>
               </div>
             </div>
+          ) : (
+            <div className={`${styles.summary} ${styles.summaryCourse}`}>
+              <div className={styles.summaryHeader}>
+                <i className="fas fa-check-circle" />
+                <span>Enrollment</span>
+              </div>
 
-            <div className={styles.summaryDivider} />
+              <div className={styles.courseHero}>
+                <div className={styles.courseHeroIcon}>
+                  <i className="fas fa-graduation-cap" />
+                </div>
+                <strong className={styles.courseHeroTitle}>{itemTitle}</strong>
+                <div className={styles.courseHeroChips}>
+                  {COURSE_INCLUDES.map((c) => (
+                    <span key={c.label} className={styles.courseHeroChip}>
+                      <i className={c.icon} /> {c.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
 
-            <div className={styles.summaryLines}>
-              <div className={styles.summaryLine}>
-                <span>Registration Fee <em>(due today)</em></span>
-                <span className={styles.summaryLineAmount}>₹{amountINR}</span>
+              <div className={styles.summaryTotal}>
+                <span>Registration fee</span>
+                <strong>₹{amountINR}</strong>
+              </div>
+
+              <div className={styles.summaryProof}>
+                <i className="fas fa-users" />
+                <span>{enrolledNum}+ learners already enrolled</span>
               </div>
             </div>
-
-            <div className={styles.summaryTotal}>
-              <span>Due Today</span>
-              <strong>₹{amountINR}</strong>
-            </div>
-
-            <div className={styles.summaryProof}>
-              <i className="fas fa-users" />
-              <span>{enrolledNum}+ learners already enrolled</span>
-            </div>
-          </div>
+          )}
 
           {/* Payment Card */}
           <div className={styles.card}>
             <div className={styles.cardHeader}>
-              <h2>Complete Your Enrollment</h2>
-              <p className={styles.subtext}>
-                <i className="fas fa-lock" /> Secured by Razorpay
-              </p>
+              <h2>{isWorkshop ? "Confirm Your Spot" : "Complete Your Enrollment"}</h2>
             </div>
 
             <div className={styles.studentRecap}>
@@ -253,50 +423,55 @@ export default function PaymentPage() {
                 <strong>{paymentData.user.name}</strong>
                 <span>{paymentData.user.email}</span>
               </div>
+              <i
+                className={`fas fa-check-circle ${styles.studentRecapCheck}`}
+                aria-hidden="true"
+              />
             </div>
+
+            {paymentError && (
+              <div role="alert" className={styles.errorBanner}>
+                <i className="fas fa-exclamation-triangle" />
+                <span>{paymentError}</span>
+              </div>
+            )}
 
             <button
               className={styles.payBtn}
               onClick={openRazorpay}
               disabled={isProcessing}
             >
-              <i className="fas fa-lock" />
-              Pay ₹{amountINR} Securely
+              <i className={isWorkshop ? "fas fa-bolt" : "fas fa-lock"} />
+              {isWorkshop
+                ? `Reserve Seat · ₹${amountINR}`
+                : `Pay ₹${amountINR} Securely`}
             </button>
 
-            <p className={styles.methods}>
-              <i className="fab fa-google-pay" /> Google Pay &nbsp;·&nbsp;
-              <i className="fas fa-credit-card" /> Card &nbsp;·&nbsp;
-              <i className="fas fa-university" /> Netbanking &nbsp;·&nbsp; UPI
-            </p>
-
-            <div className={styles.trustBadges}>
-              {TRUST_BADGES.map((b, i) => (
-                <div key={i} className={styles.trustBadge}>
-                  <i className={b.icon} />
-                  <span>{b.label}</span>
-                </div>
-              ))}
-            </div>
-
-            <a
-              href={`https://wa.me/918882641988?text=${encodeURIComponent(
-                "Hi! I have a question about my enrollment for " + itemTitle + "."
-              )}`}
-              target="_blank"
-              rel="noreferrer"
-              className={styles.waHelp}
-            >
-              <i className="fab fa-whatsapp" /> Have a question? Chat with us
-            </a>
-
-            <p className={styles.policyNote}>
-              <i className="fas fa-info-circle" /> Full refund if cancelled
-              within 24 hours of payment.{" "}
-              <a href="/refund-policy" target="_blank" rel="noopener noreferrer">
-                View policy
+            <div className={styles.trustStrip}>
+              <span className={styles.trustStripItem}>
+                <i className="fas fa-lock" /> Razorpay encrypted
+              </span>
+              <span className={styles.trustStripDot}>·</span>
+              <a
+                href="/refund-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.trustStripItem}
+              >
+                <i className="fas fa-undo" /> 24-hr refund
               </a>
-            </p>
+              <span className={styles.trustStripDot}>·</span>
+              <a
+                href={`https://wa.me/918882641988?text=${encodeURIComponent(
+                  "Hi! I have a question about " + itemTitle + ".",
+                )}`}
+                target="_blank"
+                rel="noreferrer"
+                className={`${styles.trustStripItem} ${styles.trustStripWa}`}
+              >
+                <i className="fab fa-whatsapp" /> Need help?
+              </a>
+            </div>
           </div>
         </div>
       </div>

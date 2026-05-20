@@ -40,7 +40,7 @@ const Download = ({ showDownload, setShowDownload }: DownloadProps) => {
         },
         body: JSON.stringify({
           access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "",
-          subject: "New Booklet Download — AnalyticShala",
+          subject: "New Booklet Download - AnalyticShala",
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
@@ -48,7 +48,7 @@ const Download = ({ showDownload, setShowDownload }: DownloadProps) => {
         }),
       });
     } catch {
-      // Fail silently — download should still proceed
+      // Fail silently - download should still proceed
     }
   };
 

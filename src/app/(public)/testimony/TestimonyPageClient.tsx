@@ -9,7 +9,11 @@ const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 26 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.58, delay, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
+  transition: {
+    duration: 0.58,
+    delay,
+    ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+  },
 });
 
 const heroStats = [
@@ -41,12 +45,20 @@ const parsePosition = (pos = "") => {
   return { role: role.trim(), company: company ? company.trim() : "" };
 };
 
-const TestimonyCard = ({ t, featured = false }: { t: typeof testimonyData[0]; featured?: boolean }) => {
+const TestimonyCard = ({
+  t,
+  featured = false,
+}: {
+  t: (typeof testimonyData)[0];
+  featured?: boolean;
+}) => {
   const { role, company } = parsePosition(t.position);
   return (
     <div className={`${styles.card} ${featured ? styles.cardFeatured : ""}`}>
       <div className={styles.cardStars}>
-        {[...Array(5)].map((_, i) => <i key={i} className="fas fa-star" />)}
+        {[...Array(5)].map((_, i) => (
+          <i key={i} className="fas fa-star" />
+        ))}
       </div>
       <p className={styles.cardReview}>&ldquo;{t.review}&rdquo;</p>
       <div className={styles.cardAuthor}>
@@ -92,13 +104,18 @@ export default function TestimonyPageClient() {
               <div key={i} className={styles.statItem}>
                 <span className={styles.statNum}>{s.num}</span>
                 <span className={styles.statLabel}>{s.label}</span>
-                {i < heroStats.length - 1 && <span className={styles.statSep}>·</span>}
+                {i < heroStats.length - 1 && (
+                  <span className={styles.statSep}>·</span>
+                )}
               </div>
             ))}
           </motion.div>
 
           <motion.div className={styles.heroActions} {...fadeUp(0.23)}>
-            <Link href="/workshops" className={`${styles.btn} ${styles.btnPrimary}`}>
+            <Link
+              href="/workshops"
+              className={`${styles.btn} ${styles.btnPrimary}`}
+            >
               Join the Next Batch <i className="fas fa-arrow-right" />
             </Link>
             <a
@@ -116,12 +133,18 @@ export default function TestimonyPageClient() {
             initial={{ opacity: 0, y: 32 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            transition={{
+              duration: 0.6,
+              delay: 0.28,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
             <div className={styles.heroQuoteMark}>
               <i className="fas fa-quote-left" />
             </div>
-            <p className={styles.heroQuoteText}>&ldquo;{featured.review}&rdquo;</p>
+            <p className={styles.heroQuoteText}>
+              &ldquo;{featured.review}&rdquo;
+            </p>
             <div className={styles.heroQuoteAuthor}>
               <img src={featured.image} alt={featured.name} />
               <div>
@@ -129,7 +152,9 @@ export default function TestimonyPageClient() {
                 <span>{featured.position}</span>
               </div>
               <div className={styles.heroQuoteStars}>
-                {[...Array(5)].map((_, i) => <i key={i} className="fas fa-star" />)}
+                {[...Array(5)].map((_, i) => (
+                  <i key={i} className="fas fa-star" />
+                ))}
               </div>
             </div>
           </motion.div>
@@ -160,7 +185,7 @@ export default function TestimonyPageClient() {
           </motion.h2>
           <motion.p className={styles.sectionSub} {...fadeUp(0.12)}>
             No scripts. No filters. Honest accounts from students who chose to
-            invest in themselves — and it paid off.
+            invest in themselves - and it paid off.
           </motion.p>
 
           <div className={styles.grid}>
@@ -197,7 +222,9 @@ export default function TestimonyPageClient() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.07, duration: 0.4 }}
             >
-              <span className={styles.trustIcon}><i className={item.icon} /></span>
+              <span className={styles.trustIcon}>
+                <i className={item.icon} />
+              </span>
               <span>{item.text}</span>
             </motion.div>
           ))}
@@ -208,9 +235,14 @@ export default function TestimonyPageClient() {
       <section className={styles.cta}>
         <div className={`container ${styles.ctaInner}`}>
           <motion.div className={styles.ctaPills} {...fadeUp(0)}>
-            <Link href="/workshops" className={styles.ctaPill}>Browse Workshops</Link>
+            <Link href="/workshops" className={styles.ctaPill}>
+              Browse Workshops
+            </Link>
             <span className={styles.ctaPillSep} />
-            <Link href="/#contact" className={`${styles.ctaPill} ${styles.ctaPillAccent}`}>
+            <Link
+              href="/#contact"
+              className={`${styles.ctaPill} ${styles.ctaPillAccent}`}
+            >
               Get in Touch
             </Link>
           </motion.div>
@@ -223,14 +255,20 @@ export default function TestimonyPageClient() {
 
           <motion.p className={styles.ctaSub} {...fadeUp(0.14)}>
             Join a weekend workshop or enroll in a full course. Hundreds of
-            students already made the move — now it&apos;s your turn.
+            students already made the move - now it&apos;s your turn.
           </motion.p>
 
           <motion.div className={styles.ctaActions} {...fadeUp(0.2)}>
-            <Link href="/workshops" className={`${styles.btn} ${styles.btnCtaDark}`}>
+            <Link
+              href="/workshops"
+              className={`${styles.btn} ${styles.btnCtaDark}`}
+            >
               Join the Next Batch <i className="fas fa-arrow-right" />
             </Link>
-            <Link href="/#contact" className={`${styles.btn} ${styles.btnCtaOutline}`}>
+            <Link
+              href="/#contact"
+              className={`${styles.btn} ${styles.btnCtaOutline}`}
+            >
               <i className="fas fa-comment-dots" /> Get in Touch
             </Link>
           </motion.div>

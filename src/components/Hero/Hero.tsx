@@ -195,7 +195,7 @@ const SlideStack = () => (
 );
 
 /* memo to prevent re-render during carousel tick */
-const ProgressFill = memo(() => <div className={styles.macProgFill} />);
+const ProgressFill = memo(() => <span className={styles.macProgFill} />);
 ProgressFill.displayName = "ProgressFill";
 
 const SLIDES = [
@@ -268,16 +268,21 @@ const MacCarousel = () => {
         </motion.div>
       </div>
 
-      <div className={styles.macProgress}>
+      <div className={styles.macProgress} role="tablist">
         {SLIDES.map((s, i) => (
           <button
             key={s.id}
+            type="button"
             className={styles.macProgTrack}
             onClick={() => goTo(i)}
             aria-label={`Go to slide: ${s.windowTitle}`}
+            aria-current={i === current ? "true" : undefined}
+            role="tab"
           >
-            {i < current && <div className={`${styles.macProgFill} ${styles.macProgFillPast}`} />}
-            {i === current && <ProgressFill key={animKey} />}
+            <span className={styles.macProgBar}>
+              {i < current && <span className={`${styles.macProgFill} ${styles.macProgFillPast}`} />}
+              {i === current && <ProgressFill key={animKey} />}
+            </span>
           </button>
         ))}
       </div>

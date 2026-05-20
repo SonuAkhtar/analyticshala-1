@@ -1,5 +1,5 @@
 /* ============================================================
-   Workshop Details — CSS Module
+   Workshop Details - CSS Module
    ============================================================ */
 
 .page {
@@ -74,9 +74,18 @@
   letter-spacing: 0.03em;
 }
 
-.levelBadgeBeginner     { background: #d1fae5; color: #065f46; }
-.levelBadgeIntermediate { background: #fef3c7; color: #92400e; }
-.levelBadgeAdvanced     { background: var(--status-danger-bg, #fee2e2); color: var(--brand-red-dark, #8c2038); }
+.levelBadgeBeginner {
+  background: #d1fae5;
+  color: #065f46;
+}
+.levelBadgeIntermediate {
+  background: #fef3c7;
+  color: #92400e;
+}
+.levelBadgeAdvanced {
+  background: var(--status-danger-bg, #fee2e2);
+  color: var(--brand-red-dark, #8c2038);
+}
 
 .heroTitle {
   font-family: var(--font-heading);
@@ -186,7 +195,9 @@
   transition: box-shadow 0.2s;
 }
 
-.outcomeItem:hover { box-shadow: var(--card-shadow-hover); }
+.outcomeItem:hover {
+  box-shadow: var(--card-shadow-hover);
+}
 
 .outcomeItem i {
   color: var(--accent-blue);
@@ -210,7 +221,10 @@
   align-items: flex-start;
 }
 
-.currItem:last-child { border-bottom: none; padding-bottom: 0; }
+.currItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
 
 .currNum {
   font-size: 1.5rem;
@@ -222,7 +236,9 @@
   flex-shrink: 0;
 }
 
-.currBody { flex: 1; }
+.currBody {
+  flex: 1;
+}
 
 .currTime {
   font-size: 0.72rem;
@@ -265,10 +281,15 @@
   font-size: 0.875rem;
   color: var(--text-primary);
   line-height: 1.45;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
 }
 
-.whoItem:hover { box-shadow: var(--card-shadow-hover); transform: translateY(-2px); }
+.whoItem:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-2px);
+}
 
 .whoItem i {
   color: var(--accent-blue);
@@ -294,9 +315,15 @@
   border: 3px solid var(--border-light);
 }
 
-.instrImg img { width: 100%; height: 100%; object-fit: cover; }
+.instrImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-.instrInfo { flex: 1; }
+.instrInfo {
+  flex: 1;
+}
 
 .instrName {
   font-size: 1.15rem;
@@ -332,7 +359,10 @@
   margin-bottom: 0.85rem;
 }
 
-.instrSocials { display: flex; gap: 0.5rem; }
+.instrSocials {
+  display: flex;
+  gap: 0.5rem;
+}
 
 .instrSocialBtn {
   display: inline-flex;
@@ -346,7 +376,10 @@
   color: var(--text-secondary);
   font-size: 0.85rem;
   text-decoration: none;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
 }
 
 .instrSocialBtn:hover {
@@ -468,7 +501,11 @@
 /* Countdown inside sidebar */
 
 .countdown {
-  background: linear-gradient(135deg, var(--bg-secondary) 0%, color-mix(in srgb, var(--page-accent) 5%, var(--bg-secondary)) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--bg-secondary) 0%,
+    color-mix(in srgb, var(--page-accent) 5%, var(--bg-secondary)) 100%
+  );
   border: 1px solid color-mix(in srgb, var(--page-accent) 20%, transparent);
   border-radius: 12px;
   padding: 0.9rem 1rem;
@@ -597,7 +634,9 @@
   font-weight: 700;
   font-size: 1rem;
   text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
   box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
   text-align: center;
 }
@@ -619,7 +658,9 @@
   font-weight: 600;
   font-size: 0.9rem;
   text-decoration: none;
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 
 .waBtn:hover {
@@ -639,10 +680,16 @@
   font-weight: 600;
   font-size: 0.875rem;
   text-decoration: none;
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    color 0.2s;
 }
 
-.calBtn i { color: #4285f4; font-size: 0.9rem; }
+.calBtn i {
+  color: #4285f4;
+  font-size: 0.9rem;
+}
 
 .calBtn:hover {
   border-color: #4285f4;
@@ -684,9 +731,21 @@
   transition: all 0.2s ease;
 }
 
-.shareBtnWa:hover  { background: var(--color-whatsapp, #25d366); border-color: var(--color-whatsapp, #25d366); color: #fff; }
-.shareBtnLi:hover  { background: #0a66c2; border-color: #0a66c2; color: #fff; }
-.shareBtnCopy:hover { background: var(--accent-blue); border-color: var(--accent-blue); color: #fff; }
+.shareBtnWa:hover {
+  background: var(--color-whatsapp, #25d366);
+  border-color: var(--color-whatsapp, #25d366);
+  color: #fff;
+}
+.shareBtnLi:hover {
+  background: #0a66c2;
+  border-color: #0a66c2;
+  color: #fff;
+}
+.shareBtnCopy:hover {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: #fff;
+}
 
 /* Tags */
 
@@ -709,13 +768,30 @@
 /* ── Responsive ── */
 
 @media (max-width: 980px) {
-  .layout { grid-template-columns: 1fr; }
-  .sidebar { position: static; order: -1; }
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    position: static;
+    order: -1;
+  }
 }
 
 @media (max-width: 640px) {
-  .page { padding: 0 0.75rem 4rem; }
-  .hero { height: clamp(280px, 55vw, 400px); border-radius: 0.875rem; margin-bottom: 2rem; }
-  .instructorCard { flex-direction: column; align-items: center; text-align: center; }
-  .instrSocials { justify-content: center; }
+  .page {
+    padding: 0 0.75rem 4rem;
+  }
+  .hero {
+    height: clamp(280px, 55vw, 400px);
+    border-radius: 0.875rem;
+    margin-bottom: 2rem;
+  }
+  .instructorCard {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .instrSocials {
+    justify-content: center;
+  }
 }

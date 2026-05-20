@@ -15,7 +15,8 @@ const qrCards = [
     iconClass: "fab fa-instagram",
     platform: "Instagram",
     handle: "@analyticshala",
-    platformBg: "linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #F77737 100%)",
+    platformBg:
+      "linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #F77737 100%)",
     hint: "Follow for free daily data tips",
   },
   {
@@ -45,7 +46,7 @@ const Contact = () => {
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -86,7 +87,7 @@ const Contact = () => {
         <SectionHeader
           eyebrow="CONTACT"
           title="Get a Free Career Counselling"
-          subtitle="Fill in the form and our team will get back to you within 24 hours — or just scan a QR to reach us instantly."
+          subtitle="Fill in the form and our team will get back to you within 24 hours - or just scan a QR to reach us instantly."
         />
 
         <div className={styles.grid}>
@@ -95,7 +96,11 @@ const Contact = () => {
             className={styles.formWrap}
             initial={{ opacity: 0, x: -32 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.55, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{
+              duration: 0.55,
+              delay: 0.1,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
             <AnimatePresence mode="wait">
               {status === "success" ? (
@@ -191,14 +196,16 @@ const Contact = () => {
                       </>
                     ) : (
                       <>
-                        <i className="fas fa-paper-plane" /> Get Free Counselling
+                        <i className="fas fa-paper-plane" /> Get Free
+                        Counselling
                       </>
                     )}
                   </button>
 
                   {status === "error" && (
                     <p className={styles.formError}>
-                      Something went wrong. Please email us at team@analyticshala.in
+                      Something went wrong. Please email us at
+                      team@analyticshala.in
                     </p>
                   )}
                 </motion.form>
@@ -211,7 +218,11 @@ const Contact = () => {
             className={styles.infoWrap}
             initial={{ opacity: 0, x: 32 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.55, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{
+              duration: 0.55,
+              delay: 0.2,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
             <div className={styles.chips}>
               {contactData.map((item, i) => (
@@ -271,10 +282,18 @@ const Contact = () => {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={qr.src} alt={qr.alt} className={styles.qrImage} />
                     <div className={styles.qrScanline} />
-                    <span className={`${styles.qrCorner} ${styles.qrCornerTl}`} />
-                    <span className={`${styles.qrCorner} ${styles.qrCornerTr}`} />
-                    <span className={`${styles.qrCorner} ${styles.qrCornerBl}`} />
-                    <span className={`${styles.qrCorner} ${styles.qrCornerBr}`} />
+                    <span
+                      className={`${styles.qrCorner} ${styles.qrCornerTl}`}
+                    />
+                    <span
+                      className={`${styles.qrCorner} ${styles.qrCornerTr}`}
+                    />
+                    <span
+                      className={`${styles.qrCorner} ${styles.qrCornerBl}`}
+                    />
+                    <span
+                      className={`${styles.qrCorner} ${styles.qrCornerBr}`}
+                    />
                   </div>
 
                   <p className={styles.qrHint}>

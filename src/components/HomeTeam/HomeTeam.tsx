@@ -59,14 +59,14 @@ const TeamCard = ({ member, index, isInView }: TeamCardProps) => {
       mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
       cardRef.current!.style.setProperty(
         "--mx",
-        `${(((e.clientX - rect.left) / rect.width) * 100).toFixed(1)}%`
+        `${(((e.clientX - rect.left) / rect.width) * 100).toFixed(1)}%`,
       );
       cardRef.current!.style.setProperty(
         "--my",
-        `${(((e.clientY - rect.top) / rect.height) * 100).toFixed(1)}%`
+        `${(((e.clientY - rect.top) / rect.height) * 100).toFixed(1)}%`,
       );
     },
-    [mouseX, mouseY]
+    [mouseX, mouseY],
   );
 
   const handleMouseLeave = useCallback(() => {
@@ -99,11 +99,7 @@ const TeamCard = ({ member, index, isInView }: TeamCardProps) => {
       {/* Background photo */}
       {member.image && (
         // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={member.image}
-          alt={member.name}
-          className={styles.photo}
-        />
+        <img src={member.image} alt={member.name} className={styles.photo} />
       )}
 
       <div className={styles.tint} />
@@ -155,7 +151,9 @@ const TeamCard = ({ member, index, isInView }: TeamCardProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialBtn}
-                style={{ "--delay": `${j * 0.08 + 0.18}s` } as React.CSSProperties}
+                style={
+                  { "--delay": `${j * 0.08 + 0.18}s` } as React.CSSProperties
+                }
                 onClick={(e) => e.stopPropagation()}
               >
                 <i className={link.iconClass} />
@@ -178,7 +176,7 @@ const HomeTeam = () => {
         <SectionHeader
           eyebrow="OUR TEAM"
           title="Learn from the Best"
-          subtitle="Industry experts and practitioners who've been there, done that — and are now here to fast-track your journey."
+          subtitle="Industry experts and practitioners who've been there, done that - and are now here to fast-track your journey."
         />
         <div className={styles.grid} ref={ref}>
           {teamData.map((member, i) => (

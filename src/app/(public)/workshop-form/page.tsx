@@ -50,19 +50,52 @@ const INITIAL_FORM: FormValues = {
 
 /* ── Inner component that reads search params ── */
 
+function WorkshopNotFound({ requestedId }: { requestedId: string | null }) {
+  return (
+    <div className={styles.page}>
+      <div className={styles.card} style={{ textAlign: "center", padding: "48px 32px" }}>
+        <div style={{ fontSize: 48, color: "#bb1b21", marginBottom: 16 }}>
+          <i className="fas fa-exclamation-circle" />
+        </div>
+        <h1 className={styles.formHeading} style={{ marginBottom: 8 }}>
+          Workshop not found
+        </h1>
+        <p className={styles.subtitle} style={{ marginBottom: 24 }}>
+          {requestedId
+            ? `We couldn't find a workshop matching "${requestedId}".`
+            : "No workshop was selected."}{" "}
+          Browse upcoming workshops to pick one.
+        </p>
+        <Link
+          href="/workshops"
+          className={styles.submitBtn}
+          style={{ display: "inline-flex", textDecoration: "none" }}
+        >
+          Browse Workshops <i className="fas fa-arrow-right" style={{ marginLeft: 8 }} />
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 function WorkshopFormInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const id = Number(searchParams.get("id"));
+  const rawId = searchParams.get("id");
+  const id = rawId !== null ? Number(rawId) : NaN;
 
-  const workshop =
-    workshopData.upcoming.find((w) => w.id === id) ||
-    workshopData.upcoming[0];
+  const workshop = Number.isFinite(id)
+    ? workshopData.upcoming.find((w) => w.id === id) ?? null
+    : null;
 
   const [formValue, setFormValue] = useState<FormValues>(INITIAL_FORM);
   const [errors, setErrors] = useState<Partial<Record<keyof FormValues, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+
+  if (!workshop) {
+    return <WorkshopNotFound requestedId={rawId} />;
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -121,9 +154,12 @@ function WorkshopFormInner() {
         }),
       });
 
-      const result = await res.json();
-      if (!result.success)
-        throw new Error(result.message || "Order creation failed");
+      const result = await res.json().catch(() => null);
+      if (!res.ok || !result?.success) {
+        throw new Error(
+          result?.message || `Order creation failed (status ${res.status})`,
+        );
+      }
 
       // Store payment data in sessionStorage, then redirect
       const paymentData = {
@@ -139,13 +175,17 @@ function WorkshopFormInner() {
           workshopMode: workshop.eventMode?.join(" / ") || "",
         },
       };
-      sessionStorage.setItem("pendingPayment", JSON.stringify(paymentData));
+      sessionStorage.setItem("paymentData", JSON.stringify(paymentData));
       router.push("/payment");
     } catch (err) {
       console.error(err);
-      setSubmitError(
-        "Unable to connect. Please try again or contact support.",
-      );
+      const msg =
+        err instanceof TypeError
+          ? "Can't reach our servers. Check your internet and try again."
+          : err instanceof Error && err.message
+            ? err.message
+            : "Something went wrong. Please try again or contact support.";
+      setSubmitError(msg);
     } finally {
       setIsSubmitting(false);
     }

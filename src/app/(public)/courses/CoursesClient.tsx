@@ -58,7 +58,13 @@ const categoryMap: Record<string, string[]> = {
     "leaders",
     "webdev",
   ],
-  ai: ["applied-ai", "agentic-ai", "advanced-rag", "genai-development", "leaders"],
+  ai: [
+    "applied-ai",
+    "agentic-ai",
+    "advanced-rag",
+    "genai-development",
+    "leaders",
+  ],
   data: ["data-analytics-python", "python"],
   tools: ["sql", "excel", "tableau", "webdev"],
 };
@@ -191,7 +197,7 @@ export default function CoursesClient() {
     const maxScroll = scrollWidth - clientWidth;
     if (maxScroll <= 0) return;
     setActiveWhyCard(
-      Math.round((scrollLeft / maxScroll) * (whyItems.length - 1))
+      Math.round((scrollLeft / maxScroll) * (whyItems.length - 1)),
     );
   };
 
@@ -199,7 +205,7 @@ export default function CoursesClient() {
     Object.entries(categoryMap).map(([key, ids]) => [
       key,
       coursesData.filter((c) => ids.includes(c.id)).length,
-    ])
+    ]),
   );
 
   const filtered = categoryMap[filter]
@@ -235,7 +241,7 @@ export default function CoursesClient() {
 
           <p className={styles.heroDesc}>
             Hands-on, project-based courses in AI, Data Science, Analytics, and
-            more — built for learners who want real-world outcomes, not just
+            more - built for learners who want real-world outcomes, not just
             theory.
           </p>
           <p className={styles.heroTagline}>

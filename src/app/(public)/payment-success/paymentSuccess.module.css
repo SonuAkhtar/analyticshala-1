@@ -1,5 +1,5 @@
 /* ============================================================
-   Payment Success Page — Module CSS
+   Payment Success Page - Module CSS
    ============================================================ */
 
 /* ── Confetti ── */
@@ -24,9 +24,17 @@
 }
 
 @keyframes confettiFall {
-  0%   { transform: translateY(0) rotate(var(--rotate)) scale(1); opacity: 1; }
-  80%  { opacity: 1; }
-  100% { transform: translateY(100vh) rotate(calc(var(--rotate) + 360deg)) scale(0.5); opacity: 0; }
+  0% {
+    transform: translateY(0) rotate(var(--rotate)) scale(1);
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(calc(var(--rotate) + 360deg)) scale(0.5);
+    opacity: 0;
+  }
 }
 
 /* ── Course Success ── */
@@ -49,7 +57,7 @@
   border: 1px solid var(--border);
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
 }
 
 .psCourseHero {
@@ -63,7 +71,11 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(255,255,255,0.15) 0%, transparent 60%);
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 0%,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 60%
+  );
   pointer-events: none;
 }
 
@@ -74,21 +86,28 @@
   transform: translate(-50%, -50%);
   width: 140px;
   height: 140px;
-  border: 2px solid rgba(255,255,255,0.15);
+  border: 2px solid rgba(255, 255, 255, 0.15);
   border-radius: 50%;
   animation: ringPulse 3s ease-in-out infinite;
 }
 
 @keyframes ringPulse {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-  50%       { transform: translate(-50%, -50%) scale(1.1); opacity: 0.6; }
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.6;
+  }
 }
 
 .psCourseIcon {
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.18);
+  background: rgba(255, 255, 255, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -112,7 +131,7 @@
 
 .psCourseSub {
   font-size: 0.95rem;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
   position: relative;
   z-index: 1;
 }
@@ -155,7 +174,9 @@
   flex-direction: column;
   gap: 0.15rem;
 }
-.psCourseMetaItemFull { grid-column: span 2; }
+.psCourseMetaItemFull {
+  grid-column: span 2;
+}
 .psCourseMetaLabel {
   font-size: 0.7rem;
   font-weight: 600;
@@ -168,7 +189,9 @@
   font-weight: 700;
   color: var(--text-primary);
 }
-.psCourseMetaValueGreen { color: #16a34a; }
+.psCourseMetaValueGreen {
+  color: #16a34a;
+}
 .psCoursePaymentId {
   font-family: monospace;
   font-size: 0.8rem;
@@ -179,7 +202,11 @@
   border: 1px solid var(--border);
 }
 
-.psCourseSteps { display: flex; flex-direction: column; gap: 0; }
+.psCourseSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
 .psCourseStepsLabel {
   font-size: 0.78rem;
   font-weight: 700;
@@ -195,7 +222,9 @@
   padding: 0.875rem 0;
   border-bottom: 1px solid var(--border);
 }
-.psCourseStep:last-child { border-bottom: none; }
+.psCourseStep:last-child {
+  border-bottom: none;
+}
 
 .psCourseStepIcon {
   width: 36px;
@@ -211,9 +240,21 @@
   flex-shrink: 0;
 }
 
-.psCourseStepBody { display: flex; flex-direction: column; gap: 0.15rem; }
-.psCourseStepBody strong { font-size: 0.88rem; font-weight: 700; color: var(--text-primary); }
-.psCourseStepBody span  { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45; }
+.psCourseStepBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.psCourseStepBody strong {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.psCourseStepBody span {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
 
 .psCourseStepCta {
   display: inline-flex;
@@ -226,7 +267,9 @@
   text-decoration: none;
   transition: gap 0.2s;
 }
-.psCourseStepCta:hover { gap: 0.55rem; }
+.psCourseStepCta:hover {
+  gap: 0.55rem;
+}
 
 .psCourseActions {
   display: flex;
@@ -249,9 +292,12 @@
   border-radius: 10px;
   text-decoration: none;
   transition: all 0.28s ease;
-  box-shadow: 0 4px 16px rgba(99,102,241,0.3);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
 }
-.psCourseBtnPrimary:hover { background: #4f46e5; transform: translateY(-1px); }
+.psCourseBtnPrimary:hover {
+  background: #4f46e5;
+  transform: translateY(-1px);
+}
 
 .psCourseBtnGhost {
   display: flex;
@@ -270,7 +316,10 @@
   border: 1.5px solid var(--border-light);
   transition: all 0.28s ease;
 }
-.psCourseBtnGhost:hover { border-color: #6366f1; color: #6366f1; }
+.psCourseBtnGhost:hover {
+  border-color: #6366f1;
+  color: #6366f1;
+}
 
 /* ── Workshop Success ── */
 .psWorkshop {
@@ -311,13 +360,21 @@
   justify-content: center;
   font-size: 1.6rem;
   color: #fff;
-  box-shadow: 0 0 0 12px rgba(16, 185, 129, 0.12), 0 0 0 24px rgba(16, 185, 129, 0.06);
+  box-shadow:
+    0 0 0 12px rgba(16, 185, 129, 0.12),
+    0 0 0 24px rgba(16, 185, 129, 0.06);
   animation: checkPop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes checkPop {
-  0%   { transform: scale(0); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .psWsEyebrow {
@@ -341,7 +398,9 @@
   font-size: 1rem;
   color: var(--text-secondary);
 }
-.psWsWelcome strong { color: var(--text-primary); }
+.psWsWelcome strong {
+  color: var(--text-primary);
+}
 
 /* Ticket */
 .psWsTicket {
@@ -363,7 +422,9 @@
   );
 }
 
-.psWsTicketBody { padding: 1.5rem; }
+.psWsTicketBody {
+  padding: 1.5rem;
+}
 
 .psWsTicketTitle {
   font-family: var(--font-heading);
@@ -388,7 +449,11 @@
   font-size: 0.88rem;
   color: var(--text-secondary);
 }
-.psWsTicketDetail i { color: #10b981; width: 16px; text-align: center; }
+.psWsTicketDetail i {
+  color: #10b981;
+  width: 16px;
+  text-align: center;
+}
 
 .psWsTicketFooter {
   display: flex;
@@ -397,9 +462,23 @@
   padding-top: 1rem;
   border-top: 1px dashed var(--border);
 }
-.psWsAmount { display: flex; flex-direction: column; gap: 0.1rem; }
-.psWsAmount span { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
-.psWsAmount strong { font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: #10b981; }
+.psWsAmount {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.psWsAmount span {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.psWsAmount strong {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #10b981;
+}
 .psWsPaymentId {
   font-family: monospace;
   font-size: 0.78rem;
@@ -429,7 +508,9 @@
   padding: 0.875rem 0;
   border-bottom: 1px solid var(--border);
 }
-.psWsStep:last-child { border-bottom: none; }
+.psWsStep:last-child {
+  border-bottom: none;
+}
 
 .psWsStepIcon {
   width: 36px;
@@ -445,9 +526,21 @@
   flex-shrink: 0;
 }
 
-.psWsStepBody { display: flex; flex-direction: column; gap: 0.15rem; }
-.psWsStepBody strong { font-size: 0.88rem; font-weight: 700; color: var(--text-primary); }
-.psWsStepBody span  { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45; }
+.psWsStepBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.psWsStepBody strong {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.psWsStepBody span {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
 
 .psWsStepCta {
   display: inline-flex;
@@ -460,9 +553,15 @@
   text-decoration: none;
   transition: gap 0.2s;
 }
-.psWsStepCta:hover { gap: 0.55rem; }
+.psWsStepCta:hover {
+  gap: 0.55rem;
+}
 
-.psWsActions { display: flex; flex-direction: column; gap: 0.75rem; }
+.psWsActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
 
 .psWsBtnPrimary {
   display: flex;
@@ -481,7 +580,10 @@
   transition: all 0.28s ease;
   box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
 }
-.psWsBtnPrimary:hover { background: #059669; transform: translateY(-1px); }
+.psWsBtnPrimary:hover {
+  background: #059669;
+  transform: translateY(-1px);
+}
 
 .psWsBtnGhost {
   display: flex;
@@ -500,9 +602,16 @@
   border: 1.5px solid var(--border-light);
   transition: all 0.28s ease;
 }
-.psWsBtnGhost:hover { border-color: #10b981; color: #10b981; }
+.psWsBtnGhost:hover {
+  border-color: #10b981;
+  color: #10b981;
+}
 
 @media (max-width: 480px) {
-  .psCourseMeta { grid-template-columns: 1fr; }
-  .psCourseMetaItemFull { grid-column: span 1; }
+  .psCourseMeta {
+    grid-template-columns: 1fr;
+  }
+  .psCourseMetaItemFull {
+    grid-column: span 1;
+  }
 }

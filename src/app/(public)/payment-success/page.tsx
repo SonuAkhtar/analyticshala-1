@@ -17,10 +17,98 @@ interface SuccessData {
   workshopDate?: string;
   workshopTime?: string;
   workshopMode?: string;
+  saveOk?: boolean;
+  emailOk?: boolean;
+}
+
+function SaveFailedBanner({
+  paymentId,
+  title,
+}: {
+  paymentId: string;
+  title: string;
+}) {
+  const waUrl = `https://wa.me/918882641988?text=${encodeURIComponent(
+    `Hi! My payment for "${title}" went through but I think my registration didn't save. Payment ID: ${paymentId}`,
+  )}`;
+  return (
+    <div
+      role="alert"
+      style={{
+        background: "#fffbeb",
+        border: "1px solid #fcd34d",
+        color: "#92400e",
+        padding: "16px 18px",
+        borderRadius: 10,
+        margin: "0 auto 24px",
+        maxWidth: 560,
+        fontSize: 14,
+        lineHeight: 1.5,
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          marginBottom: 6,
+          fontWeight: 600,
+        }}
+      >
+        <i className="fas fa-exclamation-triangle" />
+        Your payment went through - but please contact us
+      </div>
+      <p style={{ margin: "0 0 10px" }}>
+        We had trouble saving your registration automatically. Don&apos;t worry,
+        your money is safe. Please WhatsApp us with the Payment ID below and
+        we&apos;ll get you enrolled within minutes.
+      </p>
+      <code
+        style={{
+          display: "inline-block",
+          background: "#fff",
+          padding: "4px 8px",
+          borderRadius: 6,
+          fontSize: 12,
+          marginBottom: 10,
+        }}
+      >
+        {paymentId}
+      </code>
+      <div>
+        <a
+          href={waUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
+            background: "#25D366",
+            color: "#fff",
+            padding: "8px 14px",
+            borderRadius: 6,
+            textDecoration: "none",
+            fontWeight: 600,
+            fontSize: 13,
+          }}
+        >
+          <i className="fab fa-whatsapp" /> Contact Support on WhatsApp
+        </a>
+      </div>
+    </div>
+  );
 }
 
 /* ── Confetti ── */
-const COLORS = ["#f97316", "#16a34a", "#4f46e5", "#f59e0b", "#10b981", "#ec4899"];
+const COLORS = [
+  "#f97316",
+  "#16a34a",
+  "#4f46e5",
+  "#f59e0b",
+  "#10b981",
+  "#ec4899",
+];
 
 function Confetti() {
   const pieces = useRef(
@@ -30,7 +118,7 @@ function Confetti() {
       delay: `${Math.random() * 0.8}s`,
       dur: `${1.2 + Math.random() * 0.8}s`,
       rotate: `${Math.random() * 360}deg`,
-    }))
+    })),
   );
   return (
     <div className={styles.confetti} aria-hidden="true">
@@ -38,13 +126,15 @@ function Confetti() {
         <span
           key={i}
           className={styles.confettiPiece}
-          style={{
-            "--color": p.color,
-            "--left": p.left,
-            "--delay": p.delay,
-            "--dur": p.dur,
-            "--rotate": p.rotate,
-          } as React.CSSProperties}
+          style={
+            {
+              "--color": p.color,
+              "--left": p.left,
+              "--delay": p.delay,
+              "--dur": p.dur,
+              "--rotate": p.rotate,
+            } as React.CSSProperties
+          }
         />
       ))}
     </div>
@@ -92,23 +182,28 @@ const WORKSHOP_STEPS = [
   {
     icon: "fas fa-laptop",
     label: "Keep your device ready",
-    desc: "Laptop recommended — we'll do live hands-on exercises.",
+    desc: "Laptop recommended - we'll do live hands-on exercises.",
   },
 ];
 
 /* ── Course Success ── */
 function CourseSuccess({ data }: { data: SuccessData }) {
-  const firstName = data.name.split(" ")[0];
+  const firstName = data.name.split(" ")[0] || "there";
   return (
     <div className={styles.psCourse}>
       <Confetti />
+      {data.saveOk === false && (
+        <SaveFailedBanner paymentId={data.paymentId} title={data.title} />
+      )}
       <div className={styles.psCourseCard}>
         <div className={styles.psCourseHero}>
           <div className={styles.psCourseIconRing} />
           <div className={styles.psCourseIcon}>
             <i className="fas fa-graduation-cap" />
           </div>
-          <h1 className={styles.psCourseHeading}>Your Learning Journey Begins!</h1>
+          <h1 className={styles.psCourseHeading}>
+            Your Learning Journey Begins!
+          </h1>
           <p className={styles.psCourseSub}>
             Welcome aboard, <strong>{firstName}</strong>!
           </p>
@@ -124,21 +219,31 @@ function CourseSuccess({ data }: { data: SuccessData }) {
             {data.amountINR && (
               <div className={styles.psCourseMetaItem}>
                 <span className={styles.psCourseMetaLabel}>Amount Paid</span>
-                <strong className={`${styles.psCourseMetaValue} ${styles.psCourseMetaValueGreen}`}>
+                <strong
+                  className={`${styles.psCourseMetaValue} ${styles.psCourseMetaValueGreen}`}
+                >
                   ₹{data.amountINR}
                 </strong>
               </div>
             )}
             {data.email && (
               <div className={styles.psCourseMetaItem}>
-                <span className={styles.psCourseMetaLabel}>Confirmation sent to</span>
-                <strong className={styles.psCourseMetaValue}>{data.email}</strong>
+                <span className={styles.psCourseMetaLabel}>
+                  Confirmation sent to
+                </span>
+                <strong className={styles.psCourseMetaValue}>
+                  {data.email}
+                </strong>
               </div>
             )}
             {data.paymentId && (
-              <div className={`${styles.psCourseMetaItem} ${styles.psCourseMetaItemFull}`}>
+              <div
+                className={`${styles.psCourseMetaItem} ${styles.psCourseMetaItemFull}`}
+              >
                 <span className={styles.psCourseMetaLabel}>Payment ID</span>
-                <code className={styles.psCoursePaymentId}>{data.paymentId}</code>
+                <code className={styles.psCoursePaymentId}>
+                  {data.paymentId}
+                </code>
               </div>
             )}
           </div>
@@ -185,17 +290,22 @@ function CourseSuccess({ data }: { data: SuccessData }) {
 
 /* ── Workshop Success ── */
 function WorkshopSuccess({ data }: { data: SuccessData }) {
-  const firstName = data.name.split(" ")[0];
+  const firstName = data.name.split(" ")[0] || "there";
   return (
     <div className={styles.psWorkshop}>
       <Confetti />
+      {data.saveOk === false && (
+        <SaveFailedBanner paymentId={data.paymentId} title={data.title} />
+      )}
       <div className={styles.psWsCard}>
         <div className={styles.psWsHeader}>
           <div className={styles.psWsCheck}>
             <i className="fas fa-check" />
           </div>
           <p className={styles.psWsEyebrow}>Registration Confirmed</p>
-          <h1 className={styles.psWsHeading}>You&apos;re In! See You There 🎯</h1>
+          <h1 className={styles.psWsHeading}>
+            You&apos;re In! See You There 🎯
+          </h1>
           <p className={styles.psWsWelcome}>
             Hey <strong>{firstName}</strong>, your seat is reserved.
           </p>

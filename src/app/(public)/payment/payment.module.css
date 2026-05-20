@@ -1,5 +1,5 @@
 /* ============================================================
-   Payment Page — Module CSS
+   Payment Page - Module CSS
    ============================================================ */
 
 .processing {
@@ -23,7 +23,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 .processingSpinner {
@@ -37,7 +37,9 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .processingInner p {
@@ -58,9 +60,9 @@
   min-height: 100vh;
   background: var(--bg-secondary);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 7rem 1.5rem 4rem;
+  padding: calc(var(--ann-bar-height, 0px) + 6rem) 1.5rem 4rem;
 }
 
 .wrap {
@@ -95,7 +97,9 @@
   letter-spacing: 0.1em;
   color: var(--text-muted);
 }
-.summaryHeader i { color: #bb1b21; }
+.summaryHeader i {
+  color: #bb1b21;
+}
 
 .summaryItem {
   display: flex;
@@ -117,13 +121,35 @@
   flex-shrink: 0;
 }
 
-.summaryItemInfo { display: flex; flex-direction: column; gap: 0.12rem; }
-.summaryItemLabel { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; }
-.summaryItemName { font-size: 0.97rem; font-weight: 700; color: var(--text-primary); line-height: 1.35; }
+.summaryItemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+}
+.summaryItemLabel {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.summaryItemName {
+  font-size: 0.97rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
 
-.summaryDivider { height: 1px; background: var(--border); }
+.summaryDivider {
+  height: 1px;
+  background: var(--border);
+}
 
-.summaryLines { display: flex; flex-direction: column; gap: 0.6rem; }
+.summaryLines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
 
 .summaryLine {
   display: flex;
@@ -132,7 +158,11 @@
   font-size: 0.88rem;
   color: var(--text-secondary);
 }
-.summaryLine em { font-style: normal; color: var(--text-muted); font-size: 0.78rem; }
+.summaryLine em {
+  font-style: normal;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
 
 .summaryLineAmount {
   font-family: var(--font-heading);
@@ -167,7 +197,9 @@
   padding: 0.6rem 0.875rem;
   border-radius: 8px;
 }
-.summaryProof i { color: #bb1b21; }
+.summaryProof i {
+  color: #bb1b21;
+}
 
 /* Payment card */
 .card {
@@ -181,7 +213,11 @@
   gap: 1.25rem;
 }
 
-.cardHeader { display: flex; flex-direction: column; gap: 0.3rem; }
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
 .cardHeader h2 {
   font-family: var(--font-heading);
   font-size: 1.3rem;
@@ -197,7 +233,9 @@
   align-items: center;
   gap: 0.3rem;
 }
-.subtext i { color: #bb1b21; }
+.subtext i {
+  color: #bb1b21;
+}
 
 .studentRecap {
   display: flex;
@@ -224,9 +262,20 @@
   flex-shrink: 0;
 }
 
-.studentInfo { display: flex; flex-direction: column; gap: 0.1rem; }
-.studentInfo strong { font-size: 0.93rem; color: var(--text-primary); font-weight: 700; }
-.studentInfo span { font-size: 0.8rem; color: var(--text-muted); }
+.studentInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.studentInfo strong {
+  font-size: 0.93rem;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+.studentInfo span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
 
 .payBtn {
   width: 100%;
@@ -257,57 +306,377 @@
   transform: none;
 }
 
-.methods {
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-.trustBadges {
+/* Compact trust strip — replaces methods / trustBadges / waHelp / policyNote */
+.trustStrip {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.25rem;
   flex-wrap: wrap;
-  padding: 0.75rem;
-  background: var(--bg-secondary);
-  border-radius: 10px;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
 }
 
-.trustBadge {
-  display: flex;
+.trustStripItem {
+  display: inline-flex;
   align-items: center;
-  gap: 0.38rem;
-  font-size: 0.78rem;
+  gap: 0.32rem;
   font-weight: 600;
   color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.18s ease;
+  white-space: nowrap;
 }
-.trustBadge i { color: #16a34a; font-size: 0.82rem; }
 
-.waHelp {
+.trustStripItem i {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+a.trustStripItem:hover {
+  color: var(--text-primary);
+}
+
+a.trustStripItem:hover i {
+  color: #bb1b21;
+}
+
+.trustStripWa i {
+  color: #16a34a !important;
+  font-size: 0.92rem;
+}
+
+.trustStripDot {
+  color: var(--border);
+  user-select: none;
+}
+
+/* Inline error banner (replaces the inline-styled alert) */
+.errorBanner {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.errorBanner i {
+  margin-top: 2px;
+  flex-shrink: 0;
+  font-size: 0.95rem;
+}
+
+/* Subtle confirmation check inside the student recap */
+.studentRecapCheck {
+  margin-left: auto;
+  color: #16a34a;
+  font-size: 1.05rem;
+}
+
+/* ============================================================
+   Course summary — polished hero treatment
+   ============================================================ */
+.summaryCourse {
+  text-align: left;
+}
+
+.courseHero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.85rem;
+  padding: 1.25rem 0.5rem 0.25rem;
+}
+
+.courseHeroIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #bb1b21 0%, #d32f35 100%);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #16a34a;
-  text-decoration: none;
-  transition: opacity 0.2s;
+  font-size: 26px;
+  box-shadow:
+    0 12px 28px -10px rgba(187, 27, 33, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  position: relative;
 }
-.waHelp:hover { opacity: 0.8; }
-.waHelp i { font-size: 1rem; }
 
-.policyNote {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  text-align: center;
-  line-height: 1.5;
+.courseHeroIcon::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 22px;
+  border: 1.5px dashed rgba(187, 27, 33, 0.28);
+  animation: spinSlow 24s linear infinite;
 }
-.policyNote a { color: var(--text-secondary); text-decoration: underline; }
-.policyNote a:hover { color: var(--text-primary); }
+
+@keyframes spinSlow {
+  to { transform: rotate(360deg); }
+}
+
+.courseHeroTitle {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  max-width: 280px;
+}
+
+.courseHeroChips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.15rem;
+}
+
+.courseHeroChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  padding: 0.28rem 0.65rem;
+  background: rgba(187, 27, 33, 0.08);
+  border: 1px solid rgba(187, 27, 33, 0.18);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #bb1b21;
+}
+
+.courseHeroChip i {
+  font-size: 0.72rem;
+}
 
 @media (max-width: 768px) {
-  .wrap { grid-template-columns: 1fr; }
-  .payment { padding: 5.5rem 1rem 3rem; }
+  .wrap {
+    grid-template-columns: 1fr;
+  }
+  .payment {
+    padding: calc(var(--ann-bar-height, 0px) + 5rem) 1rem 3rem;
+  }
+  /* Pay action on top, item details below — keeps pay button above the fold */
+  .card {
+    order: 1;
+  }
+  .summary {
+    order: 2;
+  }
+}
+
+/* ============================================================
+   Workshop variant — ticket-style summary + accent shift
+   ============================================================ */
+
+.paymentWorkshop {
+  --ws-accent: #f59e0b;
+  --ws-accent-deep: #d97706;
+  --ws-accent-tint: rgba(245, 158, 11, 0.1);
+  --ws-accent-border: rgba(245, 158, 11, 0.28);
+  background:
+    radial-gradient(
+      ellipse 70% 50% at 50% 0%,
+      rgba(245, 158, 11, 0.08) 0%,
+      transparent 60%
+    ),
+    var(--bg-secondary);
+}
+
+.paymentWorkshop .summaryHeader i {
+  color: var(--ws-accent);
+}
+
+.paymentWorkshop .summaryProof i {
+  color: var(--ws-accent);
+}
+
+.paymentWorkshop .studentAvatar {
+  background: linear-gradient(135deg, var(--ws-accent) 0%, var(--ws-accent-deep) 100%);
+}
+
+.paymentWorkshop .payBtn {
+  background: linear-gradient(135deg, var(--ws-accent) 0%, var(--ws-accent-deep) 100%);
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
+}
+
+.paymentWorkshop .payBtn:hover {
+  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.5);
+}
+
+.paymentWorkshop .subtext i {
+  color: var(--ws-accent);
+}
+
+/* Ticket-style summary */
+.summaryWs {
+  position: relative;
+  border: 1px solid var(--ws-accent-border);
+  background:
+    linear-gradient(180deg, var(--ws-accent-tint) 0%, transparent 30%),
+    var(--bg-card);
+  box-shadow: 0 12px 32px -12px rgba(245, 158, 11, 0.22);
+  overflow: hidden;
+}
+
+/* Notch-style cut-outs on left + right (gives ticket feel) */
+.summaryWs::before,
+.summaryWs::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  top: calc(50% - 11px);
+  border: 1px solid var(--ws-accent-border);
+}
+.summaryWs::before {
+  left: -12px;
+}
+.summaryWs::after {
+  right: -12px;
+}
+
+/* Big calendar-style date block */
+.wsTicketDate {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  padding: 0.85rem 0.5rem 0.95rem;
+  background: linear-gradient(135deg, var(--ws-accent) 0%, var(--ws-accent-deep) 100%);
+  color: #fff;
+  border-radius: 14px;
+  line-height: 1;
+  box-shadow: 0 10px 24px -8px rgba(245, 158, 11, 0.55);
+  position: relative;
+  overflow: hidden;
+}
+
+.wsTicketDate::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background:
+    radial-gradient(circle 4px at 12px 0, transparent 4px, rgba(0, 0, 0, 0.15) 4px),
+    radial-gradient(circle 4px at calc(100% - 12px) 0, transparent 4px, rgba(0, 0, 0, 0.15) 4px);
+}
+
+.wsTicketMonth {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  opacity: 0.92;
+  margin-top: 4px;
+}
+
+.wsTicketDay {
+  font-family: var(--font-heading);
+  font-size: 2.6rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  margin-top: 2px;
+}
+
+.wsTicketDayName {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.wsTicketTitleWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: center;
+}
+
+.wsTicketTitle {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+/* Perforated separator */
+.wsPerforation {
+  position: relative;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    var(--ws-accent-border) 0%,
+    var(--ws-accent-border) 50%,
+    transparent 50%
+  );
+  background-size: 8px 1px;
+  background-repeat: repeat-x;
+}
+
+/* Detail rows: calendar, time, mode */
+.wsDetailRows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.wsDetailRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.75rem;
+  background: var(--ws-accent-tint);
+  border: 1px solid var(--ws-accent-border);
+  border-radius: 10px;
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.wsDetailRow i {
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, var(--ws-accent) 0%, var(--ws-accent-deep) 100%);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  flex-shrink: 0;
+}
+
+/* Tint the summary proof for workshop */
+.summaryWs .summaryProof {
+  background: var(--ws-accent-tint);
+  color: var(--ws-accent-deep);
+  font-weight: 600;
+  border: 1px solid var(--ws-accent-border);
+}
+
+@media (max-width: 768px) {
+  .summaryWs::before,
+  .summaryWs::after {
+    display: none;
+  }
 }

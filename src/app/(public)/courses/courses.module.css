@@ -1,5 +1,5 @@
 /* ============================================================
-   Courses Page — CSS Module
+   Courses Page - CSS Module
    Palette: #d79922 Gold · #efe2ba Cream · #f13c20 Red
             #4056a1 Royal Blue · #c5cbe3 Lavender
    ============================================================ */
@@ -267,7 +267,9 @@
   font-size: 0.72rem;
   font-weight: 700;
   line-height: 1;
-  transition: background 0.22s ease, color 0.22s ease;
+  transition:
+    background 0.22s ease,
+    color 0.22s ease;
 }
 
 .filterBtnActive .filterCount {
@@ -316,7 +318,9 @@
   border-top: 4px solid transparent;
   border-radius: 20px;
   overflow: hidden;
-  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease;
   box-shadow: 0 2px 12px rgba(28, 25, 23, 0.06);
 }
 
@@ -325,9 +329,15 @@
   box-shadow: 0 20px 50px rgba(28, 25, 23, 0.13);
 }
 
-.cardBeginner    { border-top-color: var(--cp-gold); }
-.cardIntermediate { border-top-color: var(--brand-red); }
-.cardAdvanced    { border-top-color: var(--cp-red); }
+.cardBeginner {
+  border-top-color: var(--cp-gold);
+}
+.cardIntermediate {
+  border-top-color: var(--brand-red);
+}
+.cardAdvanced {
+  border-top-color: var(--cp-red);
+}
 
 .cardImage {
   position: relative;
@@ -402,15 +412,34 @@
   text-transform: uppercase;
 }
 
-.badgeOrange  { background: var(--cp-gold); color: #fff; }
-.badgeGreen   { background: var(--accent-green); color: #fff; }
-.badgeBlue    { background: var(--accent-purple); color: #fff; }
+.badgeOrange {
+  background: var(--cp-gold);
+  color: #fff;
+}
+.badgeGreen {
+  background: var(--accent-green);
+  color: #fff;
+}
+.badgeBlue {
+  background: var(--accent-purple);
+  color: #fff;
+}
 .badgeRed,
-.badgePurple  { background: var(--cp-red); color: #fff; }
-.badgeComingSoon { background: #78716c; color: #fff; }
+.badgePurple {
+  background: var(--cp-red);
+  color: #fff;
+}
+.badgeComingSoon {
+  background: #78716c;
+  color: #fff;
+}
 
-.cardComingSoon { opacity: 0.72; }
-.cardComingSoon .cardImage img { filter: grayscale(30%); }
+.cardComingSoon {
+  opacity: 0.72;
+}
+.cardComingSoon .cardImage img {
+  filter: grayscale(30%);
+}
 
 .cardBody {
   flex: 1;
@@ -539,7 +568,9 @@
   color: var(--cp-ink-3);
 }
 
-.cardRating i   { color: var(--cp-gold); }
+.cardRating i {
+  color: var(--cp-gold);
+}
 .cardRating strong {
   color: var(--cp-ink);
   font-weight: 700;
@@ -575,7 +606,9 @@
   transition: transform 0.2s;
 }
 
-.cardCta:hover i { transform: translateX(3px); }
+.cardCta:hover i {
+  transform: translateX(3px);
+}
 
 .cardCtaDisabled {
   background: #d6d3d1;
@@ -641,8 +674,16 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 55% 55% at 90% 5%, rgba(255, 171, 164, 0.1) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 50% at 10% 95%, rgba(244, 210, 80, 0.14) 0%, transparent 65%);
+    radial-gradient(
+      ellipse 55% 55% at 90% 5%,
+      rgba(255, 171, 164, 0.1) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 50% 50% at 10% 95%,
+      rgba(244, 210, 80, 0.14) 0%,
+      transparent 65%
+    );
   pointer-events: none;
 }
 
@@ -676,7 +717,10 @@
   line-height: 1.68;
 }
 
-.whyTagline em { color: var(--cp-gold); font-style: italic; }
+.whyTagline em {
+  color: var(--cp-gold);
+  font-style: italic;
+}
 
 .whyGrid {
   display: grid;
@@ -684,7 +728,9 @@
   gap: 1.1rem;
 }
 
-.whyDots { display: none; }
+.whyDots {
+  display: none;
+}
 
 .whyCard {
   background: rgba(255, 255, 255, 0.08);
@@ -800,7 +846,9 @@
   border-bottom-color: var(--cp-bdr-lt);
 }
 
-[data-theme="dark"] .empty p { color: var(--cp-ink-2); }
+[data-theme="dark"] .empty p {
+  color: var(--cp-ink-2);
+}
 
 /* ═══════════════════════════════════════════════════════════
    RESPONSIVE
@@ -813,20 +861,32 @@
 }
 
 @media (max-width: 900px) {
-  .whyGrid { grid-template-columns: repeat(2, 1fr); }
+  .whyGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
-  .hero { padding: 6rem 1.25rem 4rem; }
-  .heroHeading { font-size: 2.5rem; }
-  .statChips { flex-wrap: wrap; }
+  .hero {
+    padding: 6rem 1.25rem 4rem;
+  }
+  .heroHeading {
+    font-size: 2.5rem;
+  }
+  .statChips {
+    flex-wrap: wrap;
+  }
   .grid {
     grid-template-columns: 1fr;
     max-width: 520px;
     margin: 0 auto;
   }
-  .empty { grid-column: 1; }
-  .filterRow { gap: 0.4rem; }
+  .empty {
+    grid-column: 1;
+  }
+  .filterRow {
+    gap: 0.4rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -835,14 +895,23 @@
     font-size: 0.75rem;
     margin-top: 0;
   }
-  .cardFooter { flex-wrap: wrap; }
-  .cardCta { width: 100%; justify-content: center; }
-  .heroHeading { font-size: 2.1rem; }
+  .cardFooter {
+    flex-wrap: wrap;
+  }
+  .cardCta {
+    width: 100%;
+    justify-content: center;
+  }
+  .heroHeading {
+    font-size: 2.1rem;
+  }
   .filterRow {
     margin-bottom: 1.5rem;
     justify-content: flex-start;
   }
-  .gridSection { padding: 2rem 1rem; }
+  .gridSection {
+    padding: 2rem 1rem;
+  }
 }
 
 @media (max-width: 600px) {
@@ -858,12 +927,16 @@
     max-width: none;
     margin: 0;
   }
-  .whyGrid::-webkit-scrollbar { display: none; }
+  .whyGrid::-webkit-scrollbar {
+    display: none;
+  }
   .whyCard {
     flex: 0 0 84%;
     scroll-snap-align: start;
   }
-  .whyCard:last-child { margin-right: 1rem; }
+  .whyCard:last-child {
+    margin-right: 1rem;
+  }
   .whyDots {
     display: flex;
     justify-content: center;

@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { workshopData } from "@/data/appData";
 import WorkshopDetailsClient from "./WorkshopDetailsClient";
@@ -8,14 +9,14 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const workshop =
-    workshopData.upcoming.find(
-      (w) => w.slug === slug || String(w.id) === slug,
-    ) || workshopData.upcoming[0];
+  const workshop = workshopData.upcoming.find(
+    (w) => w.slug === slug || String(w.id) === slug,
+  );
+  if (!workshop) return { title: "Workshop Not Found | AnalyticShala" };
 
   return {
     title: `${workshop.title} | AnalyticShala Workshops`,
-    description: `${workshop.title} — ${workshop.date}. ${(workshop.desc ?? "").slice(0, 150)}`,
+    description: `${workshop.title} - ${workshop.date}. ${(workshop.desc ?? "").slice(0, 150)}`,
     openGraph: {
       title: `${workshop.title} | AnalyticShala`,
       description: (workshop.desc ?? "").slice(0, 160),
@@ -34,5 +35,9 @@ export function generateStaticParams() {
 
 export default async function WorkshopDetailsPage({ params }: Props) {
   const { slug } = await params;
+  const workshop = workshopData.upcoming.find(
+    (w) => w.slug === slug || String(w.id) === slug,
+  );
+  if (!workshop) notFound();
   return <WorkshopDetailsClient slug={slug} />;
 }

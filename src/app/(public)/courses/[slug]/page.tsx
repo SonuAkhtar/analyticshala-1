@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${course.title} | AnalyticShala`,
-    description: `${course.title} — ${course.subtitle}. ${course.description.slice(0, 150)}`,
+    description: `${course.title} - ${course.subtitle}. ${course.description.slice(0, 150)}`,
     openGraph: {
       title: `${course.title} | AnalyticShala`,
       description: course.description.slice(0, 160),

@@ -1,5 +1,5 @@
 /* ============================================================
-   Shared Policy Pages — Module CSS
+   Shared Policy Pages - Module CSS
    (Privacy Policy, Refund Policy, Terms of Use)
    ============================================================ */
 
@@ -26,14 +26,18 @@
   pointer-events: none;
 }
 .heroOrb1 {
-  width: 460px; height: 460px;
+  width: 460px;
+  height: 460px;
   background: rgba(99, 102, 241, 0.1);
-  top: -200px; right: -80px;
+  top: -200px;
+  right: -80px;
 }
 .heroOrb2 {
-  width: 320px; height: 320px;
+  width: 320px;
+  height: 320px;
   background: rgba(168, 85, 247, 0.08);
-  bottom: -80px; left: -60px;
+  bottom: -80px;
+  left: -60px;
 }
 
 .heroInner {
@@ -133,7 +137,9 @@
   color: var(--text-secondary);
   text-decoration: none;
   border-radius: 6px;
-  transition: background 0.18s, color 0.18s;
+  transition:
+    background 0.18s,
+    color 0.18s;
   line-height: 1.4;
 }
 .tocList li a:hover {
@@ -173,7 +179,10 @@
   align-items: center;
   gap: 0.5rem;
 }
-.sectionTitle i { color: var(--accent-indigo); font-size: 0.95rem; }
+.sectionTitle i {
+  color: var(--accent-indigo);
+  font-size: 0.95rem;
+}
 
 .section p {
   font-size: 0.93rem;
@@ -195,7 +204,9 @@
   margin-bottom: 0.5rem;
 }
 
-.section strong { color: var(--text-primary); }
+.section strong {
+  color: var(--text-primary);
+}
 
 /* Highlight box */
 .highlight {
@@ -247,9 +258,15 @@
   vertical-align: top;
   line-height: 1.5;
 }
-.table tbody tr:last-child td { border-bottom: none; }
-.table tbody tr:hover { background: var(--bg-secondary); }
-.table strong { color: var(--text-primary); }
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+.table tbody tr:hover {
+  background: var(--bg-secondary);
+}
+.table strong {
+  color: var(--text-primary);
+}
 
 /* Badges */
 .badge {
@@ -311,7 +328,9 @@
   font-size: 0.9rem;
   color: var(--text-secondary);
 }
-.contactRow:last-child { border-bottom: none; }
+.contactRow:last-child {
+  border-bottom: none;
+}
 .contactRow i {
   width: 28px;
   text-align: center;
@@ -323,7 +342,9 @@
   color: var(--accent-indigo);
   text-decoration: none;
 }
-.contactRow a:hover { text-decoration: underline; }
+.contactRow a:hover {
+  text-decoration: underline;
+}
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
@@ -338,7 +359,14 @@
 }
 
 @media (max-width: 600px) {
-  .hero { padding: 7rem 1rem 3rem; }
-  .body { padding: 2rem 1rem 4rem; }
-  .heroMeta { flex-direction: column; gap: 0.5rem; }
+  .hero {
+    padding: 7rem 1rem 3rem;
+  }
+  .body {
+    padding: 2rem 1rem 4rem;
+  }
+  .heroMeta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }

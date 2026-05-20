@@ -56,10 +56,12 @@ const Footer = () => {
             {/* Brand */}
             <div className={styles.footerBrand}>
               <span className={styles.footerLogo}>AnalyticShala</span>
-              <p className={styles.footerTagline}>Where Data Careers Are Built.</p>
+              <p className={styles.footerTagline}>
+                Where Data Careers Are Built.
+              </p>
               <p className={styles.footerDesc}>
                 Industry-led courses in Data Analytics, Data Science, AI &amp;
-                Web Development — designed to get you hired.
+                Web Development - designed to get you hired.
               </p>
               <div className={styles.footerSocial}>
                 {socialIconsData.map((item, i) => (
@@ -93,7 +95,9 @@ const Footer = () => {
                   <i className="fab fa-whatsapp" />
                 </a>
               </div>
-              <span className={styles.footerEst}>Est. 2013 · Gurgaon, India</span>
+              <span className={styles.footerEst}>
+                Est. 2013 · Gurgaon, India
+              </span>
             </div>
 
             {/* Navigate */}
@@ -110,7 +114,10 @@ const Footer = () => {
             {/* Contact */}
             <div className={styles.footerCol}>
               <h4>Get in Touch</h4>
-              <a href="mailto:team@analyticshala.in" className={styles.footerContactItem}>
+              <a
+                href="mailto:team@analyticshala.in"
+                className={styles.footerContactItem}
+              >
                 <i className="fas fa-envelope" /> team@analyticshala.in
               </a>
               <a href="tel:+918882641988" className={styles.footerContactItem}>

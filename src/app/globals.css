@@ -1,4 +1,4 @@
-/* Fallback fonts only — Sharp Grotesk is self-hosted and loads separately */
+/* Fallback fonts only - Sharp Grotesk is self-hosted and loads separately */
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Oswald:wght@700&family=Space+Grotesk:wght@700&family=DM+Mono:wght@500&display=swap");
 
 @font-face {
@@ -102,10 +102,27 @@
   --rgb-gold: 244, 210, 80;
   --rgb-navy: 26, 28, 46;
 
-  --gradient-brand: linear-gradient(135deg, var(--brand-red), var(--brand-red-pale));
-  --gradient-cta: linear-gradient(135deg, var(--brand-red), var(--brand-red-dark));
-  --gradient-blue: linear-gradient(135deg, var(--accent-blue), var(--accent-sky));
-  --gradient-bg: linear-gradient(160deg, var(--bg-primary) 0%, #edeadb 50%, #e3dfce 100%);
+  --gradient-brand: linear-gradient(
+    135deg,
+    var(--brand-red),
+    var(--brand-red-pale)
+  );
+  --gradient-cta: linear-gradient(
+    135deg,
+    var(--brand-red),
+    var(--brand-red-dark)
+  );
+  --gradient-blue: linear-gradient(
+    135deg,
+    var(--accent-blue),
+    var(--accent-sky)
+  );
+  --gradient-bg: linear-gradient(
+    160deg,
+    var(--bg-primary) 0%,
+    #edeadb 50%,
+    #e3dfce 100%
+  );
 
   --card-shadow: 0 4px 20px rgba(var(--rgb-dark), 0.07);
   --card-shadow-hover: 0 12px 40px rgba(var(--rgb-dark), 0.16);
@@ -206,7 +223,12 @@
 
   --orb-opacity: 0.2;
 
-  --dark-section-bg: linear-gradient(135deg, #12131e 0%, #0a0b14 50%, #12131e 100%);
+  --dark-section-bg: linear-gradient(
+    135deg,
+    #12131e 0%,
+    #0a0b14 50%,
+    #12131e 100%
+  );
 
   --footer-bg: #0a0b14;
   --footer-border: rgba(var(--rgb-alice), 0.08);
