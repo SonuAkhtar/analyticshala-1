@@ -161,6 +161,13 @@ export default function PaymentPage() {
           year: "numeric",
         });
 
+        // Flag dev/test rows so production data stays clean
+        const host = window.location.hostname;
+        const isTest =
+          host === "localhost" ||
+          host === "127.0.0.1" ||
+          host.endsWith(".vercel.app"); // preview deploys count as test
+
         // Save to Supabase - track success so the success page can warn the user if it failed
         let saveOk = false;
         if (supabase) {
@@ -176,6 +183,7 @@ export default function PaymentPage() {
                   goal: paymentData.user.goal || null,
                   amount_inr: paymentData.amount / 100,
                   payment_id: response.razorpay_payment_id,
+                  is_test: isTest,
                 })
               : await supabase.from("workshop_registrations").insert({
                   workshop_id: paymentData.user.workshopId || "",
@@ -195,6 +203,7 @@ export default function PaymentPage() {
                     paymentData.user.analyticshalaStudent || null,
                   amount_inr: paymentData.amount / 100,
                   payment_id: response.razorpay_payment_id,
+                  is_test: isTest,
                 });
 
             if (insertResult.error) {
