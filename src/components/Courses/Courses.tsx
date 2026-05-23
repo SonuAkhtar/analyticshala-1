@@ -7,10 +7,6 @@ import { coursesData } from "@/data/appData";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import styles from "./Courses.module.css";
 
-interface CoursesProps {
-  setShowDownload: (v: boolean) => void;
-}
-
 const featuredCourses = coursesData
   .filter((c) => c.homepageOrder !== null && !c.comingSoon)
   .sort((a, b) => (a.homepageOrder ?? 0) - (b.homepageOrder ?? 0))
@@ -18,7 +14,7 @@ const featuredCourses = coursesData
 
 const cardLabels = ["01", "02", "03", "04"];
 
-const Courses = ({ setShowDownload }: CoursesProps) => {
+const Courses = () => {
   const ref = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
@@ -126,13 +122,6 @@ const Courses = ({ setShowDownload }: CoursesProps) => {
             <i className="fas fa-th-large" />
             Show all Courses
           </Link>
-          <button
-            className={`${styles.brochure} btn-shimmer`}
-            onClick={() => setShowDownload(true)}
-          >
-            <i className="fas fa-download" />
-            Download Course Brochure
-          </button>
         </div>
       </div>
     </section>

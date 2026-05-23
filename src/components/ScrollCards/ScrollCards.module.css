@@ -3,7 +3,6 @@
   padding: 5rem 0;
 }
 
-/* ── Bento grid ── */
 
 .bento {
   display: grid;
@@ -20,7 +19,6 @@
 .bento > *:nth-child(4) { grid-column: span 2; }
 .bento > *:nth-child(5) { grid-column: span 2; }
 
-/* ── Card ── */
 
 .card {
   position: relative;
@@ -75,7 +73,6 @@
   transform: scaleX(1);
 }
 
-/* ── Card icon ── */
 
 .cardIcon {
   width: 48px;
@@ -90,7 +87,6 @@
   flex-shrink: 0;
 }
 
-/* ── Card number watermark ── */
 
 .cardNumber {
   position: absolute;
@@ -106,7 +102,6 @@
   line-height: 1;
 }
 
-/* ── Card text ── */
 
 .cardTitle {
   font-family: var(--font-heading);
@@ -122,7 +117,6 @@
   line-height: 1.68;
 }
 
-/* ── Dots (hidden by default, shown on mobile) ── */
 
 .dots {
   display: none;
@@ -143,7 +137,6 @@
   border-radius: 4px;
 }
 
-/* ── Responsive ── */
 
 @media (max-width: 1100px) {
   .bento {

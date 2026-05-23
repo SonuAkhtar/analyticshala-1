@@ -4,13 +4,18 @@ import { useState, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { courseListData, courseRegData } from "@/data/appData";
+import {
+  COUNTRY_CODES,
+  DEFAULT_COUNTRY_DIAL,
+  isValidPhone,
+} from "@/data/countryCodes";
 import styles from "./courseForm.module.css";
 
 const CHOICE_FIELDS = [
   {
     key: "experience" as const,
     label: "Your Experience Level",
-    options: ["Fresher", "1–2 Years", "3–5 Years", "5+ Years"],
+    options: ["Fresher", "1-2 Years", "3-5 Years", "5+ Years"],
   },
   {
     key: "goal" as const,
@@ -74,6 +79,7 @@ function CourseFormInner() {
   const reg = course ? courseRegData[course.id] : null;
 
   const [formValue, setFormValue] = useState<FormValues>(INITIAL_FORM);
+  const [countryCode, setCountryCode] = useState(DEFAULT_COUNTRY_DIAL);
   const [errors, setErrors] = useState<Partial<Record<keyof FormValues, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -105,8 +111,11 @@ function CourseFormInner() {
     }
     if (!formValue.phone.trim()) {
       err.phone = "Phone is required";
-    } else if (!/^\d{10}$/.test(formValue.phone)) {
-      err.phone = "Enter a valid 10-digit number";
+    } else if (!isValidPhone(countryCode, formValue.phone)) {
+      err.phone =
+        countryCode === "+91"
+          ? "Enter a valid 10-digit number"
+          : "Enter a valid phone number";
     }
     if (!formValue.experience) err.experience = "Select your experience";
     if (!formValue.goal) err.goal = "Select your learning goal";
@@ -142,7 +151,12 @@ function CourseFormInner() {
         orderId: result.orderId,
         amount: result.amount,
         coursePrice: reg.price,
-        user: { ...formValue, courseId, courseTitle: course.title },
+        user: {
+          ...formValue,
+          phone: `${countryCode}${formValue.phone}`,
+          courseId,
+          courseTitle: course.title,
+        },
       };
       sessionStorage.setItem("paymentData", JSON.stringify(paymentData));
       router.push("/payment");
@@ -161,10 +175,12 @@ function CourseFormInner() {
   };
 
   const inputFields: { name: keyof FormValues; type: string; placeholder: string; icon: string; autoComplete: string }[] = [
-    { name: "name",  type: "text",  placeholder: "Full Name",                icon: "fas fa-user",     autoComplete: "name" },
-    { name: "email", type: "email", placeholder: "Email Address",            icon: "fas fa-envelope", autoComplete: "email" },
-    { name: "phone", type: "tel",   placeholder: "Phone Number (10 digits)", icon: "fas fa-phone",    autoComplete: "tel" },
+    { name: "name",  type: "text",  placeholder: "Full Name",     icon: "fas fa-user",     autoComplete: "name" },
+    { name: "email", type: "email", placeholder: "Email Address", icon: "fas fa-envelope", autoComplete: "email" },
   ];
+
+  const phonePlaceholder =
+    countryCode === "+91" ? "Phone (10 digits)" : "Phone Number";
 
   return (
     <div className={styles.page}>
@@ -220,6 +236,51 @@ function CourseFormInner() {
                   )}
                 </div>
               ))}
+
+              {/* Phone - country code dropdown + local number */}
+              <div className={styles.inputWrap}>
+                <div
+                  className={`${styles.inputGroup}${
+                    errors.phone ? " " + styles.inputGroupError : ""
+                  }`}
+                >
+                  <i className="fas fa-phone" />
+                  <select
+                    value={countryCode}
+                    onChange={(e) => setCountryCode(e.target.value)}
+                    aria-label="Country code"
+                    className={styles.countrySelect}
+                  >
+                    {COUNTRY_CODES.map((c) => (
+                      <option key={c.dial} value={c.dial}>
+                        {c.flag} {c.dial}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    type="tel"
+                    placeholder={phonePlaceholder}
+                    name="phone"
+                    value={formValue.phone}
+                    onChange={(e) =>
+                      setFormValue((prev) => {
+                        const next = { ...prev, phone: e.target.value.replace(/\D/g, "") };
+                        if (errors.phone) {
+                          setErrors((p) => ({ ...p, phone: undefined }));
+                        }
+                        return next;
+                      })
+                    }
+                    autoComplete="tel-national"
+                    inputMode="numeric"
+                  />
+                </div>
+                {errors.phone && (
+                  <span className={styles.errorText}>
+                    <i className="fas fa-exclamation-circle" /> {errors.phone}
+                  </span>
+                )}
+              </div>
             </div>
 
             {CHOICE_FIELDS.map(({ key, label, options }) => (
@@ -269,7 +330,7 @@ function CourseFormInner() {
               disabled={isSubmitting}
             >
               {isSubmitting
-                ? "Preparing Payment…"
+                ? "Preparing Payment..."
                 : `Secure My Seat · Pay ${reg.regFee}`}
             </button>
           </form>
@@ -306,7 +367,7 @@ export default function CourseFormPage() {
             justifyContent: "center",
           }}
         >
-          <p style={{ color: "var(--text-muted)" }}>Loading…</p>
+          <p style={{ color: "var(--text-muted)" }}>Loading...</p>
         </div>
       }
     >

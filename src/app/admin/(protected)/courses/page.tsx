@@ -812,7 +812,7 @@ export default function AdminCourses() {
                       <input
                         style={S.input}
                         value={editing.badge ?? ""}
-                        placeholder="Trending, New…"
+                        placeholder="Trending, New..."
                         onChange={(e) => upd("badge", e.target.value)}
                       />
                     </div>

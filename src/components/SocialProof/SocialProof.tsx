@@ -18,7 +18,7 @@ interface Stat {
 
 const stats: Stat[] = [
   {
-    number: 500,
+    number: 300,
     suffix: "+",
     label: "Students Trained",
     sub: "and growing every batch",
@@ -32,7 +32,7 @@ const stats: Stat[] = [
     number: 4.9,
     suffix: "",
     label: "Average Rating",
-    sub: "based on 200+ reviews",
+    sub: "based on 300+ reviews",
     icon: "fas fa-star",
     color: "#f59e0b",
     pale: "#fffbeb",
@@ -63,7 +63,6 @@ const stats: Stat[] = [
   },
 ];
 
-/* ── DigitReel ── */
 
 interface DigitReelProps {
   digit: string;
@@ -95,7 +94,6 @@ const DigitReel = ({ digit, isInView }: DigitReelProps) => {
   );
 };
 
-/* ── FlickerNumber ── */
 
 interface FlickerNumberProps {
   value: number;
@@ -119,7 +117,6 @@ const FlickerNumber = ({ value, suffix, isInView }: FlickerNumberProps) => {
   );
 };
 
-/* ── SocialProof ── */
 
 const SocialProof = () => {
   const ref = useRef<HTMLElement>(null);

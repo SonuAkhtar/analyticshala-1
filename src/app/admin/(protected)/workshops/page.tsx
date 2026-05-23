@@ -861,7 +861,7 @@ export default function AdminWorkshops() {
                       <input
                         style={S.input}
                         value={editing.time ?? ""}
-                        placeholder="10:00 AM – 1:00 PM"
+                        placeholder="10:00 AM - 1:00 PM"
                         onChange={(e) => upd("time", e.target.value)}
                       />
                     </div>

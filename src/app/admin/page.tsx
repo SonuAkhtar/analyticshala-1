@@ -76,7 +76,7 @@ export default function AdminLogin() {
           disabled={loading}
           style={{ padding: "0.875rem", borderRadius: "8px", background: "#6366f1", color: "white", fontWeight: 600, border: "none", cursor: loading ? "not-allowed" : "pointer", opacity: loading ? 0.7 : 1, fontSize: "0.9rem" }}
         >
-          {loading ? "Signing in…" : "Sign In"}
+          {loading ? "Signing in..." : "Sign In"}
         </button>
       </form>
     </div>

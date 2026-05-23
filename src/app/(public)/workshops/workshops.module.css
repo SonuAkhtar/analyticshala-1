@@ -21,7 +21,6 @@
   font-family: var(--font-body);
 }
 
-/* ── Shared ── */
 
 .eyebrow {
   display: inline-flex;
@@ -74,7 +73,6 @@
   margin-bottom: 2.5rem;
 }
 
-/* ── Status badges ── */
 
 .status {
   display: inline-flex;
@@ -121,7 +119,6 @@
   }
 }
 
-/* ── Seats ── */
 
 .seatsBar {
   width: 110px;
@@ -154,14 +151,13 @@
   font-weight: 700;
 }
 
-/* ── Buttons ── */
 
 .btnPrimary {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.8rem 1.7rem;
-  background: var(--page-accent);
+  background: var(--gradient-cta);
   color: #fff;
   border-radius: 999px;
   font-family: var(--font-heading);
@@ -176,9 +172,8 @@
 }
 
 .btnPrimary:hover {
-  background: var(--page-accent-dark);
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(59, 139, 235, 0.5);
+  box-shadow: 0 6px 24px rgba(187, 27, 33, 0.45);
 }
 
 .btnGhost {
@@ -200,11 +195,10 @@
 }
 
 .btnGhost:hover {
-  border-color: var(--page-accent);
-  color: var(--page-accent);
+  border-color: var(--brand-red);
+  color: var(--brand-red);
 }
 
-/* ── Hero ── */
 
 .hero {
   position: relative;
@@ -296,7 +290,6 @@
   gap: 0.85rem;
 }
 
-/* ── Featured Ticket ── */
 
 .featuredTicket {
   background: var(--bg-card);
@@ -407,7 +400,7 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.55rem 1.2rem;
-  background: var(--page-accent);
+  background: var(--gradient-cta);
   color: #fff;
   border-radius: 999px;
   font-size: 0.84rem;
@@ -422,11 +415,10 @@
 }
 
 .featuredCta:hover {
-  background: var(--page-accent-dark);
   transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(187, 27, 33, 0.4);
 }
 
-/* ── Countdown ── */
 
 .countdown {
   background: linear-gradient(
@@ -490,7 +482,6 @@
   margin-top: 0.2rem;
 }
 
-/* ── Trust bar ── */
 
 .trust {
   background: var(--bg-secondary);
@@ -542,7 +533,6 @@
   margin: 0;
 }
 
-/* ── Upcoming section ── */
 
 .upcoming {
   padding: 4.5rem 1.5rem 5rem;
@@ -615,7 +605,6 @@
   max-width: 860px;
 }
 
-/* ── Ticket card ── */
 
 .ticket {
   display: flex;
@@ -826,7 +815,7 @@
   align-items: center;
   gap: 0.38rem;
   padding: 0.52rem 1.15rem;
-  background: var(--page-accent);
+  background: var(--gradient-cta);
   color: #fff;
   border-radius: 999px;
   font-size: 0.83rem;
@@ -842,24 +831,24 @@
 }
 
 .ticketCta:hover {
-  background: var(--page-accent-dark);
   transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(187, 27, 33, 0.4);
 }
 
 .ticketCtaWaitlist {
   background: transparent;
-  border: 1.5px solid var(--page-accent);
-  color: var(--page-accent);
+  border: 1.5px solid var(--brand-red);
+  color: var(--brand-red);
   box-shadow: none;
   font-family: var(--font-body);
 }
 
 .ticketCtaWaitlist:hover {
-  background: var(--page-accent-glow);
+  background: var(--brand-red-tint, rgba(187, 27, 33, 0.08));
   transform: translateY(-1px);
+  box-shadow: none;
 }
 
-/* ── Waitlist modal ── */
 
 .wlOverlay {
   position: fixed;
@@ -1040,7 +1029,6 @@
   line-height: 1.6;
 }
 
-/* ── Community strip ── */
 
 .community {
   background: var(--bg-secondary);
@@ -1108,7 +1096,6 @@
   transform: translateY(-1px);
 }
 
-/* ── Past workshops ── */
 
 .past {
   padding: 4.5rem 1.5rem 5rem;
@@ -1249,7 +1236,7 @@
   font-size: 0.78rem;
 }
 
-/* Stats grid — readable rating + attendees */
+/* Stats grid - readable rating + attendees */
 .pastStats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
@@ -1314,7 +1301,6 @@
   margin-top: 1px;
 }
 
-/* ── Bottom CTA ── */
 
 .cta {
   padding: 5.5rem 1.5rem;
@@ -1376,7 +1362,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.85rem 1.8rem;
-  background: var(--page-accent);
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
   color: #fff;
   border-radius: 999px;
   font-family: var(--font-heading);
@@ -1390,8 +1376,8 @@
 }
 
 .ctaBtn:hover {
-  background: var(--page-accent-dark);
   transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(37, 211, 102, 0.45);
 }
 
 .ctaLink {
@@ -1409,7 +1395,6 @@
   color: var(--page-accent-light);
 }
 
-/* ── Responsive ── */
 
 @media (max-width: 900px) {
   .trustInner {

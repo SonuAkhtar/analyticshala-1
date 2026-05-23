@@ -23,7 +23,6 @@
   box-sizing: border-box;
 }
 
-/* ── Top Header ── */
 
 .top {
   flex-shrink: 0;
@@ -65,7 +64,6 @@
   margin: 0;
 }
 
-/* ── Body ── */
 
 .body {
   flex: 1;
@@ -76,7 +74,6 @@
   align-items: stretch;
 }
 
-/* ── Rail ── */
 
 .rail {
   display: flex;
@@ -158,18 +155,15 @@
   font-weight: 500;
 }
 
-/* Tablet-only inline detail - hidden on desktop & mobile */
 .inlineDetail {
   display: none;
 }
 
-/* ── Detail panel (right column) ── */
 
 .detail {
   position: relative;
 }
 
-/* ── Card ── */
 
 .card {
   position: absolute;
@@ -212,7 +206,6 @@
       color-mix(in srgb, var(--sc, var(--brand-red)) 22%, transparent);
 }
 
-/* ── Card Badge ── */
 
 .cardBadge {
   display: inline-flex;
@@ -269,7 +262,6 @@
   margin-top: 0.1rem;
 }
 
-/* ── Card content ── */
 
 .cardTitle {
   font-family: var(--font-heading);
@@ -368,7 +360,6 @@
   opacity: 0.12;
 }
 
-/* ── CTA Row ── */
 
 .ctaRow {
   flex-shrink: 0;

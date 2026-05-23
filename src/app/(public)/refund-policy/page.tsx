@@ -297,7 +297,7 @@ export default function RefundPolicyPage() {
               </li>
               <li>
                 <strong>Convenience / processing fees</strong> - payment gateway
-                transaction charges (typically 2–3%), if separately listed.
+                transaction charges (typically 2-3%), if separately listed.
               </li>
               <li>
                 <strong>Corporate or group training packages</strong> - custom
@@ -331,7 +331,7 @@ export default function RefundPolicyPage() {
                 </a>{" "}
                 with the subject line:{" "}
                 <strong>
-                  &quot;Refund Request – [Your Name] – [Course/Workshop
+                  &quot;Refund Request - [Your Name] - [Course/Workshop
                   Name]&quot;
                 </strong>
               </li>
@@ -379,15 +379,15 @@ export default function RefundPolicyPage() {
                 <tbody>
                   <tr>
                     <td>UPI (GPay, PhonePe, Paytm, etc.)</td>
-                    <td>2–5 business days</td>
+                    <td>2-5 business days</td>
                   </tr>
                   <tr>
                     <td>Debit Card / Net Banking</td>
-                    <td>5–7 business days</td>
+                    <td>5-7 business days</td>
                   </tr>
                   <tr>
                     <td>Credit Card</td>
-                    <td>7–10 business days (card provider dependent)</td>
+                    <td>7-10 business days (card provider dependent)</td>
                   </tr>
                 </tbody>
               </table>
@@ -513,7 +513,7 @@ export default function RefundPolicyPage() {
               </div>
               <div className={styles.contactRow}>
                 <i className="fas fa-clock" />
-                <span>Mon–Sat, 10 AM – 7 PM IST</span>
+                <span>Mon-Sat, 10 AM - 7 PM IST</span>
               </div>
               <div className={styles.contactRow}>
                 <i className="fas fa-map-marker-alt" />

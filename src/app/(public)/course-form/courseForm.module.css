@@ -172,6 +172,7 @@
 
 .inputGroup input {
   flex: 1;
+  min-width: 0;
   border: none;
   background: transparent;
   outline: none;
@@ -183,6 +184,31 @@
 
 .inputGroup input::placeholder {
   color: var(--text-muted);
+}
+
+.countrySelect {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 0.75rem 1.2rem 0.75rem 0;
+  margin-right: 0.5rem;
+  border-right: 1px solid var(--border);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='none' stroke='%23999' stroke-width='1.5' d='M1 1l4 4 4-4'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.35rem center;
+  flex-shrink: 0;
+  max-width: 88px;
+}
+
+.countrySelect:focus {
+  color: var(--cf-accent);
 }
 
 .errorText {

@@ -39,7 +39,7 @@ const ScrollCards = () => {
       <div className="container">
         <SectionHeader
           eyebrow="WHY US"
-          title="Why 500+ Students Chose Analyticshala"
+          title="Why 300+ Students Chose Analyticshala"
           subtitle="We're not just another online course. We're a career transformation platform built by people who've been in the industry."
         />
       </div>

@@ -86,7 +86,6 @@
   transform: translateX(3px);
 }
 
-/* ── Responsive ── */
 @media screen and (max-width: 480px) {
   .stickyEnroll {
     bottom: 0.75rem;

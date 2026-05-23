@@ -31,12 +31,10 @@
   position: relative;
 }
 
-/* Testimony inside dark section: transparent bg */
 .homeTestimony :global(.testimony) {
   background: transparent;
 }
 
-/* SectionHeader inside dark testimony */
 .homeTestimony :global(.section-header__eyebrow) {
   color: var(--brand-red-pale);
 }

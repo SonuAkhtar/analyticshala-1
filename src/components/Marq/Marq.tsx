@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Marquee from "react-fast-marquee";
 import type { MarqItem as MarqItemType } from "@/data/appData";
 import styles from "./Marq.module.css";
@@ -20,14 +21,16 @@ const MarqItem = ({ item }: MarqItemProps) => (
       }
     >
       {item.img ? (
-        <img
+        <Image
           src={item.img}
           alt={item.name}
+          width={20}
+          height={20}
           className={`${styles.logo}${item.darkLogo ? ` ${styles.logoDark}` : ""}`}
         />
-      ) : (
+      ) : item.icon ? (
         <i className={item.icon} style={{ color: item.color }} />
-      )}
+      ) : null}
     </div>
     <span className={styles.label}>{item.name}</span>
   </div>

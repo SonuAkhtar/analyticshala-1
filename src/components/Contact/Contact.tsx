@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 import { contactData } from "@/data/appData";
 import { GOOGLESHEET_WEB_APP_URL } from "@/config";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
@@ -91,7 +92,6 @@ const Contact = () => {
         />
 
         <div className={styles.grid}>
-          {/* ── Left: Form ── */}
           <motion.div
             className={styles.formWrap}
             initial={{ opacity: 0, x: -32 }}
@@ -213,7 +213,6 @@ const Contact = () => {
             </AnimatePresence>
           </motion.div>
 
-          {/* ── Right: Info ── */}
           <motion.div
             className={styles.infoWrap}
             initial={{ opacity: 0, x: 32 }}
@@ -234,8 +233,12 @@ const Contact = () => {
                   transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
                 >
                   <div className={styles.chipIcon}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={item.icon} alt={item.alt} />
+                    <Image
+                      src={item.icon}
+                      alt={item.alt}
+                      width={42}
+                      height={42}
+                    />
                   </div>
                   <div className={styles.chipText}>
                     <span className={styles.chipLabel}>{item.name}</span>
@@ -279,8 +282,13 @@ const Contact = () => {
                   }}
                 >
                   <div className={styles.qrFrame}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={qr.src} alt={qr.alt} className={styles.qrImage} />
+                    <Image
+                      src={qr.src}
+                      alt={qr.alt}
+                      width={200}
+                      height={200}
+                      className={styles.qrImage}
+                    />
                     <div className={styles.qrScanline} />
                     <span
                       className={`${styles.qrCorner} ${styles.qrCornerTl}`}

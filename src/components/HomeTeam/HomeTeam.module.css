@@ -4,15 +4,11 @@
   border-bottom: none;
 }
 
-/* ── Grid ── */
-
 .grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 1.25rem;
 }
-
-/* ── Card base ── */
 
 .card {
   position: relative;
@@ -31,7 +27,6 @@
   grid-column: span 2;
 }
 
-/* Featured: first 2 cards span 3 columns each */
 .cardFeatured {
   grid-column: span 3;
   height: 420px;
@@ -45,8 +40,6 @@
     0 0 52px color-mix(in srgb, var(--accent) 18%, transparent),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
-
-/* ── Background photo ── */
 
 .photo {
   position: absolute;
@@ -67,8 +60,6 @@
   filter: brightness(0.5) saturate(1.25);
 }
 
-/* ── Tint overlay ── */
-
 .tint {
   position: absolute;
   inset: 0;
@@ -83,8 +74,6 @@
 .card:hover .tint {
   opacity: 0.22;
 }
-
-/* ── Orb ── */
 
 .orb {
   position: absolute;
@@ -111,8 +100,6 @@
   opacity: 1;
 }
 
-/* ── Spotlight ── */
-
 .spotlight {
   position: absolute;
   inset: 0;
@@ -130,8 +117,6 @@
 .card:hover .spotlight {
   opacity: 1;
 }
-
-/* ── Shine ── */
 
 .shine {
   position: absolute;
@@ -155,8 +140,6 @@
   left: 140%;
 }
 
-/* ── Large faded watermark number ── */
-
 .cardNum {
   position: absolute;
   top: 0.85rem;
@@ -176,8 +159,6 @@
 .card:hover .cardNum {
   opacity: 0.1;
 }
-
-/* ── College badge ── */
 
 .collegeBadge {
   position: absolute;
@@ -212,8 +193,12 @@
 }
 
 @keyframes badgeShimmer {
-  0%   { background-position: 200% center; }
-  100% { background-position: -200% center; }
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
 }
 
 .collegeBadge i {
@@ -225,8 +210,6 @@
   opacity: 1;
   transform: translateY(0);
 }
-
-/* ── Footer (always visible at bottom) ── */
 
 .footer {
   position: absolute;
@@ -251,7 +234,6 @@
   padding-bottom: 1.5rem;
 }
 
-/* Avatar shown only when no photo */
 .avatar {
   flex-shrink: 0;
   width: 44px;
@@ -319,7 +301,6 @@
   text-overflow: ellipsis;
 }
 
-/* Accent line at very bottom, expands on hover */
 .footerLine {
   position: absolute;
   bottom: 0;
@@ -339,8 +320,6 @@
   width: 100%;
 }
 
-/* ── Reveal panel (slides up from below footer) ── */
-
 .reveal {
   position: absolute;
   bottom: 88px;
@@ -354,7 +333,7 @@
     rgba(0, 0, 0, 0.88) 25%,
     rgba(0, 0, 0, 0.95) 100%
   );
-  transform: translateY(100%);
+  transform: translateY(150%);
   transition: transform 0.44s cubic-bezier(0.22, 1, 0.36, 1);
   display: flex;
   flex-direction: column;
@@ -401,8 +380,6 @@
   -webkit-line-clamp: 4;
 }
 
-/* ── Socials ── */
-
 .socials {
   display: flex;
   gap: 0.45rem;
@@ -443,16 +420,12 @@
   transition-delay: 0s !important;
 }
 
-/* ── Light mode ── */
-
 :global(:root:not([data-theme="dark"])) .card {
   border-color: var(--border);
   box-shadow:
     0 4px 20px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
-
-/* ── Responsive ── */
 
 @media (max-width: 1100px) {
   .grid {

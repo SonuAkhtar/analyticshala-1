@@ -40,3 +40,35 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Claude Code (local agent config, memory, plans)
+.claude/
+.claude.json
+CLAUDE.local.md
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.history/
+
+# OS-generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linter / formatter caches
+.eslintcache
+.stylelintcache
+.prettiercache
+
+# Turbo / build caches
+.turbo/
+.cache/
+
+# Logs
+*.log
+logs/

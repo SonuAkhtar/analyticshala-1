@@ -41,9 +41,9 @@
 }
 
 .eyebrowInv {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.18);
-  color: rgba(255, 255, 255, 0.75);
+  background: var(--bg-card);
+  border-color: var(--border);
+  color: var(--page-accent);
 }
 
 .sectionTitle {
@@ -234,75 +234,6 @@
   margin-bottom: 2.25rem;
 }
 
-.heroProof {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.heroAvatars {
-  display: flex;
-  align-items: center;
-}
-
-.heroAvatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--page-accent) 55%, #fff) 0%,
-    var(--page-accent) 100%
-  );
-  color: #fff;
-  font-size: 0.62rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: -10px;
-  border: 2.5px solid var(--bg-primary);
-  font-family: var(--font-heading);
-}
-.heroAvatar:first-child {
-  margin-left: 0;
-}
-
-.heroProofText {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-}
-
-.heroProofRow {
-  display: flex;
-  align-items: baseline;
-  gap: 0.35rem;
-  font-size: 0.88rem;
-}
-.heroProofRow strong {
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  font-weight: 800;
-  color: var(--text-primary);
-}
-.heroProofRow span {
-  color: var(--text-secondary);
-}
-
-.heroProofStars {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.82rem;
-  color: #f59e0b;
-}
-.heroProofStars em {
-  color: var(--text-muted);
-  font-style: normal;
-  font-size: 0.75rem;
-}
-
 .heroRight {
   position: relative;
   display: flex;
@@ -457,7 +388,6 @@
   }
 }
 
-/* Stats bar */
 .stats {
   position: relative;
   z-index: 2;
@@ -511,13 +441,15 @@
 }
 
 /* ══════════════════════════════════════════════════════════
-   DARK SECTION - Focus Areas
+   FOCUS AREAS SECTION (theme-aware: light in light mode, dark in dark mode)
    ══════════════════════════════════════════════════════════ */
 .dark {
-  background: #0a0f1e;
+  background: var(--bg-secondary);
   padding: 5.5rem 1.5rem 6rem;
   position: relative;
   overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 .dark::before {
   content: "";
@@ -526,12 +458,12 @@
   background:
     radial-gradient(
       ellipse 55% 60% at 85% 10%,
-      rgba(99, 102, 241, 0.1) 0%,
+      color-mix(in srgb, var(--page-accent, #6366f1) 12%, transparent) 0%,
       transparent 65%
     ),
     radial-gradient(
       ellipse 45% 50% at 10% 90%,
-      rgba(168, 85, 247, 0.08) 0%,
+      color-mix(in srgb, #a855f7 10%, transparent) 0%,
       transparent 65%
     );
   pointer-events: none;
@@ -554,7 +486,7 @@
   font-family: var(--font-heading);
   font-size: clamp(1.9rem, 3.5vw, 2.8rem);
   font-weight: 800;
-  color: #fff;
+  color: var(--text-primary);
   line-height: 1.12;
   letter-spacing: -0.03em;
   margin: 0;
@@ -562,7 +494,7 @@
 
 .darkSub {
   font-size: 0.97rem;
-  color: rgba(197, 203, 227, 0.75);
+  color: var(--text-secondary);
   line-height: 1.72;
   max-width: 400px;
   margin: 0;
@@ -578,8 +510,8 @@
 }
 
 .darkCard {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
   border-radius: 18px;
   overflow: hidden;
   transition:
@@ -589,8 +521,8 @@
 }
 .darkCard:hover {
   transform: translateY(-6px);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+  border-color: color-mix(in srgb, var(--page-accent, #6366f1) 35%, var(--border));
+  box-shadow: 0 24px 60px -16px color-mix(in srgb, var(--page-accent, #6366f1) 35%, transparent);
 }
 
 .darkCardVisual {
@@ -632,12 +564,12 @@
   font-family: var(--font-heading);
   font-size: 1.1rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-primary);
   margin: 0 0 0.6rem;
 }
 .darkCardBody p {
   font-size: 0.87rem;
-  color: rgba(197, 203, 227, 0.72);
+  color: var(--text-secondary);
   line-height: 1.65;
   margin: 0 0 1.1rem;
 }
@@ -660,7 +592,7 @@
 }
 
 /* ══════════════════════════════════════════════════════════
-   ALUMNI LOGOS
+   STUDENTS LOGOS
    ══════════════════════════════════════════════════════════ */
 .logos {
   padding: 2.25rem 1.5rem;

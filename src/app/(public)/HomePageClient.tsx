@@ -1,26 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import dynamic from "next/dynamic";
 import Hero from "@/components/Hero/Hero";
 import SocialProof from "@/components/SocialProof/SocialProof";
 import Courses from "@/components/Courses/Courses";
 import TrustedBy from "@/components/TrustedBy/TrustedBy";
 import ScrollCards from "@/components/ScrollCards/ScrollCards";
-import LearningPath from "@/components/LearningPath/LearningPath";
-import Testimony from "@/components/Testimony/Testimony";
-import HomeTeam from "@/components/HomeTeam/HomeTeam";
-import Questions from "@/components/Questions/Questions";
-import Contact from "@/components/Contact/Contact";
-import Download from "@/components/Download/Download";
-import StickyEnroll from "@/components/StickyEnroll/StickyEnroll";
 import styles from "./home.module.css";
 
-export default function HomePageClient() {
-  const [showDownload, setShowDownload] = useState(false);
+const LearningPath = dynamic(() => import("@/components/LearningPath/LearningPath"));
+const Testimony = dynamic(() => import("@/components/Testimony/Testimony"));
+const HomeTeam = dynamic(() => import("@/components/HomeTeam/HomeTeam"));
+const Questions = dynamic(() => import("@/components/Questions/Questions"));
+const Contact = dynamic(() => import("@/components/Contact/Contact"));
+const StickyEnroll = dynamic(() => import("@/components/StickyEnroll/StickyEnroll"));
 
+export default function HomePageClient() {
   return (
     <>
-      <Download showDownload={showDownload} setShowDownload={setShowDownload} />
       <Hero />
 
       <div className={`${styles.hpWave} ${styles.hpWaveHeroExit}`} aria-hidden="true">
@@ -30,7 +27,7 @@ export default function HomePageClient() {
       </div>
 
       <SocialProof />
-      <Courses setShowDownload={setShowDownload} />
+      <Courses />
       <TrustedBy />
       <ScrollCards />
       <LearningPath />

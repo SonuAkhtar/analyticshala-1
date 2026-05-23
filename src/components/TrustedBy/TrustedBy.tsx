@@ -15,7 +15,7 @@ const TrustedBy = () => {
   return (
     <div className={styles.trustedBy}>
       <div className={styles.inner}>
-        <span className={styles.label}>Our alumni work at</span>
+        <span className={styles.label}>Our students work at</span>
         <ul className={styles.list}>
           {employers.map((emp) => (
             <li key={emp} className={styles.item}>

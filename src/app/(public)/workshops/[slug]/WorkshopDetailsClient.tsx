@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { workshopData, teamData, testimonyData } from "@/data/appData";
@@ -8,7 +9,6 @@ import type { Workshop, TeamMember } from "@/data/appData";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import styles from "./workshopDetails.module.css";
 
-/* ── animation variant ── */
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -19,7 +19,6 @@ const fadeUp = {
   }),
 };
 
-/* ── helpers ── */
 
 const parsePrice = (str = "") => parseInt(str.replace(/[₹,\s]/g, ""), 10) || 0;
 
@@ -69,7 +68,7 @@ const buildCalendarUrl = (workshop: Workshop) => {
   const day = parseInt(dayStr, 10) || new Date().getDate();
   const year = new Date().getFullYear();
   const timeStr = workshop.time || "10:00 AM";
-  const startToken = timeStr.split("–")[0].trim();
+  const startToken = timeStr.split("-")[0].trim();
   const toHHMM = (t: string) => {
     const [time, meridiem] = t.split(" ");
     let [h, m] = time.split(":").map(Number);
@@ -90,7 +89,6 @@ const buildCalendarUrl = (workshop: Workshop) => {
   return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDt}/${endDt}&details=${details}&location=${loc}`;
 };
 
-/* ── Countdown sub-component ── */
 
 const CountdownTimer = ({ dateStr }: { dateStr: string }) => {
   const target = parseWorkshopDate(dateStr);
@@ -120,7 +118,6 @@ const CountdownTimer = ({ dateStr }: { dateStr: string }) => {
   );
 };
 
-/* ── level badge class helper ── */
 
 const levelClass = (level = "") => {
   const key = level.toLowerCase().replace(/\s+/g, "");
@@ -129,7 +126,6 @@ const levelClass = (level = "") => {
   return styles.levelBadgeIntermediate;
 };
 
-/* ── Main component ── */
 
 export default function WorkshopDetailsClient({ slug }: { slug: string }) {
   const workshop: Workshop =
@@ -186,11 +182,13 @@ export default function WorkshopDetailsClient({ slug }: { slug: string }) {
       <div className={styles.page}>
         {/* Hero */}
         <section className={styles.hero}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={workshop.image}
             alt={workshop.title}
+            fill
+            priority
             className={styles.heroImg}
+            sizes="100vw"
           />
           <div className={styles.heroOverlay} />
           <div className={styles.heroContent}>
@@ -334,8 +332,12 @@ export default function WorkshopDetailsClient({ slug }: { slug: string }) {
               <h2 className={styles.sectionTitle}>Meet Your Instructor</h2>
               <div className={styles.instructorCard}>
                 <div className={styles.instrImg}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={instructor.image} alt={instructor.name} />
+                  <Image
+                    src={instructor.image}
+                    alt={instructor.name}
+                    width={110}
+                    height={110}
+                  />
                 </div>
                 <div className={styles.instrInfo}>
                   <h3 className={styles.instrName}>{instructor.name}</h3>
@@ -383,8 +385,7 @@ export default function WorkshopDetailsClient({ slug }: { slug: string }) {
                     </div>
                     <p className={styles.testiQuote}>&ldquo;{t.review}&rdquo;</p>
                     <div className={styles.testiAuthor}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={t.image} alt={t.name} />
+                      <Image src={t.image} alt={t.name} width={38} height={38} />
                       <div>
                         <strong>{t.name}</strong>
                         <span>{t.position}</span>

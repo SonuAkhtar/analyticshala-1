@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useCallback } from "react";
+import Image from "next/image";
 import { teamData } from "@/data/appData";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import {
@@ -14,7 +15,7 @@ import styles from "./HomeTeam.module.css";
 
 const MEMBER_CONFIG = [
   { accent: "#bb1b21", tags: ["Founder", "Analytics Mentor"] },
-  { accent: "#f97316", tags: ["ISB Alumnus", "500+ Alumni"] },
+  { accent: "#f97316", tags: ["ISB Student", "300+ Students"] },
   { accent: "#bb1b21", tags: ["Business Dev", "Partnerships"] },
   { accent: "#7c3aed", tags: ["Business Dev", "Placements"] },
   { accent: "#f97316", tags: ["Web Dev", "Instructor"] },
@@ -96,10 +97,14 @@ const TeamCard = ({ member, index, isInView }: TeamCardProps) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Background photo */}
       {member.image && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={member.image} alt={member.name} className={styles.photo} />
+        <Image
+          src={member.image}
+          alt={member.name}
+          fill
+          className={styles.photo}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        />
       )}
 
       <div className={styles.tint} />

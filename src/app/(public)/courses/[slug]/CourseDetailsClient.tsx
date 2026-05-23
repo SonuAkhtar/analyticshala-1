@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { courseRegData, teamData, testimonyData, type Course } from "@/data/appData";
@@ -62,7 +63,6 @@ export default function CourseDetailsClient({ course }: Props) {
         ]}
       />
 
-      {/* ── Hero ───────────────────────────────────────────── */}
       <section className={styles.hero}>
         <div className={styles.heroOrb1} />
         <div className={styles.heroOrb2} />
@@ -125,7 +125,6 @@ export default function CourseDetailsClient({ course }: Props) {
         </div>
       </section>
 
-      {/* ── Layout ─────────────────────────────────────────── */}
       <div className={styles.layout}>
         <main className={styles.main}>
           {/* About */}
@@ -245,7 +244,12 @@ export default function CourseDetailsClient({ course }: Props) {
             <h2 className={styles.sectionTitle}>Meet Your Instructor</h2>
             <div className={styles.instructorCard}>
               <div className={styles.instrImgWrap}>
-                <img src={instructor.image} alt={instructor.name} />
+                <Image
+                  src={instructor.image}
+                  alt={instructor.name}
+                  width={80}
+                  height={80}
+                />
               </div>
               <div className={styles.instrInfo}>
                 <h3 className={styles.instrName}>{instructor.name}</h3>
@@ -295,7 +299,7 @@ export default function CourseDetailsClient({ course }: Props) {
                   </div>
                   <p className={styles.testiQuote}>&ldquo;{t.review}&rdquo;</p>
                   <div className={styles.testiAuthor}>
-                    <img src={t.image} alt={t.name} />
+                    <Image src={t.image} alt={t.name} width={40} height={40} />
                     <div>
                       <strong>{t.name}</strong>
                       <span>{t.position}</span>
@@ -307,7 +311,6 @@ export default function CourseDetailsClient({ course }: Props) {
           </motion.section>
         </main>
 
-        {/* ── Sidebar ─────────────────────────────────────── */}
         <aside className={styles.sidebar}>
           <div className={styles.priceCard}>
             <div className={styles.sidebarMeta}>

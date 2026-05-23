@@ -157,6 +157,59 @@
   border-color: var(--status-error, #ef4444) !important;
 }
 
+/* Phone row - country code select + local number, styled as a single
+   input group to match the surrounding form fields. */
+.phoneRow {
+  display: flex;
+  align-items: stretch;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-secondary);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.phoneRow:focus-within {
+  border-color: var(--wf-accent);
+}
+
+.countrySelect {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 0 1.4rem 0 0.95rem;
+  border-right: 1px solid var(--border);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='none' stroke='%23999' stroke-width='1.5' d='M1 1l4 4 4-4'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  flex-shrink: 0;
+  max-width: 100px;
+}
+
+.phoneRow input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.72rem 0.95rem;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--text-primary);
+  outline: none;
+}
+
+.phoneRow input::placeholder {
+  color: var(--text-muted);
+}
+
 .errorText {
   font-size: 0.7rem;
   color: var(--status-error, #ef4444);
@@ -238,7 +291,7 @@
   justify-content: center;
   width: 100%;
   padding: 0.9rem 1.5rem;
-  background: var(--wf-accent);
+  background: var(--gradient-cta);
   color: #fff;
   border: none;
   border-radius: 12px;
@@ -246,16 +299,16 @@
   font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(59, 139, 235, 0.38);
+  box-shadow: 0 4px 16px rgba(187, 27, 33, 0.38);
   transition:
-    background 0.2s,
+    box-shadow 0.2s,
     transform 0.2s;
   margin-bottom: 1.1rem;
 }
 
 .submitBtn:hover:not(:disabled) {
-  background: var(--wf-accent-dark);
   transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(187, 27, 33, 0.48);
 }
 
 .submitBtn:disabled {
