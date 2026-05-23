@@ -121,41 +121,105 @@
 
 .footerCtaStats {
   display: flex;
-  align-items: center;
-  gap: 1.75rem;
+  align-items: stretch;
+  gap: 0.75rem;
   flex-shrink: 0;
 }
 
 .footerCtaStat {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
-  text-align: center;
+  gap: 0.7rem;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.footerCtaStat::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -20%;
+  width: 90px;
+  height: 90px;
+  background: var(--stat-accent);
+  border-radius: 50%;
+  filter: blur(28px);
+  opacity: 0.22;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.footerCtaStat:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: color-mix(in srgb, var(--stat-accent) 35%, transparent);
+  box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--stat-accent) 40%, transparent);
+}
+
+.footerCtaStat:hover::before {
+  opacity: 0.45;
+}
+
+.footerCtaStatIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--stat-accent) 18%, transparent);
+  color: var(--stat-accent);
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.footerCtaStatBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .footerCtaNum {
   font-family: var(--font-heading);
-  font-size: 2.25rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 800;
   color: #ffffff;
   line-height: 1;
-  letter-spacing: -1px;
+  letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.15rem;
+}
+
+.footerCtaUnit {
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 700;
+  color: var(--stat-accent);
+  letter-spacing: 0;
 }
 
 .footerCtaLbl {
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.62);
   font-weight: 500;
-  max-width: 80px;
   line-height: 1.3;
-}
-
-.footerCtaDivider {
-  width: 1px;
-  height: 44px;
-  background: rgba(255, 255, 255, 0.2);
-  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .footerSep {
@@ -261,26 +325,47 @@
 .footerCol a {
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.72);
-  transition: color 0.25s ease;
+  transition: color 0.25s ease, transform 0.25s ease;
   line-height: 1;
   padding: 0.4rem 0;
   text-decoration: none;
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+}
+
+.footerCol a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.3rem;
+  width: 0;
+  height: 1.5px;
+  background: currentColor;
+  transition: width 0.3s ease;
 }
 
 .footerCol a:hover {
   color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.footerCol a:hover::after {
+  width: 100%;
 }
 
 .footerContactItem {
-  display: flex;
+  display: inline-flex;
   align-items: flex-start;
   gap: 0.6rem;
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.72);
   padding: 0.45rem 0;
-  transition: color 0.25s ease;
+  transition: color 0.25s ease, transform 0.25s ease;
   line-height: 1.45;
   text-decoration: none;
+  position: relative;
+  width: fit-content;
 }
 
 .footerContactItem i {
@@ -290,10 +375,27 @@
   flex-shrink: 0;
   width: 14px;
   text-align: center;
+  transition: color 0.25s ease;
+}
+
+a.footerContactItem::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0.3rem;
+  width: 0;
+  height: 1.5px;
+  background: currentColor;
+  transition: width 0.3s ease;
 }
 
 a.footerContactItem:hover {
   color: #ffffff;
+  transform: translateY(-2px);
+}
+
+a.footerContactItem:hover::after {
+  width: 100%;
 }
 
 a.footerContactItem:hover i {
@@ -330,12 +432,30 @@ a.footerContactItem:hover i {
 
 .footerBottomLinks a {
   color: rgba(255, 255, 255, 0.38);
-  transition: color 0.25s ease;
+  transition: color 0.25s ease, transform 0.25s ease;
   text-decoration: none;
+  position: relative;
+  display: inline-block;
+}
+
+.footerBottomLinks a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1.5px;
+  background: currentColor;
+  transition: width 0.3s ease;
 }
 
 .footerBottomLinks a:hover {
   color: rgba(255, 255, 255, 0.82);
+  transform: translateY(-2px);
+}
+
+.footerBottomLinks a:hover::after {
+  width: 100%;
 }
 
 .footerBottomDot {
@@ -378,7 +498,25 @@ a.footerContactItem:hover i {
 
   .footerCtaStats {
     width: 100%;
-    justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .footerCtaStat {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.85rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .footerCtaStatBody {
+    flex: 1;
+  }
+
+  .footerCtaLbl {
+    white-space: normal;
   }
 
   .footerCtaBtn,
@@ -393,13 +531,47 @@ a.footerContactItem:hover i {
 }
 
 @media (max-width: 500px) {
+  /* Keep Navigate + Get in Touch side-by-side; Brand spans both via the
+     grid-column rule inherited from the 960px breakpoint. */
   .footerNav {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 1.25rem;
+  }
+  .footerCol h4 {
+    margin-bottom: 0.85rem;
+    font-size: 0.68rem;
+  }
+  .footerCol a {
+    font-size: 0.82rem;
+    padding: 0.32rem 0;
+  }
+  .footerContactItem {
+    font-size: 0.82rem;
+    padding: 0.32rem 0;
+    gap: 0.5rem;
+  }
+  .footerContactItem i {
+    font-size: 0.72rem;
   }
 
+  .footerCtaStat {
+    padding: 0.7rem 0.85rem;
+    gap: 0.7rem;
+  }
+  .footerCtaStatIcon {
+    width: 34px;
+    height: 34px;
+    font-size: 0.9rem;
+  }
   .footerCtaNum {
-    font-size: 1.8rem;
+    font-size: 1.25rem;
+  }
+  .footerCtaUnit {
+    font-size: 0.72rem;
+  }
+  .footerCtaLbl {
+    font-size: 0.7rem;
+    line-height: 1.25;
   }
 
   .footerBottomInner {
@@ -461,16 +633,28 @@ a.footerContactItem:hover i {
   border-color: var(--brand-red-border);
 }
 
+:global(:root:not([data-theme="dark"])) .footerCtaStat {
+  background: var(--bg-card);
+  border-color: var(--border);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+:global(:root:not([data-theme="dark"])) .footerCtaStat:hover {
+  background: var(--bg-card);
+  border-color: color-mix(in srgb, var(--stat-accent) 55%, var(--border));
+}
+
+:global(:root:not([data-theme="dark"])) .footerCtaStat::before {
+  opacity: 0.15;
+}
+
 :global(:root:not([data-theme="dark"])) .footerCtaNum {
   color: var(--text-primary);
 }
 
 :global(:root:not([data-theme="dark"])) .footerCtaLbl {
   color: var(--text-muted);
-}
-
-:global(:root:not([data-theme="dark"])) .footerCtaDivider {
-  background: var(--border);
 }
 
 :global(:root:not([data-theme="dark"])) .footerSep {

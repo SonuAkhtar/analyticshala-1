@@ -20,15 +20,15 @@
 
 .mobNav {
   position: fixed;
-  top: calc(var(--ann-bar-height, 0px) + 0.5rem + 64px + 0.5rem);
-  left: 0.75rem;
-  right: 0.75rem;
-  width: auto;
-  height: calc(100dvh - var(--ann-bar-height, 0px) - 0.5rem - 64px - 1.25rem);
+  top: calc(var(--ann-bar-height, 0px) + 0.5rem + 64px);
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: calc(100dvh - var(--ann-bar-height, 0px) - 0.5rem - 64px);
   max-height: none;
   max-width: none;
   z-index: 10001;
-  border-radius: 20px;
+  border-radius: 0;
   overflow: hidden;
   background: linear-gradient(
     160deg,
@@ -38,10 +38,9 @@
   );
   box-shadow:
     0 16px 48px rgba(0, 0, 0, 0.45),
-    0 2px 12px rgba(0, 0, 0, 0.25),
-    0 0 0 1px rgba(196, 219, 246, 0.05);
+    0 2px 12px rgba(0, 0, 0, 0.25);
   opacity: 0;
-  transform: translateY(-14px) scale(0.97);
+  transform: translateY(-14px);
   pointer-events: none;
   transition:
     opacity 0.28s ease,
@@ -52,7 +51,7 @@
 
 .mobNavOpen {
   opacity: 1;
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
   pointer-events: auto;
 }
 
@@ -72,8 +71,8 @@
 
 @media (max-width: 480px) {
   .mobNav {
-    top: calc(var(--ann-bar-height, 0px) + 0.5rem + 3.5rem + 0.5rem);
-    height: calc(90dvh - var(--ann-bar-height, 0px) - 0.5rem - 3.5rem - 1.25rem);
+    top: calc(var(--ann-bar-height, 0px) + 0.5rem + 3.5rem);
+    height: calc(80dvh - var(--ann-bar-height, 0px) - 0.5rem - 3.5rem);
   }
 
   .mobNavOverlay {
@@ -85,7 +84,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 2.5rem 1rem 0.75rem;
+  padding: 3rem 1rem 1rem 1rem;
   gap: 0.5rem;
   overflow-y: auto;
 }
@@ -262,33 +261,83 @@
   transform: translateX(4px);
 }
 
-.mobNavThemeToggle {
+.themeRow {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.55rem;
-  width: max-content;
-  padding: 0.6rem 1rem;
-  background: rgba(255, 255, 255, 0.05);
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 0.55rem 0.85rem 0.55rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(196, 219, 246, 0.1);
-  border-radius: 8px;
-  color: rgba(196, 219, 246, 0.55);
+  border-radius: 999px;
+}
+
+.themeLabel {
   font-family: var(--font-heading);
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.22s ease;
-  margin: 1rem auto;
-}
-
-.mobNavThemeToggle:hover {
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(178, 56, 80, 0.3);
-  color: var(--brand-red-pale);
-}
-
-.mobNavThemeToggle i {
   font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(196, 219, 246, 0.72);
+  letter-spacing: 0.01em;
+}
+
+.themeSwitch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(196, 219, 246, 0.14);
+  border-radius: 999px;
+  padding: 4px;
+  width: max-content;
+}
+
+.themeSwitchKnob {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc(50% - 4px);
+  background: linear-gradient(135deg, var(--brand-red), var(--brand-red-dark));
+  border-radius: 999px;
+  box-shadow: 0 4px 14px -4px rgba(187, 27, 33, 0.55);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.themeSwitchKnob[data-theme="dark"] {
+  transform: translateX(100%);
+}
+
+.themeSwitchOption {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  color: rgba(196, 219, 246, 0.55);
+  cursor: pointer;
+  transition: color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  padding: 0;
+}
+
+.themeSwitchOption i {
+  font-size: 0.9rem;
+}
+
+.themeSwitchOption:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.themeSwitchOptionActive,
+.themeSwitchOptionActive:hover {
+  color: #fff;
 }
 
 .mobNavTagline {
@@ -338,15 +387,26 @@
   border-top-color: var(--border);
 }
 
-:global([data-theme="light"]) .mobNavThemeToggle {
+:global([data-theme="light"]) .themeRow {
   background: var(--bg-secondary);
   border-color: var(--border);
+}
+
+:global([data-theme="light"]) .themeLabel {
   color: var(--text-secondary);
 }
 
-:global([data-theme="light"]) .mobNavThemeToggle:hover {
-  border-color: var(--brand-red);
-  color: var(--brand-red);
+:global([data-theme="light"]) .themeSwitch {
+  background: var(--bg-card);
+  border-color: var(--border);
+}
+
+:global([data-theme="light"]) .themeSwitchOption {
+  color: var(--text-muted);
+}
+
+:global([data-theme="light"]) .themeSwitchOption:hover {
+  color: var(--text-primary);
 }
 
 :global([data-theme="light"]) .mobNavTagline {

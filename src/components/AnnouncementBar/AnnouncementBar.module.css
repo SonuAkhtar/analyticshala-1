@@ -31,7 +31,6 @@
   overflow: hidden;
 }
 
-/* Shimmer sweep */
 .annBar::after {
   content: "";
   position: absolute;
@@ -46,7 +45,6 @@
   pointer-events: none;
 }
 
-/* Soft floating glow */
 .annBar::before {
   content: "";
   position: absolute;
@@ -107,7 +105,6 @@
   z-index: 1;
 }
 
-/* Live badge - pulsing dot + label */
 .annBarBadge {
   display: inline-flex;
   align-items: center;
@@ -159,7 +156,6 @@
   }
 }
 
-/* Subtle vertical divider */
 .annBarDivider {
   width: 1px;
   height: 18px;
@@ -189,7 +185,6 @@
   background-clip: text;
 }
 
-/* Pill CTA button (replaces the underlined link) */
 .annBarCta {
   display: inline-flex;
   align-items: center;
@@ -252,7 +247,6 @@
   transform: translateX(3px);
 }
 
-/* Close button */
 .annBarClose {
   position: absolute;
   right: 0.65rem;
@@ -282,7 +276,7 @@
   color: #fff;
   background: rgba(255, 255, 255, 0.22);
   border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-50%) rotate(90deg);
+  transform: translateY(-50%);
 }
 
 .annBarTextMobile {

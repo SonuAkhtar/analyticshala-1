@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -43,7 +44,7 @@ const heroTags = [
 
 const heroStats = [
   { num: "11+", label: "Years of Excellence" },
-  { num: "500+", label: "Students Trained" },
+  { num: "300+", label: "Students Trained" },
   { num: "10+", label: "Courses Offered" },
   { num: "4.9★", label: "Average Rating" },
 ];
@@ -98,7 +99,7 @@ const values = [
     icon: "fas fa-rocket",
     color: "#10b981",
     title: "Career-Focused Outcomes",
-    desc: "Our job isn't done when the course ends. Resume reviews, interview simulations, and alumni network access - for life.",
+    desc: "Our job isn't done when the course ends. Resume reviews, interview simulations, and students network access - for life.",
   },
 ];
 
@@ -130,7 +131,7 @@ const steps = [
   },
 ];
 
-const alumniCompanies = [
+const studentsCompanies = [
   { name: "Microsoft", icon: "fab fa-microsoft" },
   { name: "Amazon", icon: "fab fa-amazon" },
   { name: "Google", icon: "fab fa-google" },
@@ -158,7 +159,6 @@ export default function AboutUsClient() {
 
   return (
     <div className={styles.about}>
-      {/* ── HERO ── */}
       <section className={styles.hero}>
         <div className={`${styles.heroOrbBg} ${styles.heroOrbBg1}`} />
         <div className={`${styles.heroOrbBg} ${styles.heroOrbBg2}`} />
@@ -199,26 +199,6 @@ export default function AboutUsClient() {
                 How It Works
               </Link>
             </motion.div>
-
-            <motion.div className={styles.heroProof} {...fadeUp(0.29)}>
-              <div className={styles.heroAvatars}>
-                {["SA", "RK", "NP", "AJ"].map((init, i) => (
-                  <span key={i} className={styles.heroAvatar}>
-                    {init}
-                  </span>
-                ))}
-              </div>
-              <div className={styles.heroProofText}>
-                <div className={styles.heroProofRow}>
-                  <strong>320K+</strong>
-                  <span>Happy students</span>
-                </div>
-                <div className={styles.heroProofStars}>
-                  ★★★★★
-                  <em>5.0 from 2,500+ reviews</em>
-                </div>
-              </div>
-            </motion.div>
           </div>
 
           {/* Right - abstract visual */}
@@ -241,8 +221,8 @@ export default function AboutUsClient() {
               <div className={`${styles.heroChip} ${styles.heroChip1}`}>
                 <i className="fas fa-graduation-cap" />
                 <div>
-                  <strong>500+</strong>
-                  <span>Alumni Placed</span>
+                  <strong>300+</strong>
+                  <span>Students Trained</span>
                 </div>
               </div>
               <div className={`${styles.heroChip} ${styles.heroChip2}`}>
@@ -280,7 +260,6 @@ export default function AboutUsClient() {
         </div>
       </section>
 
-      {/* ── DARK SECTION - Focus Areas ── */}
       <section className={styles.dark}>
         <div className="container">
           <div className={styles.darkHeader}>
@@ -339,14 +318,13 @@ export default function AboutUsClient() {
         </div>
       </section>
 
-      {/* ── ALUMNI LOGOS ── */}
       <div className={styles.logos}>
         <div className={`container ${styles.logosInner}`}>
           <span className={styles.logosLabel}>
-            <i className="fas fa-briefcase" /> Our alumni now work at
+            <i className="fas fa-briefcase" /> Our students now work at
           </span>
           <div className={styles.logosRow}>
-            {[...alumniCompanies, ...alumniCompanies].map((co, i) => (
+            {[...studentsCompanies, ...studentsCompanies].map((co, i) => (
               <span key={i} className={styles.logosChip}>
                 <i className={co.icon} /> {co.name}
               </span>
@@ -355,7 +333,6 @@ export default function AboutUsClient() {
         </div>
       </div>
 
-      {/* ── IMPACT ── */}
       <section className={styles.impact}>
         <div className={`container ${styles.impactGrid}`}>
           <div>
@@ -384,9 +361,9 @@ export default function AboutUsClient() {
             <motion.div className={styles.impactNums} {...fadeUp(0.23)}>
               <div className={styles.impactNum}>
                 <strong>
-                  500<span>+</span>
+                  300<span>+</span>
                 </strong>
-                <span>Happy alumni</span>
+                <span>Happy students</span>
               </div>
               <div className={styles.impactDivider} />
               <div className={styles.impactNum}>
@@ -417,7 +394,7 @@ export default function AboutUsClient() {
               <div className={`${styles.impactFloat} ${styles.impactFloat2}`}>
                 <i className="fas fa-users" />
                 <div>
-                  <span>Learners Trained</span>
+                  <span>Students Trained</span>
                   <strong>300+</strong>
                 </div>
               </div>
@@ -426,7 +403,6 @@ export default function AboutUsClient() {
         </div>
       </section>
 
-      {/* ── STEPS ── */}
       <section className={styles.steps}>
         <div className="container">
           <div className={styles.stepsHeader}>
@@ -467,16 +443,12 @@ export default function AboutUsClient() {
                 </div>
                 <h4>{step.title}</h4>
                 <p>{step.desc}</p>
-                <Link href="/courses" className={styles.stepLink}>
-                  Next <i className="fas fa-arrow-right" />
-                </Link>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* ── REVEAL / MISSION ── */}
       <section className={styles.mission} id="reveal">
         <div className="container">
           <motion.span className={styles.eyebrow} {...fadeUp(0)}>
@@ -500,7 +472,6 @@ export default function AboutUsClient() {
         </div>
       </section>
 
-      {/* ── VALUES ── */}
       <section className={styles.values}>
         <div className="container">
           <motion.span className={styles.eyebrow} {...fadeUp(0)}>
@@ -539,7 +510,6 @@ export default function AboutUsClient() {
         </div>
       </section>
 
-      {/* ── TEAM ── */}
       <section className={styles.team} id="team">
         <div className={`container ${styles.teamLayout}`}>
           <div className={styles.teamText}>
@@ -547,15 +517,16 @@ export default function AboutUsClient() {
               <i className="fas fa-users" /> Our Best Team
             </motion.span>
             <motion.h2 className={styles.teamHeading} {...fadeUp(0.08)}>
-              Our experts blend data wisdom
+              People who&apos;ve been where you&apos;re going
             </motion.h2>
             <motion.p className={styles.teamSub} {...fadeUp(0.14)}>
-              Meet the team that turns numbers into opportunity. Our experts
-              blend real-world data education with industry innovation.
+              Industry practitioners - not academics. Each mentor has shipped
+              real data products and now teaches what actually works in the
+              market.
             </motion.p>
             <motion.div {...fadeUp(0.2)}>
-              <Link href="/courses" className={styles.teamViewAll}>
-                View All Team <i className="fas fa-arrow-right" />
+              <Link href="/#homeTeam" className={styles.teamViewAll}>
+                Meet the full team <i className="fas fa-arrow-right" />
               </Link>
             </motion.div>
           </div>
@@ -574,11 +545,12 @@ export default function AboutUsClient() {
                 variants={staggerItem}
               >
                 <div className={styles.teamPhotoWrap}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={member.image}
                     alt={member.name}
+                    fill
                     className={styles.teamPhoto}
+                    sizes="(max-width: 768px) 50vw, 25vw"
                   />
                   <div className={styles.teamOverlay}>
                     <div className={styles.teamSocials}>

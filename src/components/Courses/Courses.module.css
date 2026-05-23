@@ -1,10 +1,8 @@
-/* ── Courses Section ── */
 .courses {
   padding: 5rem 0;
   background: var(--bg-primary);
 }
 
-/* ── Grid ── */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -12,7 +10,6 @@
   margin-top: 2.5rem;
 }
 
-/* ── Card ── */
 .card {
   position: relative;
   display: flex;
@@ -46,7 +43,6 @@
   border-color: var(--accent, var(--page-accent));
 }
 
-/* First card spans full width with inner 2-col layout */
 .cardFirst {
   grid-column: 1 / -1;
   display: grid;
@@ -88,7 +84,6 @@
   margin-top: 1.25rem;
 }
 
-/* ── Card Number ── */
 .cardNum {
   position: absolute;
   top: 0.5rem;
@@ -111,7 +106,6 @@
   z-index: 0;
 }
 
-/* ── Card Top Row ── */
 .cardTop {
   display: flex;
   align-items: center;
@@ -122,7 +116,6 @@
   z-index: 1;
 }
 
-/* ── Category Chip ── */
 .cardChip {
   display: inline-flex;
   align-items: center;
@@ -138,7 +131,6 @@
   letter-spacing: 0.06em;
 }
 
-/* ── Badge ── */
 .cardBadge {
   display: inline-flex;
   align-items: center;
@@ -152,7 +144,6 @@
   letter-spacing: 0.06em;
 }
 
-/* ── Title & Desc ── */
 .cardTitle {
   font-family: var(--font-heading);
   font-size: 1.22rem;
@@ -173,7 +164,6 @@
   z-index: 1;
 }
 
-/* ── Meta Pills ── */
 .metaPills {
   display: flex;
   flex-wrap: wrap;
@@ -202,7 +192,6 @@
   background: color-mix(in srgb, var(--accent, var(--page-accent)) 6%, transparent);
 }
 
-/* ── Chapter Chips ── */
 .chips {
   display: flex;
   flex-wrap: wrap;
@@ -222,7 +211,6 @@
   font-weight: 500;
 }
 
-/* ── Card Actions ── */
 .cardActions {
   display: flex;
   align-items: center;
@@ -234,7 +222,6 @@
   z-index: 1;
 }
 
-/* ── Primary Button ── */
 .btnPrimary {
   display: inline-flex;
   align-items: center;
@@ -258,7 +245,6 @@
   transform: translateY(-1px);
 }
 
-/* ── Footer ── */
 .footer {
   display: flex;
   align-items: center;
@@ -289,31 +275,6 @@
   border-color: var(--page-accent);
 }
 
-.brochure {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  background: linear-gradient(135deg, #1d3557, #457b9d);
-  color: #fff;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 0.9rem;
-  padding: 0.7rem 1.5rem;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  overflow: hidden;
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-}
-
-.brochure:hover {
-  opacity: 0.92;
-  transform: translateY(-1px);
-}
-
-/* ── Dots (mobile only) ── */
 .dots {
   display: none;
   justify-content: center;
@@ -334,7 +295,6 @@
   transform: scale(1.3);
 }
 
-/* ── Dark mode ── */
 :global([data-theme="dark"]) .card {
   background: var(--bg-card);
 }
@@ -352,7 +312,6 @@
   background: color-mix(in srgb, var(--accent, var(--page-accent)) 12%, transparent);
 }
 
-/* ── Responsive ── */
 @media screen and (max-width: 900px) {
   .grid {
     grid-template-columns: 1fr;

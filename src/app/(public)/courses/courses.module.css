@@ -309,7 +309,6 @@
   margin: 0 auto;
 }
 
-/* ── Course Card ─────────────────────────────────────────── */
 .card {
   display: flex;
   flex-direction: column;
@@ -642,7 +641,6 @@
   margin: 0;
 }
 
-/* ── Section label pill ─────────────────────────────────── */
 .sectionLabel {
   display: inline-flex;
   align-items: center;

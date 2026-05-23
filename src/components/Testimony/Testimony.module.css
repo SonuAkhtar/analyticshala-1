@@ -10,7 +10,6 @@
   align-items: start;
 }
 
-/* ── Top row ── */
 
 .topRow {
   display: grid;
@@ -20,7 +19,6 @@
   align-items: start;
 }
 
-/* ── Featured card ── */
 
 .featured {
   min-height: 30vh;
@@ -95,7 +93,6 @@
   font-weight: 500;
 }
 
-/* ── Rating summary ── */
 
 .ratingSummary {
   min-height: 30vh;
@@ -183,14 +180,12 @@
   flex-shrink: 0;
 }
 
-/* ── Swiper ── */
 
 .swiper {
   padding-bottom: 3.5rem !important;
   width: 100%;
 }
 
-/* ── Cards ── */
 
 .card {
   background: var(--bg-card);
@@ -260,7 +255,6 @@
   color: var(--text-muted);
 }
 
-/* ── Swiper pagination overrides ── */
 
 .swiper :global(.swiper-pagination-bullet) {
   background: var(--border-light);
@@ -275,7 +269,6 @@
   border-radius: 4px;
 }
 
-/* ── Dark mode ── */
 
 :global([data-theme="dark"]) .testimony {
   background: var(--bg-primary);
@@ -305,7 +298,6 @@
   border-bottom-color: var(--border-light);
 }
 
-/* ── Responsive ── */
 
 @media (max-width: 900px) {
   .topRow {

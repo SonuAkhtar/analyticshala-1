@@ -30,7 +30,7 @@ const roadmapSteps = [
     icon: "fas fa-laptop-code",
     color: "#f97316",
     colorNext: "#7c3aed",
-    weeks: "Weeks 2–10",
+    weeks: "Weeks 2-10",
     title: "Learn By Doing",
     desc: "Weekend live classes with industry experts, real-world datasets, and graded assignments - you practise with the same tools professionals actually use on the job.",
     highlights: [
@@ -45,7 +45,7 @@ const roadmapSteps = [
     icon: "fas fa-project-diagram",
     color: "#7c3aed",
     colorNext: "#10b981",
-    weeks: "Weeks 11–12",
+    weeks: "Weeks 11-12",
     title: "Build Your Portfolio",
     desc: "Solve a real business problem through a capstone project. This becomes the centrepiece of your portfolio - the piece that makes recruiters take notice.",
     highlights: [

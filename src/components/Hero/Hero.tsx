@@ -50,7 +50,6 @@ const featuredCourses = coursesData
 const nextWorkshop = workshopData.upcoming[0];
 const featuredTestimony = testimonyData[0];
 
-/* ── Slide sub-components ── */
 
 const SlideTracker = ({ animate }: { animate: boolean }) => (
   <div className={`${styles.macSlide} ${styles.macSlideTracker}`}>
@@ -113,7 +112,7 @@ const SlideCourses = () => (
       ))}
     </div>
     <Link href="/courses" className={styles.macCtaLink}>
-      View all 7 courses <i className="fas fa-arrow-right" />
+      View all {coursesData.length} courses <i className="fas fa-arrow-right" />
     </Link>
   </div>
 );
@@ -194,7 +193,6 @@ const SlideStack = () => (
   </div>
 );
 
-/* memo to prevent re-render during carousel tick */
 const ProgressFill = memo(() => <span className={styles.macProgFill} />);
 ProgressFill.displayName = "ProgressFill";
 
@@ -206,7 +204,6 @@ const SLIDES = [
   { id: "stack", windowTitle: "Skills You'll Master", component: SlideStack },
 ];
 
-/* ── Mac Carousel ── */
 
 const MacCarousel = () => {
   const [current, setCurrent] = useState(0);
@@ -290,7 +287,6 @@ const MacCarousel = () => {
   );
 };
 
-/* ── Hero ── */
 
 const Hero = () => {
   const [mounted, setMounted] = useState(false);
@@ -422,7 +418,7 @@ const Hero = () => {
           animate={{ y: [0, -10, 0] }}
           transition={{ duration: 3.5, repeat: Infinity, delay: 1 }}
         >
-          <i className="fas fa-users" /> 500+ Alumni
+          <i className="fas fa-users" /> 300+ Students
         </motion.div>
 
         <motion.div

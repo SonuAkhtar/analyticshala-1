@@ -1,15 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
+import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import AnnouncementBar from "@/components/AnnouncementBar/AnnouncementBar";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import Loader from "@/components/Loader/Loader";
 import ScrollProgress from "@/components/ScrollProgress/ScrollProgress";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 import PageThemeSync from "@/components/PageThemeSync/PageThemeSync";
-import { Suspense } from "react";
+
+const Loader = dynamic(() => import("@/components/Loader/Loader"), {
+  ssr: false,
+});
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

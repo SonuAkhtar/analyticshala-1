@@ -32,20 +32,48 @@ const Footer = () => {
             </div>
 
             <div className={styles.footerCtaStats}>
-              <div className={styles.footerCtaStat}>
-                <span className={styles.footerCtaNum}>4.9★</span>
-                <span className={styles.footerCtaLbl}>Avg Rating</span>
-              </div>
-              <div className={styles.footerCtaDivider} />
-              <div className={styles.footerCtaStat}>
-                <span className={styles.footerCtaNum}>90</span>
-                <span className={styles.footerCtaLbl}>Days to Job Ready</span>
-              </div>
-              <div className={styles.footerCtaDivider} />
-              <div className={styles.footerCtaStat}>
-                <span className={styles.footerCtaNum}>300+</span>
-                <span className={styles.footerCtaLbl}>Learners Trained</span>
-              </div>
+              {[
+                {
+                  num: "4.9",
+                  unit: "★",
+                  label: "Avg Rating",
+                  icon: "fas fa-trophy",
+                  accent: "#fbbf24",
+                },
+                {
+                  num: "90",
+                  unit: "days",
+                  label: "To Job Ready",
+                  icon: "fas fa-rocket",
+                  accent: "#22d3ee",
+                },
+                {
+                  num: "300",
+                  unit: "+",
+                  label: "Students Trained",
+                  icon: "fas fa-users",
+                  accent: "#fb7185",
+                },
+              ].map((s) => (
+                <div
+                  key={s.label}
+                  className={styles.footerCtaStat}
+                  style={
+                    { "--stat-accent": s.accent } as React.CSSProperties
+                  }
+                >
+                  <div className={styles.footerCtaStatIcon}>
+                    <i className={s.icon} />
+                  </div>
+                  <div className={styles.footerCtaStatBody}>
+                    <span className={styles.footerCtaNum}>
+                      {s.num}
+                      <em className={styles.footerCtaUnit}>{s.unit}</em>
+                    </span>
+                    <span className={styles.footerCtaLbl}>{s.label}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 

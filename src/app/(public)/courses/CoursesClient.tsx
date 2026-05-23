@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { coursesData, courseRegData, type Course } from "@/data/appData";
 import styles from "./courses.module.css";
@@ -16,7 +17,7 @@ const getDifficultyClass = (level: string): string => {
 };
 
 const stats = [
-  { icon: "fas fa-users", value: "500+", label: "Students Trained" },
+  { icon: "fas fa-users", value: "300+", label: "Students Trained" },
   { icon: "fas fa-star", value: "4.9", label: "Average Rating" },
   { icon: "fas fa-book-open", value: "12", label: "Course Tracks" },
   { icon: "fas fa-certificate", value: "100%", label: "Certificate Included" },
@@ -47,10 +48,10 @@ const whyItems = [
 
 const categoryMap: Record<string, string[]> = {
   all: [
+    "genai-development",
     "data-analytics-python",
     "sql",
     "excel",
-    "genai-development",
     "applied-ai",
     "agentic-ai",
     "advanced-rag",
@@ -65,7 +66,7 @@ const categoryMap: Record<string, string[]> = {
     "genai-development",
     "leaders",
   ],
-  data: ["data-analytics-python", "python"],
+  data: ["data-analytics-python"],
   tools: ["sql", "excel", "tableau", "webdev"],
 };
 
@@ -76,7 +77,6 @@ const categories = [
   { key: "tools", label: "Tools & SQL" },
 ];
 
-/* ── Course Card ───────────────────────────────────────────────── */
 
 const CourseCard = ({ course }: { course: Course }) => {
   const bannerImg = course.bannerImage || DEFAULT_IMAGE;
@@ -101,7 +101,12 @@ const CourseCard = ({ course }: { course: Course }) => {
     >
       {/* Left: image panel */}
       <div className={styles.cardImage}>
-        <img src={bannerImg} alt={course.title} loading="lazy" />
+        <Image
+          src={bannerImg}
+          alt={course.title}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
         <div className={styles.cardImageOverlay} />
         <div className={styles.cardIcon}>
           <i className={course.icon} />
@@ -186,7 +191,6 @@ const CourseCard = ({ course }: { course: Course }) => {
   );
 };
 
-/* ── Page ──────────────────────────────────────────────────────── */
 
 export default function CoursesClient() {
   const [filter, setFilter] = useState("all");
@@ -214,7 +218,6 @@ export default function CoursesClient() {
 
   return (
     <div className={styles.page}>
-      {/* ── Hero ─────────────────────────────────────────────── */}
       <section className={styles.hero}>
         <div className={styles.heroCurve} aria-hidden="true">
           <svg
@@ -261,7 +264,6 @@ export default function CoursesClient() {
         </div>
       </section>
 
-      {/* ── Grid Section ─────────────────────────────────────── */}
       <section className={styles.gridSection}>
         <div className="container">
           <div className={styles.filterRow}>
@@ -294,7 +296,6 @@ export default function CoursesClient() {
         </div>
       </section>
 
-      {/* ── Why AnalyticShala ────────────────────────────────── */}
       <section className={styles.whySection}>
         <div className="container">
           <div className={`${styles.sectionLabel} ${styles.sectionLabelInv}`}>

@@ -5,10 +5,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { workshopData } from "@/data/appData";
 import { workshopFees } from "@/data/pricingConfig";
+import {
+  COUNTRY_CODES,
+  DEFAULT_COUNTRY_DIAL,
+  isValidPhone,
+} from "@/data/countryCodes";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb";
 import styles from "./workshopForm.module.css";
 
-/* ── constants ── */
 
 const CHOICE_FIELDS = [
   {
@@ -48,7 +52,6 @@ const INITIAL_FORM: FormValues = {
   analyticshalaStudent: "",
 };
 
-/* ── Inner component that reads search params ── */
 
 function WorkshopNotFound({ requestedId }: { requestedId: string | null }) {
   return (
@@ -89,6 +92,7 @@ function WorkshopFormInner() {
     : null;
 
   const [formValue, setFormValue] = useState<FormValues>(INITIAL_FORM);
+  const [countryCode, setCountryCode] = useState(DEFAULT_COUNTRY_DIAL);
   const [errors, setErrors] = useState<Partial<Record<keyof FormValues, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -120,8 +124,11 @@ function WorkshopFormInner() {
     }
     if (!formValue.phone.trim()) {
       err.phone = "Phone is required";
-    } else if (!/^\d{10}$/.test(formValue.phone)) {
-      err.phone = "Enter a valid 10-digit number";
+    } else if (!isValidPhone(countryCode, formValue.phone)) {
+      err.phone =
+        countryCode === "+91"
+          ? "Enter a valid 10-digit number"
+          : "Enter a valid phone number";
     }
     if (!formValue.age) err.age = "Age is required";
     if (!formValue.status) err.status = "Select your status";
@@ -161,13 +168,13 @@ function WorkshopFormInner() {
         );
       }
 
-      // Store payment data in sessionStorage, then redirect
       const paymentData = {
         orderId: result.orderId,
         amount: result.amount,
         coursePrice: null,
         user: {
           ...formValue,
+          phone: `${countryCode}${formValue.phone}`,
           workshopId: String(workshop.id),
           workshopTitle: workshop.title,
           workshopDate: workshop.date,
@@ -194,9 +201,11 @@ function WorkshopFormInner() {
   const inputFields: { name: keyof FormValues; type: string; placeholder: string }[] = [
     { name: "name",  type: "text",   placeholder: "Full Name" },
     { name: "email", type: "email",  placeholder: "Email Address" },
-    { name: "phone", type: "tel",    placeholder: "Phone Number (10 digits)" },
     { name: "age",   type: "number", placeholder: "Age" },
   ];
+
+  const phonePlaceholder =
+    countryCode === "+91" ? "Phone (10 digits)" : "Phone Number";
 
   return (
     <>
@@ -262,6 +271,51 @@ function WorkshopFormInner() {
                   )}
                 </div>
               ))}
+
+              {/* Phone - country code dropdown + local number */}
+              <div className={styles.inputWrap}>
+                <div
+                  className={`${styles.phoneRow}${
+                    errors.phone ? " " + styles.inputError : ""
+                  }`}
+                >
+                  <select
+                    value={countryCode}
+                    onChange={(e) => setCountryCode(e.target.value)}
+                    aria-label="Country code"
+                    className={styles.countrySelect}
+                  >
+                    {COUNTRY_CODES.map((c) => (
+                      <option key={c.dial} value={c.dial}>
+                        {c.flag} {c.dial}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    type="tel"
+                    placeholder={phonePlaceholder}
+                    name="phone"
+                    value={formValue.phone}
+                    onChange={(e) =>
+                      setFormValue((prev) => {
+                        const next = {
+                          ...prev,
+                          phone: e.target.value.replace(/\D/g, ""),
+                        };
+                        if (errors.phone) {
+                          setErrors((p) => ({ ...p, phone: undefined }));
+                        }
+                        return next;
+                      })
+                    }
+                    autoComplete="tel-national"
+                    inputMode="numeric"
+                  />
+                </div>
+                {errors.phone && (
+                  <span className={styles.errorText}>{errors.phone}</span>
+                )}
+              </div>
             </div>
 
             {/* Choice fields */}
@@ -309,7 +363,7 @@ function WorkshopFormInner() {
               className={styles.submitBtn}
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Preparing Payment…" : "Continue to Payment"}
+              {isSubmitting ? "Preparing Payment..." : "Continue to Payment"}
             </button>
           </form>
 
@@ -334,7 +388,6 @@ function WorkshopFormInner() {
   );
 }
 
-/* ── Page export wrapped in Suspense (required for useSearchParams) ── */
 
 export default function WorkshopFormPage() {
   return (
@@ -348,7 +401,7 @@ export default function WorkshopFormPage() {
             justifyContent: "center",
           }}
         >
-          <p style={{ color: "var(--text-muted)" }}>Loading…</p>
+          <p style={{ color: "var(--text-muted)" }}>Loading...</p>
         </div>
       }
     >

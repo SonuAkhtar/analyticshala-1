@@ -165,7 +165,7 @@ export default function TermsOfUsePage() {
               </li>
               <li>
                 <strong>Recorded courses</strong> - access is granted for the
-                period stated on the course page, typically 6–12 months from the
+                period stated on the course page, typically 6-12 months from the
                 date of purchase.
               </li>
               <li>
@@ -284,7 +284,7 @@ export default function TermsOfUsePage() {
                 <strong>Failed transactions</strong> - if your payment is
                 deducted but enrollment is not confirmed, please contact us
                 within 48 hours. Duplicate deductions will be refunded in full
-                within 5–7 business days.
+                within 5-7 business days.
               </li>
               <li>
                 <strong>Instalment plans</strong> - where offered, failure to

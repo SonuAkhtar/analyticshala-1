@@ -57,12 +57,11 @@
 
 /* Page layout */
 .payment {
-  min-height: 100vh;
   background: var(--bg-secondary);
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: calc(var(--ann-bar-height, 0px) + 6rem) 1.5rem 4rem;
+  padding: calc(var(--ann-bar-height, 0px) + 5rem) 1.5rem 3rem;
 }
 
 .wrap {
@@ -306,7 +305,6 @@
   transform: none;
 }
 
-/* Compact trust strip — replaces methods / trustBadges / waHelp / policyNote */
 .trustStrip {
   display: flex;
   align-items: center;
@@ -372,7 +370,6 @@ a.trustStripItem:hover i {
   font-size: 0.95rem;
 }
 
-/* Subtle confirmation check inside the student recap */
 .studentRecapCheck {
   margin-left: auto;
   color: #16a34a;
@@ -380,7 +377,7 @@ a.trustStripItem:hover i {
 }
 
 /* ============================================================
-   Course summary — polished hero treatment
+   Course summary - polished hero treatment
    ============================================================ */
 .summaryCourse {
   text-align: left;
@@ -466,7 +463,6 @@ a.trustStripItem:hover i {
   .payment {
     padding: calc(var(--ann-bar-height, 0px) + 5rem) 1rem 3rem;
   }
-  /* Pay action on top, item details below — keeps pay button above the fold */
   .card {
     order: 1;
   }
@@ -476,7 +472,7 @@ a.trustStripItem:hover i {
 }
 
 /* ============================================================
-   Workshop variant — ticket-style summary + accent shift
+   Workshop variant - ticket-style summary + accent shift
    ============================================================ */
 
 .paymentWorkshop {
@@ -505,14 +501,8 @@ a.trustStripItem:hover i {
   background: linear-gradient(135deg, var(--ws-accent) 0%, var(--ws-accent-deep) 100%);
 }
 
-.paymentWorkshop .payBtn {
-  background: linear-gradient(135deg, var(--ws-accent) 0%, var(--ws-accent-deep) 100%);
-  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
-}
-
-.paymentWorkshop .payBtn:hover {
-  box-shadow: 0 8px 32px rgba(245, 158, 11, 0.5);
-}
+/* Workshop variant inherits the standard brand-red pay button - keep amber
+   only for the ticket decoration (calendar block, perforations, chips). */
 
 .paymentWorkshop .subtext i {
   color: var(--ws-accent);
@@ -529,7 +519,6 @@ a.trustStripItem:hover i {
   overflow: hidden;
 }
 
-/* Notch-style cut-outs on left + right (gives ticket feel) */
 .summaryWs::before,
 .summaryWs::after {
   content: "";
@@ -548,7 +537,6 @@ a.trustStripItem:hover i {
   right: -12px;
 }
 
-/* Big calendar-style date block */
 .wsTicketDate {
   align-self: center;
   display: flex;
@@ -619,7 +607,6 @@ a.trustStripItem:hover i {
   letter-spacing: -0.01em;
 }
 
-/* Perforated separator */
 .wsPerforation {
   position: relative;
   height: 1px;
@@ -633,7 +620,6 @@ a.trustStripItem:hover i {
   background-repeat: repeat-x;
 }
 
-/* Detail rows: calendar, time, mode */
 .wsDetailRows {
   display: flex;
   flex-direction: column;
@@ -666,7 +652,6 @@ a.trustStripItem:hover i {
   flex-shrink: 0;
 }
 
-/* Tint the summary proof for workshop */
 .summaryWs .summaryProof {
   background: var(--ws-accent-tint);
   color: var(--ws-accent-deep);

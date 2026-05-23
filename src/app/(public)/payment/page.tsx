@@ -6,7 +6,6 @@ import { RAZORPAY_KEY_ID } from "@/config";
 import { supabase } from "@/lib/supabase";
 import styles from "./payment.module.css";
 
-/* ── Types ── */
 interface PaymentData {
   amount: number; // paise
   orderId?: string;
@@ -161,14 +160,12 @@ export default function PaymentPage() {
           year: "numeric",
         });
 
-        // Flag dev/test rows so production data stays clean
         const host = window.location.hostname;
         const isTest =
           host === "localhost" ||
           host === "127.0.0.1" ||
           host.endsWith(".vercel.app"); // preview deploys count as test
 
-        // Save to Supabase - track success so the success page can warn the user if it failed
         let saveOk = false;
         if (supabase) {
           try {
@@ -220,7 +217,6 @@ export default function PaymentPage() {
           );
         }
 
-        // Send confirmation email via Resend
         let emailOk = false;
         try {
           const emailRes = await fetch("/api/send-confirmation", {
@@ -248,7 +244,6 @@ export default function PaymentPage() {
           console.error("[Resend] confirmation email failed:", err);
         }
 
-        // Store success data in sessionStorage
         const successData = {
           type: paymentData.user.courseId ? "course" : "workshop",
           name: paymentData.user.name,
@@ -295,7 +290,7 @@ export default function PaymentPage() {
         <div className={styles.processing}>
           <div className={styles.processingInner}>
             <div className={styles.processingSpinner} />
-            <p>Confirming your enrollment…</p>
+            <p>Confirming your enrollment...</p>
             <span>Please wait, do not close this page</span>
           </div>
         </div>
@@ -373,7 +368,7 @@ export default function PaymentPage() {
 
               <div className={styles.summaryProof}>
                 <i className="fas fa-fire" />
-                <span>Limited seats — lock yours now</span>
+                <span>Limited seats - lock yours now</span>
               </div>
             </div>
           ) : (

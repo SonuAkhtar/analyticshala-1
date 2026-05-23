@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
@@ -59,7 +60,7 @@ const Testimony = () => {
             <div className={styles.ratingScore}>
               <span className={styles.ratingNum}>4.9</span>
               <div className={styles.ratingStars}>★★★★★</div>
-              <span className={styles.ratingCount}>Based on 500+ reviews</span>
+              <span className={styles.ratingCount}>Based on 300+ reviews</span>
             </div>
             <div className={styles.ratingBars}>
               {ratingBars.map(({ star, pct }) => (
@@ -106,7 +107,12 @@ const Testimony = () => {
                 </div>
                 <p className={styles.review}>{item.review}</p>
                 <div className={styles.profile}>
-                  <img src={item.image} alt={item.name} />
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    width={42}
+                    height={42}
+                  />
                   <div>
                     <span className={styles.name}>{item.name}</span>
                     <span className={styles.position}>{item.position}</span>

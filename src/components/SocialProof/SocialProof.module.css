@@ -91,12 +91,10 @@
   border-radius: 999px;
 }
 
-/* ── Dark mode ── */
 :global([data-theme="dark"]) .card {
   background: rgba(255, 255, 255, 0.04);
 }
 
-/* ── Responsive ── */
 @media screen and (max-width: 900px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);

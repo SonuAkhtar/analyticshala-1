@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useTheme } from "@/context/ThemeContext";
+import { useTheme } from "@/contexts/ThemeContext";
 import styles from "./MenuMobile.module.css";
 
 interface MenuMobileProps {
@@ -81,10 +81,38 @@ const MenuMobile = ({ expand, setExpand }: MenuMobileProps) => {
             Enroll Now <i className="fas fa-arrow-right" />
           </Link>
 
-          <button className={styles.mobNavThemeToggle} onClick={toggleTheme}>
-            <i className={theme === "light" ? "fas fa-moon" : "fas fa-sun"} />
-            <span>{theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}</span>
-          </button>
+          <div className={styles.themeRow}>
+            <span className={styles.themeLabel}>App theme</span>
+            <div
+              className={styles.themeSwitch}
+              role="group"
+              aria-label="Theme"
+            >
+              <span
+                className={styles.themeSwitchKnob}
+                data-theme={theme}
+                aria-hidden="true"
+              />
+              <button
+                type="button"
+                className={`${styles.themeSwitchOption}${theme === "light" ? " " + styles.themeSwitchOptionActive : ""}`}
+                onClick={() => theme !== "light" && toggleTheme()}
+                aria-label="Light mode"
+                aria-pressed={theme === "light"}
+              >
+                <i className="fas fa-sun" />
+              </button>
+              <button
+                type="button"
+                className={`${styles.themeSwitchOption}${theme === "dark" ? " " + styles.themeSwitchOptionActive : ""}`}
+                onClick={() => theme !== "dark" && toggleTheme()}
+                aria-label="Dark mode"
+                aria-pressed={theme === "dark"}
+              >
+                <i className="fas fa-moon" />
+              </button>
+            </div>
+          </div>
 
           <p className={styles.mobNavTagline}>
             India&apos;s most hands-on data education

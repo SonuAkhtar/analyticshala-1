@@ -10,17 +10,12 @@
   font-family: var(--font-body);
 }
 
-/* ── Hero ─────────────────────────────────────────────────── */
 .hero {
   position: relative;
   overflow: hidden;
-  padding: 9rem 1.5rem 4rem;
+  padding: calc(var(--ann-bar-height, 0px) + 6rem) 1.5rem 3rem;
   background: var(--bg-primary);
   text-align: center;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .heroOrb1,
@@ -195,7 +190,6 @@
   font-size: 0.8rem;
 }
 
-/* ── Layout ───────────────────────────────────────────────── */
 .layout {
   display: grid;
   grid-template-columns: 1fr 360px;
@@ -206,7 +200,6 @@
   align-items: start;
 }
 
-/* ── Section ──────────────────────────────────────────────── */
 .section {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -227,7 +220,6 @@
     color-mix(in srgb, var(--accent-purple) 20%, transparent);
 }
 
-/* ── About ────────────────────────────────────────────────── */
 .aboutText {
   font-size: 0.975rem;
   color: var(--text-secondary);
@@ -251,7 +243,6 @@
   border-radius: 999px;
 }
 
-/* ── Outcomes ─────────────────────────────────────────────── */
 .outcomesGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -277,7 +268,6 @@
   flex-shrink: 0;
 }
 
-/* ── Curriculum ───────────────────────────────────────────── */
 .curriculum {
   display: flex;
   flex-direction: column;
@@ -339,7 +329,6 @@
   margin-bottom: 0.2rem;
 }
 
-/* ── Who is this for ──────────────────────────────────────── */
 .whoGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -365,7 +354,6 @@
   flex-shrink: 0;
 }
 
-/* ── Instructor ───────────────────────────────────────────── */
 .instructorCard {
   display: flex;
   gap: 1.5rem;
@@ -454,7 +442,6 @@
   border-color: var(--accent-purple);
 }
 
-/* ── Testimonials ─────────────────────────────────────────── */
 .testiGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -517,7 +504,6 @@
   color: var(--text-muted);
 }
 
-/* ── Sidebar ──────────────────────────────────────────────── */
 .sidebar {
   position: sticky;
   top: 100px;
@@ -710,7 +696,6 @@
   background: color-mix(in srgb, var(--color-whatsapp) 6%, transparent);
 }
 
-/* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .layout {
     grid-template-columns: 1fr 300px;
@@ -736,7 +721,17 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding: 5.5rem 1.25rem 3rem;
+    padding: calc(var(--ann-bar-height, 0px) + 4.5rem) 1.25rem 2.5rem;
+  }
+  .heroIcon {
+    width: 64px;
+    height: 64px;
+    font-size: 1.6rem;
+    margin: 0 auto 1rem;
+    border-radius: 16px;
+  }
+  .heroSub {
+    margin-bottom: 1.25rem;
   }
   .layout {
     grid-template-columns: 1fr;

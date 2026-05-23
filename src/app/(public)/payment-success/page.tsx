@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import styles from "./paymentSuccess.module.css";
 
-/* ── Types ── */
 interface SuccessData {
   type: "course" | "workshop";
   name: string;
@@ -100,7 +99,6 @@ function SaveFailedBanner({
   );
 }
 
-/* ── Confetti ── */
 const COLORS = [
   "#f97316",
   "#16a34a",
@@ -141,7 +139,6 @@ function Confetti() {
   );
 }
 
-/* ── Course steps ── */
 const COURSE_STEPS = [
   {
     icon: "fas fa-envelope",
@@ -166,7 +163,6 @@ const COURSE_STEPS = [
   },
 ];
 
-/* ── Workshop steps ── */
 const WORKSHOP_STEPS = [
   {
     icon: "fas fa-envelope",
@@ -186,7 +182,6 @@ const WORKSHOP_STEPS = [
   },
 ];
 
-/* ── Course Success ── */
 function CourseSuccess({ data }: { data: SuccessData }) {
   const firstName = data.name.split(" ")[0] || "there";
   return (
@@ -288,7 +283,6 @@ function CourseSuccess({ data }: { data: SuccessData }) {
   );
 }
 
-/* ── Workshop Success ── */
 function WorkshopSuccess({ data }: { data: SuccessData }) {
   const firstName = data.name.split(" ")[0] || "there";
   return (
@@ -393,7 +387,6 @@ function WorkshopSuccess({ data }: { data: SuccessData }) {
   );
 }
 
-/* ── Main Component ── */
 export default function PaymentSuccessPage() {
   const router = useRouter();
   const [data, setData] = useState<SuccessData | null>(null);
@@ -405,7 +398,6 @@ export default function PaymentSuccessPage() {
       const raw = sessionStorage.getItem("paymentSuccess");
       if (raw) {
         setData(JSON.parse(raw));
-        // Keep in session storage in case user refreshes
       } else {
         router.replace("/");
       }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import Providers from "@/components/Providers";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -25,16 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
       </head>
       <body>
-        <Script
-          src="https://checkout.razorpay.com/v1/checkout.js"
-          strategy="lazyOnload"
-        />
         <Providers>{children}</Providers>
       </body>
     </html>

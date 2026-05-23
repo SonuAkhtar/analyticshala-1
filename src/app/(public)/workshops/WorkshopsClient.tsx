@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { workshopData } from "@/data/appData";
 import type { Workshop } from "@/data/appData";
 import styles from "./workshops.module.css";
 
-/* ── helpers ── */
 
 const parseDate = (dateStr = "") => {
   const parts = dateStr.split(", ");
@@ -83,7 +83,6 @@ const trustPoints = [
   },
 ];
 
-/* ── Sub-components ── */
 
 const FeaturedTicket = ({ workshop }: { workshop: Workshop }) => {
   const { month, day, dayName } = parseDate(workshop.date);
@@ -247,8 +246,12 @@ const TicketCard = ({
 const PastCard = ({ workshop }: { workshop: Workshop }) => (
   <div className={styles.pastCard}>
     <div className={styles.pastImg}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={workshop.image} alt={workshop.title} loading="lazy" />
+      <Image
+        src={workshop.image}
+        alt={workshop.title}
+        fill
+        sizes="(max-width: 768px) 100vw, 33vw"
+      />
       <div className={styles.pastOverlay} />
       <span className={styles.pastCompletedBadge}>
         <i className="fas fa-check-circle" /> Completed
@@ -390,7 +393,6 @@ const WaitlistModal = ({
   );
 };
 
-/* ── Main client component ── */
 
 export default function WorkshopsClient() {
   const countdown = useCountdown(getNextSaturday().getTime());
@@ -433,7 +435,7 @@ export default function WorkshopsClient() {
               Job-ready results.
             </p>
             <p className={styles.heroSpoiler}>
-              <em>&ldquo;Spoiler: our alumni get jobs. Your turn?&rdquo;</em>
+              <em>&ldquo;Spoiler: our students get jobs. Your turn?&rdquo;</em>
             </p>
             <div className={styles.heroActions}>
               <a href="#upcoming" className={styles.btnPrimary}>
@@ -549,12 +551,11 @@ export default function WorkshopsClient() {
         <div className={`container ${styles.communityInner}`}>
           <div className={styles.avatarStack}>
             {AVATAR_SEEDS.map((src, i) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img key={i} src={src} alt="Alumni" />
+              <Image key={i} src={src} alt="Students" width={36} height={36} />
             ))}
           </div>
           <p>
-            Join <strong>500+ learners</strong> already in our community
+            Join <strong>300+ learners</strong> already in our community
           </p>
           <a
             href="https://wa.me/918882641988"
@@ -574,7 +575,7 @@ export default function WorkshopsClient() {
             <i className="fas fa-history" /> Past Workshops
           </span>
           <h2 className={styles.sectionTitle}>
-            Over 500 Students Already Trained
+            Over 300 Students Already Trained
           </h2>
           <p className={styles.sectionSub}>
             Miss a live session? Here&apos;s what past students experienced.{" "}

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { testimonyData } from "@/data/appData";
@@ -31,7 +32,7 @@ const trustItems = [
   { icon: "fas fa-briefcase", text: "Career Placement Support" },
 ];
 
-const alumniCompanies = [
+const studentsCompanies = [
   { icon: "fas fa-building", name: "Infosys" },
   { icon: "fas fa-building", name: "Wipro" },
   { icon: "fas fa-building", name: "Genpact" },
@@ -63,7 +64,7 @@ const TestimonyCard = ({
       <p className={styles.cardReview}>&ldquo;{t.review}&rdquo;</p>
       <div className={styles.cardAuthor}>
         <div className={styles.cardAuthorImgWrap}>
-          <img src={t.image} alt={t.name} />
+          <Image src={t.image} alt={t.name} width={42} height={42} />
         </div>
         <div className={styles.cardAuthorInfo}>
           <strong className={styles.cardAuthorName}>{t.name}</strong>
@@ -81,13 +82,78 @@ const TestimonyCard = ({
 
 export default function TestimonyPageClient() {
   const featured = testimonyData[0];
+  const peeks = testimonyData.slice(1, 4);
 
   return (
     <div className={styles.page}>
       {/* Hero */}
       <section className={styles.hero}>
-        <div className={styles.heroGlow} />
+        <div className={styles.heroBg} aria-hidden="true">
+          <div className={`${styles.heroBlob} ${styles.heroBlob1}`} />
+          <div className={`${styles.heroBlob} ${styles.heroBlob2}`} />
+          <div className={`${styles.heroBlob} ${styles.heroBlob3}`} />
+          <div className={styles.heroGrid} />
+        </div>
+
+        {/* Decorative floating avatar peeks (desktop only) */}
+        {peeks[0] && (
+          <div
+            className={`${styles.heroPeek} ${styles.heroPeekLeft}`}
+            aria-hidden="true"
+          >
+            <Image
+              src={peeks[0].image}
+              alt=""
+              width={56}
+              height={56}
+            />
+            <span className={styles.heroPeekStars}>
+              {"★".repeat(5)}
+            </span>
+          </div>
+        )}
+        {peeks[1] && (
+          <div
+            className={`${styles.heroPeek} ${styles.heroPeekRight}`}
+            aria-hidden="true"
+          >
+            <Image
+              src={peeks[1].image}
+              alt=""
+              width={48}
+              height={48}
+            />
+            <span className={styles.heroPeekStars}>
+              {"★".repeat(5)}
+            </span>
+          </div>
+        )}
+        {peeks[2] && (
+          <div
+            className={`${styles.heroPeek} ${styles.heroPeekTopRight}`}
+            aria-hidden="true"
+          >
+            <Image
+              src={peeks[2].image}
+              alt=""
+              width={44}
+              height={44}
+            />
+          </div>
+        )}
+
         <div className={`container ${styles.heroInner}`}>
+          <motion.div className={styles.heroEyebrow} {...fadeUp(0)}>
+            <span className={styles.heroEyebrowStars}>
+              {[...Array(5)].map((_, i) => (
+                <i key={i} className="fas fa-star" />
+              ))}
+            </span>
+            <span className={styles.heroEyebrowText}>
+              Trusted by <strong>300+ students</strong>
+            </span>
+          </motion.div>
+
           <motion.h1 className={styles.heroHeading} {...fadeUp(0.07)}>
             Real People.
             <br />
@@ -95,18 +161,19 @@ export default function TestimonyPageClient() {
           </motion.h1>
 
           <motion.p className={styles.heroSub} {...fadeUp(0.13)}>
-            Over 500 professionals have transformed their careers with
-            AnalyticShala. Here&apos;s what they have to say.
+            Over 300 professionals have transformed their careers with
+            AnalyticShala. Their unfiltered stories - straight from the people
+            who lived them.
           </motion.p>
 
-          <motion.div className={styles.statsRow} {...fadeUp(0.18)}>
+          <motion.div className={styles.statGrid} {...fadeUp(0.18)}>
             {heroStats.map((s, i) => (
-              <div key={i} className={styles.statItem}>
-                <span className={styles.statNum}>{s.num}</span>
-                <span className={styles.statLabel}>{s.label}</span>
-                {i < heroStats.length - 1 && (
-                  <span className={styles.statSep}>·</span>
-                )}
+              <div key={i} className={styles.statTile}>
+                <div className={styles.statTileIcon}>
+                  <i className={s.icon} />
+                </div>
+                <span className={styles.statTileNum}>{s.num}</span>
+                <span className={styles.statTileLabel}>{s.label}</span>
               </div>
             ))}
           </motion.div>
@@ -118,14 +185,6 @@ export default function TestimonyPageClient() {
             >
               Join the Next Batch <i className="fas fa-arrow-right" />
             </Link>
-            <a
-              href="https://wa.me/918882641988"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${styles.btn} ${styles.btnGhost}`}
-            >
-              <i className="fab fa-whatsapp" /> Talk to an Alumnus
-            </a>
           </motion.div>
 
           <motion.div
@@ -139,6 +198,16 @@ export default function TestimonyPageClient() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
+            <div className={styles.heroQuoteTop}>
+              <div className={styles.heroQuoteStars}>
+                {[...Array(5)].map((_, i) => (
+                  <i key={i} className="fas fa-star" />
+                ))}
+              </div>
+              <span className={styles.heroQuoteVerified}>
+                <i className="fas fa-check-circle" /> Verified student
+              </span>
+            </div>
             <div className={styles.heroQuoteMark}>
               <i className="fas fa-quote-left" />
             </div>
@@ -146,16 +215,19 @@ export default function TestimonyPageClient() {
               &ldquo;{featured.review}&rdquo;
             </p>
             <div className={styles.heroQuoteAuthor}>
-              <img src={featured.image} alt={featured.name} />
-              <div>
+              <Image
+                src={featured.image}
+                alt={featured.name}
+                width={48}
+                height={48}
+              />
+              <div className={styles.heroQuoteAuthorInfo}>
                 <strong>{featured.name}</strong>
                 <span>{featured.position}</span>
               </div>
-              <div className={styles.heroQuoteStars}>
-                {[...Array(5)].map((_, i) => (
-                  <i key={i} className="fas fa-star" />
-                ))}
-              </div>
+              <span className={styles.heroQuoteFeatured}>
+                <i className="fas fa-bolt" /> Featured
+              </span>
             </div>
           </motion.div>
         </div>
@@ -181,7 +253,7 @@ export default function TestimonyPageClient() {
             <i className="fas fa-quote-left" /> What They Say
           </motion.span>
           <motion.h2 className={styles.sectionTitle} {...fadeUp(0.07)}>
-            Straight from Our Alumni
+            Straight from Our Students
           </motion.h2>
           <motion.p className={styles.sectionSub} {...fadeUp(0.12)}>
             No scripts. No filters. Honest accounts from students who chose to
@@ -196,13 +268,13 @@ export default function TestimonyPageClient() {
         </div>
       </section>
 
-      {/* Alumni strip */}
-      <div className={styles.alumniStrip}>
-        <div className={`container ${styles.alumniInner}`}>
-          <span className={styles.alumniLabel}>Our alumni now work at</span>
-          <div className={styles.alumniCompanies}>
-            {alumniCompanies.map((c, i) => (
-              <span key={i} className={styles.alumniChip}>
+      {/* Students strip */}
+      <div className={styles.studentsStrip}>
+        <div className={`container ${styles.studentsInner}`}>
+          <span className={styles.studentsLabel}>Our students now work at</span>
+          <div className={styles.studentsCompanies}>
+            {studentsCompanies.map((c, i) => (
+              <span key={i} className={styles.studentsChip}>
                 <i className={c.icon} /> {c.name}
               </span>
             ))}
