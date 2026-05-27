@@ -66,8 +66,13 @@
 }
 
 @keyframes orbFloat {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-28px) scale(1.04); }
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-28px) scale(1.04);
+  }
 }
 
 .main {
@@ -188,7 +193,12 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent 0%, rgba(178, 56, 80, 0.1) 50%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(178, 56, 80, 0.1) 50%,
+    transparent 100%
+  );
   transform: translateX(-100%);
   transition: transform 0.55s ease;
   pointer-events: none;
@@ -320,9 +330,19 @@
   color: var(--brand-red);
 }
 
-.pill1 { top: -16px; right: 16px; }
-.pill2 { bottom: -16px; left: 16px; }
-.pill3 { top: 50%; right: -12px; transform: translateY(-50%); }
+.pill1 {
+  top: -16px;
+  right: 16px;
+}
+.pill2 {
+  bottom: 32px;
+  left: 16px;
+}
+.pill3 {
+  top: 50%;
+  right: -12px;
+  transform: translateY(-50%);
+}
 
 .marqStrip {
   width: 100%;
@@ -368,9 +388,15 @@
   display: block;
 }
 
-.macDotR { background: #ff5f57; }
-.macDotY { background: #febc2e; }
-.macDotG { background: #28c840; }
+.macDotR {
+  background: #ff5f57;
+}
+.macDotY {
+  background: #febc2e;
+}
+.macDotG {
+  background: #28c840;
+}
 
 .macTitle {
   font-size: 0.78rem;
@@ -455,7 +481,9 @@
 }
 
 @keyframes progFill {
-  to { width: 100%; }
+  to {
+    width: 100%;
+  }
 }
 
 @media (max-width: 640px) {
@@ -478,7 +506,9 @@
   }
 }
 
-.macSlide { width: 100%; }
+.macSlide {
+  width: 100%;
+}
 
 .macTrackerStats {
   display: grid;
@@ -528,7 +558,9 @@
   margin-bottom: 0.75rem;
 }
 
-.macSkillBar { margin-bottom: 0.75rem; }
+.macSkillBar {
+  margin-bottom: 0.75rem;
+}
 
 .macSkillBarInfo {
   display: flex;
@@ -569,13 +601,19 @@
   transition: background 0.2s;
 }
 
-.macCourseItem:hover { background: var(--brand-red-blush); }
+.macCourseItem:hover {
+  background: var(--brand-red-blush);
+}
 
 .macCourseIcon {
   width: 32px;
   height: 32px;
   border-radius: 8px;
-  background: color-mix(in srgb, var(--c-accent, var(--brand-red)) 12%, transparent);
+  background: color-mix(
+    in srgb,
+    var(--c-accent, var(--brand-red)) 12%,
+    transparent
+  );
   display: flex;
   align-items: center;
   justify-content: center;
@@ -601,7 +639,10 @@
   font-family: var(--font-heading);
 }
 
-.macCourseMeta { font-size: 0.67rem; color: #78716c; }
+.macCourseMeta {
+  font-size: 0.67rem;
+  color: #78716c;
+}
 
 .macCourseSoon {
   font-size: 0.66rem;
@@ -628,7 +669,9 @@
   text-decoration: none;
 }
 
-.macCtaLink:hover { background: var(--brand-red-blush); }
+.macCtaLink:hover {
+  background: var(--brand-red-blush);
+}
 
 .macSlideWorkshop {
   display: flex;
@@ -672,7 +715,10 @@
   color: #78716c;
 }
 
-.macWsMeta i { color: var(--brand-red); font-size: 0.65rem; }
+.macWsMeta i {
+  color: var(--brand-red);
+  font-size: 0.65rem;
+}
 
 .macWsFooter {
   display: flex;
@@ -699,7 +745,9 @@
 .macWsSeatsBar::after {
   content: "";
   position: absolute;
-  left: 0; top: 0; bottom: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
   width: var(--fill, 60%);
   background: var(--brand-red);
   border-radius: 999px;
@@ -727,7 +775,9 @@
   text-decoration: none;
 }
 
-.macCtaBtn:hover { opacity: 0.9; }
+.macCtaBtn:hover {
+  opacity: 0.9;
+}
 
 .macSlideTestimony {
   display: flex;
@@ -777,9 +827,14 @@
   color: #1c1917;
 }
 
-.macTestiAuthor span { font-size: 0.72rem; color: #78716c; }
+.macTestiAuthor span {
+  font-size: 0.72rem;
+  color: #78716c;
+}
 
-.macTestiCompanyRow { margin-top: 0.25rem; }
+.macTestiCompanyRow {
+  margin-top: 0.25rem;
+}
 
 .macTestiCompanyBadge {
   display: inline-flex;
@@ -821,14 +876,23 @@
   gap: 0.3rem;
   padding: 0.6rem 0.25rem;
   background: color-mix(in srgb, var(--t-color, var(--brand-red)) 8%, white);
-  border: 1px solid color-mix(in srgb, var(--t-color, var(--brand-red)) 15%, transparent);
+  border: 1px solid
+    color-mix(in srgb, var(--t-color, var(--brand-red)) 15%, transparent);
   border-radius: 10px;
   transition: transform 0.2s;
 }
 
-.macStackItem:hover { transform: translateY(-2px); }
-.macStackItem i { font-size: 1.1rem; }
-.macStackItem span { font-size: 0.65rem; font-weight: 600; color: #44403c; }
+.macStackItem:hover {
+  transform: translateY(-2px);
+}
+.macStackItem i {
+  font-size: 1.1rem;
+}
+.macStackItem span {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #44403c;
+}
 
 .macStackFooter {
   display: flex;
@@ -851,19 +915,44 @@
     text-align: center;
   }
 
-  .left { align-items: center; }
-  .trust { justify-content: center; }
-  .mobileStats { display: grid; }
-  .right { display: none; }
-  .headlineBottom { letter-spacing: -1px; }
-  .typewriter { justify-content: center; }
+  .left {
+    align-items: center;
+  }
+  .trust {
+    justify-content: center;
+  }
+  .mobileStats {
+    display: grid;
+  }
+  .right {
+    display: none;
+  }
+  .headlineBottom {
+    letter-spacing: -1px;
+  }
+  .typewriter {
+    justify-content: center;
+  }
 }
 
 @media screen and (max-width: 480px) {
-  .main { padding: 9rem 1rem 2rem; }
-  .buttons { flex-direction: column; width: 100%; }
-  .btnPrimary, .btnGhost { width: 100%; justify-content: center; }
-  .mobileStats { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; padding: 1rem 0.75rem; }
+  .main {
+    padding: 9rem 1rem 2rem;
+  }
+  .buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  .btnPrimary,
+  .btnGhost {
+    width: 100%;
+    justify-content: center;
+  }
+  .mobileStats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    padding: 1rem 0.75rem;
+  }
 }
 
 .marqStrip :global(.marq) {
@@ -898,37 +987,63 @@
   );
 }
 
-:global(:root:not([data-theme="dark"])) .orb1 { background: rgba(var(--rgb-brand), 0.07); }
-:global(:root:not([data-theme="dark"])) .orb2 { background: rgba(var(--rgb-brand), 0.09); }
-:global(:root:not([data-theme="dark"])) .orb3 { background: rgba(var(--rgb-brand), 0.06); }
+:global(:root:not([data-theme="dark"])) .orb1 {
+  background: rgba(var(--rgb-brand), 0.07);
+}
+:global(:root:not([data-theme="dark"])) .orb2 {
+  background: rgba(var(--rgb-brand), 0.09);
+}
+:global(:root:not([data-theme="dark"])) .orb3 {
+  background: rgba(var(--rgb-brand), 0.06);
+}
 
 :global(:root:not([data-theme="dark"])) .badge {
   background: var(--brand-red-blush);
   border-color: var(--brand-red-border);
   color: var(--brand-red);
 }
-:global(:root:not([data-theme="dark"])) .badge i { color: var(--brand-red); }
+:global(:root:not([data-theme="dark"])) .badge i {
+  color: var(--brand-red);
+}
 
-:global(:root:not([data-theme="dark"])) .headlineTop { color: var(--text-secondary); }
+:global(:root:not([data-theme="dark"])) .headlineTop {
+  color: var(--text-secondary);
+}
 :global(:root:not([data-theme="dark"])) .headlineBottom {
-  background: linear-gradient(135deg, var(--brand-red) 0%, var(--brand-red-dark) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--brand-red) 0%,
+    var(--brand-red-dark) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-:global(:root:not([data-theme="dark"])) .typewriter { color: var(--text-secondary); }
-:global(:root:not([data-theme="dark"])) .typewriterHighlight { color: var(--text-primary); }
+:global(:root:not([data-theme="dark"])) .typewriter {
+  color: var(--text-secondary);
+}
+:global(:root:not([data-theme="dark"])) .typewriterHighlight {
+  color: var(--text-primary);
+}
 
-:global(:root:not([data-theme="dark"])) .trust span { color: var(--text-muted); }
-:global(:root:not([data-theme="dark"])) .trust i { color: var(--brand-red); }
+:global(:root:not([data-theme="dark"])) .trust span {
+  color: var(--text-muted);
+}
+:global(:root:not([data-theme="dark"])) .trust i {
+  color: var(--brand-red);
+}
 
 :global(:root:not([data-theme="dark"])) .mobileStats {
   background: var(--bg-card);
   border-color: var(--border);
 }
-:global(:root:not([data-theme="dark"])) .mobileStatNum { color: var(--text-primary); }
-:global(:root:not([data-theme="dark"])) .mobileStatLabel { color: var(--text-muted); }
+:global(:root:not([data-theme="dark"])) .mobileStatNum {
+  color: var(--text-primary);
+}
+:global(:root:not([data-theme="dark"])) .mobileStatLabel {
+  color: var(--text-muted);
+}
 
 :global(:root:not([data-theme="dark"])) .btnPrimary {
   background: var(--brand-red);
@@ -940,7 +1055,12 @@
   box-shadow: 0 10px 32px rgba(var(--rgb-brand), 0.4);
 }
 :global(:root:not([data-theme="dark"])) .btnPrimary::after {
-  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.15) 50%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
 }
 
 :global(:root:not([data-theme="dark"])) .btnGhost {
@@ -955,7 +1075,9 @@
 }
 
 :global([data-theme="dark"]) .pill {
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.42), 0 1px 6px rgba(0, 0, 0, 0.28);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.42),
+    0 1px 6px rgba(0, 0, 0, 0.28);
 }
 :global(:root:not([data-theme="dark"])) .pill {
   background: #ffffff;

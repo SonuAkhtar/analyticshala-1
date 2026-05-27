@@ -129,7 +129,7 @@ const CourseCard = ({ course }: { course: Course }) => {
       {/* Right: content panel */}
       <div className={styles.cardBody}>
         <span className={styles.cardCategory}>{course.subtitle}</span>
-        <h3 className={styles.cardTitle}>{course.title}</h3>
+        <h3 className={styles.cardTitle}>{course.homepageTitle || course.title}</h3>
         <p className={styles.cardDesc}>{course.description}</p>
 
         <div className={styles.cardMeta}>

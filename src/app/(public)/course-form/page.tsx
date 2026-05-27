@@ -174,9 +174,9 @@ function CourseFormInner() {
     }
   };
 
-  const inputFields: { name: keyof FormValues; type: string; placeholder: string; icon: string; autoComplete: string }[] = [
-    { name: "name",  type: "text",  placeholder: "Full Name",     icon: "fas fa-user",     autoComplete: "name" },
-    { name: "email", type: "email", placeholder: "Email Address", icon: "fas fa-envelope", autoComplete: "email" },
+  const inputFields: { name: keyof FormValues; type: string; placeholder: string; icon: string; autoComplete: string; ariaLabel: string }[] = [
+    { name: "name",  type: "text",  placeholder: "Full Name",     icon: "fas fa-user",     autoComplete: "name",  ariaLabel: "Full name" },
+    { name: "email", type: "email", placeholder: "Email Address", icon: "fas fa-envelope", autoComplete: "email", ariaLabel: "Email address" },
   ];
 
   const phonePlaceholder =
@@ -212,14 +212,14 @@ function CourseFormInner() {
             </p>
 
             <div className={styles.grid}>
-              {inputFields.map(({ name, type, placeholder, icon, autoComplete }) => (
+              {inputFields.map(({ name, type, placeholder, icon, autoComplete, ariaLabel }) => (
                 <div key={name} className={styles.inputWrap}>
                   <div
                     className={`${styles.inputGroup}${
                       errors[name] ? " " + styles.inputGroupError : ""
                     }`}
                   >
-                    <i className={icon} />
+                    <i className={icon} aria-hidden="true" />
                     <input
                       type={type}
                       placeholder={placeholder}
@@ -227,6 +227,8 @@ function CourseFormInner() {
                       value={formValue[name]}
                       onChange={handleChange}
                       autoComplete={autoComplete}
+                      aria-label={ariaLabel}
+                      aria-invalid={!!errors[name]}
                     />
                   </div>
                   {errors[name] && (
@@ -244,7 +246,7 @@ function CourseFormInner() {
                     errors.phone ? " " + styles.inputGroupError : ""
                   }`}
                 >
-                  <i className="fas fa-phone" />
+                  <i className="fas fa-phone" aria-hidden="true" />
                   <select
                     value={countryCode}
                     onChange={(e) => setCountryCode(e.target.value)}
@@ -273,6 +275,8 @@ function CourseFormInner() {
                     }
                     autoComplete="tel-national"
                     inputMode="numeric"
+                    aria-label="Phone number"
+                    aria-invalid={!!errors.phone}
                   />
                 </div>
                 {errors.phone && (

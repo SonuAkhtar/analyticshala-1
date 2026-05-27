@@ -198,10 +198,10 @@ function WorkshopFormInner() {
     }
   };
 
-  const inputFields: { name: keyof FormValues; type: string; placeholder: string }[] = [
-    { name: "name",  type: "text",   placeholder: "Full Name" },
-    { name: "email", type: "email",  placeholder: "Email Address" },
-    { name: "age",   type: "number", placeholder: "Age" },
+  const inputFields: { name: keyof FormValues; type: string; placeholder: string; ariaLabel: string; autoComplete: string }[] = [
+    { name: "name",  type: "text",   placeholder: "Full Name",     ariaLabel: "Full name",     autoComplete: "name" },
+    { name: "email", type: "email",  placeholder: "Email Address", ariaLabel: "Email address", autoComplete: "email" },
+    { name: "age",   type: "number", placeholder: "Age",           ariaLabel: "Age",           autoComplete: "off" },
   ];
 
   const phonePlaceholder =
@@ -256,7 +256,7 @@ function WorkshopFormInner() {
           <form onSubmit={handleSubmit} noValidate>
             {/* Text inputs */}
             <div className={styles.grid}>
-              {inputFields.map(({ name, type, placeholder }) => (
+              {inputFields.map(({ name, type, placeholder, ariaLabel, autoComplete }) => (
                 <div key={name} className={styles.inputWrap}>
                   <input
                     type={type}
@@ -265,6 +265,9 @@ function WorkshopFormInner() {
                     value={formValue[name]}
                     onChange={handleChange}
                     className={errors[name] ? styles.inputError : ""}
+                    aria-label={ariaLabel}
+                    aria-invalid={!!errors[name]}
+                    autoComplete={autoComplete}
                   />
                   {errors[name] && (
                     <span className={styles.errorText}>{errors[name]}</span>
@@ -310,6 +313,8 @@ function WorkshopFormInner() {
                     }
                     autoComplete="tel-national"
                     inputMode="numeric"
+                    aria-label="Phone number"
+                    aria-invalid={!!errors.phone}
                   />
                 </div>
                 {errors.phone && (
