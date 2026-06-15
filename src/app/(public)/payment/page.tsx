@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { RAZORPAY_KEY_ID } from "@/config";
-import { supabase } from "@/lib/supabase";
 import styles from "./payment.module.css";
 
 interface PaymentData {
@@ -30,6 +29,44 @@ interface PaymentData {
 }
 
 const toINR = (paise: number) => (paise / 100).toLocaleString("en-IN");
+
+/**
+ * Persists the registration via the server-side /api/verify-payment route.
+ *
+ * The save now happens on the server (immune to this page navigating away) and
+ * is retried a few times. `keepalive` lets the request finish even if the user
+ * closes the tab or the browser is backgrounded right after payment. Returns
+ * true only when the server confirms the row was saved.
+ */
+async function saveRegistration(payload: unknown): Promise<boolean> {
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const res = await fetch("/api/verify-payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        keepalive: true,
+      });
+      const json = await res.json().catch(() => null);
+      if (res.ok && json?.success) return true;
+      // 400 = bad signature / bad request — retrying won't help.
+      if (res.status === 400) {
+        console.error("[verify-payment] rejected:", json?.message);
+        return false;
+      }
+      console.error(
+        `[verify-payment] attempt ${attempt} failed (status ${res.status})`,
+        json?.message,
+      );
+    } catch (err) {
+      console.error(`[verify-payment] attempt ${attempt} threw:`, err);
+    }
+    if (attempt < 3) {
+      await new Promise((r) => setTimeout(r, 500 * attempt));
+    }
+  }
+  return false;
+}
 
 const ENROLLED_COUNT: Record<string, number> = {
   "data-analytics-python": 190,
@@ -151,7 +188,11 @@ export default function PaymentPage() {
         },
       },
 
-      handler: async function (response: { razorpay_payment_id: string }) {
+      handler: async function (response: {
+        razorpay_payment_id: string;
+        razorpay_order_id?: string;
+        razorpay_signature?: string;
+      }) {
         setIsProcessing(true);
         setPaymentError(null);
         const waDate = new Date().toLocaleDateString("en-IN", {
@@ -166,56 +207,35 @@ export default function PaymentPage() {
           host === "127.0.0.1" ||
           host.endsWith(".vercel.app"); // preview deploys count as test
 
-        let saveOk = false;
-        if (supabase) {
-          try {
-            const insertResult = paymentData.user.courseId
-              ? await supabase.from("course_registrations").insert({
-                  course_id: paymentData.user.courseId,
-                  course_title: itemTitle,
-                  name: paymentData.user.name,
-                  email: paymentData.user.email,
-                  phone: paymentData.user.phone,
-                  experience: paymentData.user.experience || null,
-                  goal: paymentData.user.goal || null,
-                  amount_inr: paymentData.amount / 100,
-                  payment_id: response.razorpay_payment_id,
-                  is_test: isTest,
-                })
-              : await supabase.from("workshop_registrations").insert({
-                  workshop_id: paymentData.user.workshopId || "",
-                  workshop_title: itemTitle,
-                  workshop_date: paymentData.user.workshopDate || null,
-                  workshop_time: paymentData.user.workshopTime || null,
-                  workshop_mode: paymentData.user.workshopMode || null,
-                  name: paymentData.user.name,
-                  email: paymentData.user.email,
-                  phone: paymentData.user.phone,
-                  age: paymentData.user.age
-                    ? Number(paymentData.user.age)
-                    : null,
-                  status: paymentData.user.status || null,
-                  mode: paymentData.user.mode || null,
-                  analyticshala_student:
-                    paymentData.user.analyticshalaStudent || null,
-                  amount_inr: paymentData.amount / 100,
-                  payment_id: response.razorpay_payment_id,
-                  is_test: isTest,
-                });
+        const isCourse = !!paymentData.user.courseId;
 
-            if (insertResult.error) {
-              console.error("Supabase save failed:", insertResult.error);
-            } else {
-              saveOk = true;
-            }
-          } catch (err) {
-            console.error("Supabase save threw:", err);
-          }
-        } else {
-          console.error(
-            "Supabase client not configured - registration not saved",
-          );
-        }
+        // Save server-side (verified + retried). This no longer depends on this
+        // page staying alive through the post-payment redirect.
+        const saveOk = await saveRegistration({
+          type: isCourse ? "course" : "workshop",
+          paymentId: response.razorpay_payment_id,
+          orderId: response.razorpay_order_id ?? paymentData.orderId,
+          signature: response.razorpay_signature,
+          isTest,
+          data: {
+            courseId: paymentData.user.courseId,
+            workshopId: paymentData.user.workshopId,
+            title: itemTitle,
+            name: paymentData.user.name,
+            email: paymentData.user.email,
+            phone: paymentData.user.phone,
+            experience: paymentData.user.experience,
+            goal: paymentData.user.goal,
+            workshopDate: paymentData.user.workshopDate,
+            workshopTime: paymentData.user.workshopTime,
+            workshopMode: paymentData.user.workshopMode,
+            age: paymentData.user.age,
+            status: paymentData.user.status,
+            mode: paymentData.user.mode,
+            analyticshalaStudent: paymentData.user.analyticshalaStudent,
+            amountInr: paymentData.amount / 100,
+          },
+        });
 
         let emailOk = false;
         try {
