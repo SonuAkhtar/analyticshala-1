@@ -37,23 +37,28 @@ const parseWorkshopDate = (dateStr: string): Date | null => {
   return d;
 };
 
+const ZERO_COUNTDOWN = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+
 const useCountdown = (targetDate: Date | null) => {
-  const calc = () => {
-    const diff = (targetDate?.getTime() ?? 0) - Date.now();
-    if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-    return {
-      days: Math.floor(diff / 86400000),
-      hours: Math.floor((diff % 86400000) / 3600000),
-      minutes: Math.floor((diff % 3600000) / 60000),
-      seconds: Math.floor((diff % 60000) / 1000),
-    };
-  };
-  const [time, setTime] = useState(calc);
+  const [time, setTime] = useState(ZERO_COUNTDOWN);
+
   useEffect(() => {
     if (!targetDate) return;
+    const calc = () => {
+      const diff = targetDate.getTime() - Date.now();
+      if (diff <= 0) return ZERO_COUNTDOWN;
+      return {
+        days: Math.floor(diff / 86400000),
+        hours: Math.floor((diff % 86400000) / 3600000),
+        minutes: Math.floor((diff % 3600000) / 60000),
+        seconds: Math.floor((diff % 60000) / 1000),
+      };
+    };
+    setTime(calc());
     const id = setInterval(() => setTime(calc()), 1000);
     return () => clearInterval(id);
-  }, [targetDate]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [targetDate]);
+
   return time;
 };
 
@@ -85,7 +90,9 @@ const buildCalendarUrl = (workshop: Workshop) => {
   const details = encodeURIComponent(
     `AnalyticShala Workshop: ${workshop.title}\n\nMore info: https://analyticshala.in/workshops/${workshop.slug ?? workshop.id}`,
   );
-  const loc = encodeURIComponent(workshop.eventMode?.join(" / ") || "Online");
+  const loc = encodeURIComponent(
+    workshop.venue || workshop.eventMode?.join(" / ") || "Online",
+  );
   return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDt}/${endDt}&details=${details}&location=${loc}`;
 };
 
@@ -231,6 +238,9 @@ export default function WorkshopDetailsClient({ slug }: { slug: string }) {
               <span><i className="fas fa-clock" /> {workshop.time}</span>
               <span><i className="fas fa-hourglass-half" /> {workshop.duration}</span>
               <span><i className="fas fa-user-tie" /> {workshop.instructor}</span>
+              {workshop.venue && (
+                <span><i className="fas fa-map-marker-alt" /> {workshop.venue}</span>
+              )}
               {workshop.eventMode.map((m, i) => (
                 <span key={i} className={styles.modePill}>{m}</span>
               ))}
@@ -425,6 +435,12 @@ export default function WorkshopDetailsClient({ slug }: { slug: string }) {
                   <i className="fas fa-laptop-house" />
                   <span>{workshop.eventMode.join(" & ")}</span>
                 </div>
+                {workshop.venue && (
+                  <div className={styles.sidebarItem}>
+                    <i className="fas fa-map-marker-alt" />
+                    <span>{workshop.venue}</span>
+                  </div>
+                )}
                 <div className={styles.sidebarItem}>
                   <i className="fas fa-user-tie" />
                   <span>{workshop.instructor}</span>

@@ -81,6 +81,7 @@ export interface Workshop {
   time?: string;
   duration: string;
   eventMode: string[];
+  venue?: string;
   instructor?: string;
   seatsLeft?: number;
   totalSeats?: number;
@@ -91,6 +92,7 @@ export interface Workshop {
   whoIsItFor?: string[];
   attendees?: number;
   rating?: number;
+  spotlight?: boolean;
 }
 
 export interface TeamMember {
@@ -240,7 +242,8 @@ export const coursesData: Course[] = [
     color: "card-purple",
     enrolledCount: 120,
     title: "GenAI Development",
-    subtitle: "Build AI Apps with LLMs, RAG, Agents, MCP & Production Deployment",
+    subtitle:
+      "Build AI Apps with LLMs, RAG, Agents, MCP & Production Deployment",
     description:
       "Hands-on program to build production-grade AI applications using LLMs, advanced RAG, agents, MCP, fine-tuning, and multimodal systems.",
     skills: [
@@ -623,7 +626,8 @@ export const coursesData: Course[] = [
     color: "card-yellow",
     enrolledCount: 240,
     title: "Modern SQL Development with AI Integration",
-    subtitle: "A 2-month live online program: from RDBMS fundamentals to AI-assisted SQL engineering",
+    subtitle:
+      "A 2-month live online program: from RDBMS fundamentals to AI-assisted SQL engineering",
     description:
       "Hands-on program covering SQL Server fundamentals, multi-table queries, transactions, stored procedures, and AI-assisted development with ChatGPT and Copilot. Designed for real-world data, BI, and analytics roles.",
     skills: [
@@ -1688,62 +1692,63 @@ export { workshopFees };
 export const workshopData = {
   upcoming: [
     {
-      id: 1001,
-      slug: "excel-for-data-analysis",
+      id: 1010,
+      slug: "a-claude-ai-workshop",
       image:
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80&auto=format&fit=crop",
-      category: "Data Analytics",
-      categoryColor: "#16a34a",
+        "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80&auto=format&fit=crop",
+      category: "Artificial Intelligence",
+      categoryColor: "#D97757",
       level: "Beginner",
-      title: "Excel for Data Analysis",
-      desc: "Master formulas, pivot tables, charts, and dashboards. The fastest path from spreadsheet user to data analyst.",
-      tags: ["Excel", "Pivot Tables", "Dashboards", "Data Cleaning"],
-      date: "June 6, Saturday",
-      time: "10:00 AM - 1:00 PM",
+      title: "A Claude-AI Workshop",
+      desc: "Get hands-on with Claude, Anthropic's AI model, and see how AI-assisted coding can supercharge your workflow. No prior AI experience needed.",
+      tags: ["Claude", "Anthropic", "AI Coding", "Prompting"],
+      date: "July 26, Sunday",
+      time: "11:30 AM - 2:30 PM",
       duration: "3 Hours",
       eventMode: ["Online", "Offline"],
-      instructor: "Faizan Ansari",
-      seatsLeft: 8,
-      totalSeats: 30,
-      price: "₹999",
-      originalPrice: "₹1,999",
+      venue: "Museo Camera, Gurgaon",
+      price: "₹299",
+      originalPrice: "₹599",
+      spotlight: true,
       outcomes: [
-        "Master 30+ essential Excel formulas",
-        "Build pivot tables to summarise large datasets",
-        "Create interactive dashboards",
-        "Clean and transform real-world data",
+        "Understand what Claude is and how large language models actually work",
+        "Write effective prompts to get accurate, useful responses from Claude",
+        "Use Claude as a coding assistant to write, debug, and refactor code faster",
+        "Automate everyday tasks and workflows using AI",
+        "Learn practical dos and don'ts for working with AI tools responsibly",
       ],
       curriculum: [
         {
-          time: "10:00 - 10:45",
-          title: "Excel Foundations & Formula Mastery",
-          desc: "VLOOKUP, INDEX-MATCH, IF nesting, SUMIFS",
-        },
-        {
-          time: "10:45 - 11:30",
-          title: "Pivot Tables & Data Summarisation",
-          desc: "Group, filter, and aggregate large datasets",
-        },
-        {
           time: "11:30 - 12:00",
-          title: "Data Cleaning & Transformation",
-          desc: "Remove duplicates, handle blanks, reshape raw data",
+          title: "Introduction to Claude & AI Coding",
+          desc: "What Claude is, how Anthropic builds it, and where AI assistants fit into a developer's workflow",
         },
         {
           time: "12:00 - 12:45",
-          title: "Interactive Dashboard Design",
-          desc: "Build a live Excel dashboard with slicers and charts",
+          title: "Prompting Fundamentals",
+          desc: "Crafting clear prompts, iterating on responses, and getting the output you actually want",
         },
         {
-          time: "12:45 - 13:00",
-          title: "Q&A & Interview Tips",
-          desc: "Common Excel interview questions",
+          time: "12:45 - 13:30",
+          title: "AI-Assisted Coding with Claude",
+          desc: "Writing, debugging, and refactoring real code live with Claude as your pair programmer",
+        },
+        {
+          time: "13:30 - 14:00",
+          title: "Automating Everyday Tasks",
+          desc: "Using Claude for documentation, emails, and everyday workflow automation",
+        },
+        {
+          time: "14:00 - 14:30",
+          title: "Q&A & Next Steps",
+          desc: "Open floor for questions and resources to keep learning",
         },
       ],
       whoIsItFor: [
-        "Freshers entering the job market",
-        "Working professionals who use Excel daily",
-        "Anyone preparing for analyst interviews",
+        "Complete beginners curious about AI and Claude",
+        "Developers who want to code faster with an AI assistant",
+        "Students and professionals looking to upskill in practical AI tools",
+        "Anyone curious about using Claude in daily work",
       ],
     },
     {
@@ -1757,7 +1762,7 @@ export const workshopData = {
       title: "SQL Masterclass for Analysts",
       desc: "From SELECT to advanced window functions - become the SQL analyst every data team wants to hire.",
       tags: ["SQL", "Window Functions", "Query Optimization", "PostgreSQL"],
-      date: "June 27, Saturday",
+      date: "August 1, Saturday",
       time: "11:00 AM - 2:00 PM",
       duration: "3 Hours",
       eventMode: ["Online"],
@@ -1816,7 +1821,7 @@ export const workshopData = {
       title: "Intro to Web Development",
       desc: "Build your first webpage from scratch. Learn HTML, CSS, and JavaScript fundamentals in one hands-on session.",
       tags: ["HTML", "CSS", "JavaScript", "Web Dev"],
-      date: "July 18, Saturday",
+      date: "August 8, Saturday",
       time: "10:00 AM - 1:00 PM",
       duration: "3 Hours",
       eventMode: ["Online", "Offline"],
