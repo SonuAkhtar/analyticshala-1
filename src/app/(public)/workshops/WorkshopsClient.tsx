@@ -40,17 +40,16 @@ const useCountdown = (target: number) => {
   const [time, setTime] = useState(ZERO_COUNTDOWN);
 
   useEffect(() => {
-    const calc = () => {
+    const tick = () => {
       const diff = Math.max(0, target - Date.now());
-      return {
+      setTime({
         d: pad(Math.floor(diff / 86400000)),
         h: pad(Math.floor((diff % 86400000) / 3600000)),
         m: pad(Math.floor((diff % 3600000) / 60000)),
         s: pad(Math.floor((diff % 60000) / 1000)),
-      };
+      });
     };
-    setTime(calc());
-    const id = setInterval(() => setTime(calc()), 1000);
+    const id = setInterval(tick, 1000);
     return () => clearInterval(id);
   }, [target]);
 

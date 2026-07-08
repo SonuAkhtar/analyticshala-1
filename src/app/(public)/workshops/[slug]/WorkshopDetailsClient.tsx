@@ -39,25 +39,27 @@ const parseWorkshopDate = (dateStr: string): Date | null => {
 
 const ZERO_COUNTDOWN = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
-const useCountdown = (targetDate: Date | null) => {
+const useCountdown = (targetTime: number | null) => {
   const [time, setTime] = useState(ZERO_COUNTDOWN);
 
   useEffect(() => {
-    if (!targetDate) return;
-    const calc = () => {
-      const diff = targetDate.getTime() - Date.now();
-      if (diff <= 0) return ZERO_COUNTDOWN;
-      return {
-        days: Math.floor(diff / 86400000),
-        hours: Math.floor((diff % 86400000) / 3600000),
-        minutes: Math.floor((diff % 3600000) / 60000),
-        seconds: Math.floor((diff % 60000) / 1000),
-      };
+    if (targetTime == null) return;
+    const tick = () => {
+      const diff = targetTime - Date.now();
+      setTime(
+        diff <= 0
+          ? ZERO_COUNTDOWN
+          : {
+              days: Math.floor(diff / 86400000),
+              hours: Math.floor((diff % 86400000) / 3600000),
+              minutes: Math.floor((diff % 3600000) / 60000),
+              seconds: Math.floor((diff % 60000) / 1000),
+            },
+      );
     };
-    setTime(calc());
-    const id = setInterval(() => setTime(calc()), 1000);
+    const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, [targetDate]);
+  }, [targetTime]);
 
   return time;
 };
@@ -99,7 +101,9 @@ const buildCalendarUrl = (workshop: Workshop) => {
 
 const CountdownTimer = ({ dateStr }: { dateStr: string }) => {
   const target = parseWorkshopDate(dateStr);
-  const { days, hours, minutes, seconds } = useCountdown(target);
+  const { days, hours, minutes, seconds } = useCountdown(
+    target?.getTime() ?? null,
+  );
   if (!target) return null;
   return (
     <div className={styles.countdown}>
