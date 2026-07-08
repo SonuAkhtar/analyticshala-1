@@ -34,21 +34,26 @@ const getNextSaturday = () => {
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
+const ZERO_COUNTDOWN = { d: "00", h: "00", m: "00", s: "00" };
+
 const useCountdown = (target: number) => {
-  const calc = () => {
-    const diff = Math.max(0, target - Date.now());
-    return {
-      d: pad(Math.floor(diff / 86400000)),
-      h: pad(Math.floor((diff % 86400000) / 3600000)),
-      m: pad(Math.floor((diff % 3600000) / 60000)),
-      s: pad(Math.floor((diff % 60000) / 1000)),
-    };
-  };
-  const [time, setTime] = useState(calc);
+  const [time, setTime] = useState(ZERO_COUNTDOWN);
+
   useEffect(() => {
+    const calc = () => {
+      const diff = Math.max(0, target - Date.now());
+      return {
+        d: pad(Math.floor(diff / 86400000)),
+        h: pad(Math.floor((diff % 86400000) / 3600000)),
+        m: pad(Math.floor((diff % 3600000) / 60000)),
+        s: pad(Math.floor((diff % 60000) / 1000)),
+      };
+    };
+    setTime(calc());
     const id = setInterval(() => setTime(calc()), 1000);
     return () => clearInterval(id);
-  }, [target]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [target]);
+
   return time;
 };
 
@@ -88,9 +93,12 @@ const FeaturedTicket = ({ workshop }: { workshop: Workshop }) => {
   const { month, day, dayName } = parseDate(workshop.date);
   const pct = getSeatPct(workshop.seatsLeft ?? 0, workshop.totalSeats ?? 0);
   const urgent = workshop.seatsLeft != null && workshop.seatsLeft <= 5;
+  const spotlight = workshop.spotlight;
 
   return (
-    <div className={styles.featuredTicket}>
+    <div
+      className={`${styles.featuredTicket}${spotlight ? " " + styles.featuredTicketSpotlight : ""}`}
+    >
       <div className={styles.featuredTicketLabel}>
         <span className={`${styles.status} ${styles.statusUpcoming}`}>
           UPCOMING
@@ -111,6 +119,11 @@ const FeaturedTicket = ({ workshop }: { workshop: Workshop }) => {
             <span>
               <i className="fas fa-hourglass-half" /> {workshop.duration}
             </span>
+            {workshop.venue && (
+              <span>
+                <i className="fas fa-map-marker-alt" /> {workshop.venue}
+              </span>
+            )}
           </div>
           {workshop.seatsLeft != null && workshop.totalSeats && (
             <div className={styles.featuredSeats}>
@@ -147,6 +160,7 @@ const TicketCard = ({
   const { month, day, dayName } = parseDate(workshop.date);
   const pct = getSeatPct(workshop.seatsLeft ?? 0, workshop.totalSeats ?? 0);
   const urgent = workshop.seatsLeft != null && workshop.seatsLeft <= 5;
+  const spotlight = workshop.spotlight;
 
   const statusLabel =
     workshop.seatsLeft === 0 ? "FULL" : urgent ? "LAST SEATS" : "UPCOMING";
@@ -158,7 +172,9 @@ const TicketCard = ({
         : styles.statusUpcoming;
 
   return (
-    <div className={styles.ticket}>
+    <div
+      className={`${styles.ticket}${spotlight ? " " + styles.ticketSpotlight : ""}`}
+    >
       <div className={styles.ticketDate}>
         <span className={styles.ticketMonth}>{month}</span>
         <span className={styles.ticketDay}>{day}</span>
@@ -189,6 +205,11 @@ const TicketCard = ({
             <span>
               <i className="fas fa-hourglass-half" /> {workshop.duration}
             </span>
+            {workshop.venue && (
+              <span>
+                <i className="fas fa-map-marker-alt" /> {workshop.venue}
+              </span>
+            )}
             {workshop.eventMode?.map((m, i) => (
               <span key={i} className={styles.modeChip}>
                 {m}
@@ -220,7 +241,15 @@ const TicketCard = ({
                   </span>
                 )}
               </div>
-              {workshop.seatsLeft === 0 ? (
+              {!spotlight ? (
+                <button
+                  className={`${styles.ticketCta} ${styles.ticketCtaDisabled}`}
+                  disabled
+                  title="Enrollment opens soon"
+                >
+                  Enroll Now <i className="fas fa-lock" />
+                </button>
+              ) : workshop.seatsLeft === 0 ? (
                 <button
                   className={`${styles.ticketCta} ${styles.ticketCtaWaitlist}`}
                   onClick={() => onWaitlist(workshop)}
